@@ -1,4 +1,4 @@
-# Wordpress + Timber + ACF + Vite
+# RLDatrix Wordpress + Timber + ACF + Vite
 
 This is a starter theme for Wordpress that uses modern dev tools.
 
