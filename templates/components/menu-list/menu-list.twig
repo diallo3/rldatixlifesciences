@@ -1,5 +1,5 @@
 {% set level = level + 1 %}
-<menu class="{{ name }}" data-level="{{ level }}">
+<menu class="{{ name }} flex items-center" data-level="{{ level }}">
 	{% for item in items %}
 		<li class="{{ item.classes|join(' ') }}">
 			{% if item.link == "#" %}

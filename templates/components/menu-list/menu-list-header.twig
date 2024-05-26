@@ -1,14 +1,14 @@
 {% set level = level + 1 %}
-<menu class="menu-list {{ name }}" data-level="{{ level }}">
+<menu class="menu-list flex items-center {{ name }}" data-level="{{ level }}">
 	{% for item in items %}
-		<li class="menu-list-item">
+		<li class="font-semibold {{ item.classes|join(' ') }} menu-list-item ">
 			{% if item.link == '#' %}
 				<button class="menu-link">
-					<div class="text">{{ item.title }}</div>
-					<div class="direction-indicator">▲</div>
+					<span class="inline-flex text">{{ item.title }}</span>
+					<span class="direction-indicator">▲</span>
 				</button>
 				{% else %}
-				<a href="{{ item.link }}" class="{{ item.classes|join(' ') }} menu-link text-sm inline-flex hover:text-blue-600 transition duration-150 ease-out" target="{{ item.target }}">
+				<a href="{{ item.link }}" class="inline-flex text-sm transition duration-150 ease-out menu-link hover:text-blue-600" target="{{ item.target }}">
                     <span>{{ item.title }}</span>
                 </a>
 			{% endif %}

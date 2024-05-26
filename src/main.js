@@ -7,7 +7,7 @@ if (import.meta.hot) {
 }
 
 // import JS files if applicable
-import '../src/modules/module-alpine.js';
+import { initializeAlpine } from './modules/module-alpine';
 
 // import SCSS files if applicable
 import '../src/app.css';
@@ -16,3 +16,8 @@ import '../src/app.css';
 import.meta.glob('../templates/**/*.css', { eager: true });
 
 // component imports
+
+document.addEventListener('DOMContentLoaded', () => {
+    // component initialization
+    initializeAlpine();
+});
