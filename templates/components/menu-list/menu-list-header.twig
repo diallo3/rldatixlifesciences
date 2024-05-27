@@ -1,19 +1,27 @@
 {% set level = level + 1 %}
 <menu class="menu-list flex items-center {{ name }}" data-level="{{ level }}">
 	{% for item in items %}
-		<li class="font-semibold {{ item.classes|join(' ') }} menu-list-item ">
+		<li class="font-semibold {{ item.classes|join(' ') }} menu-list-item group relative text-black-rock-100/80">
 			{% if item.link == '#' %}
-				<button class="menu-link">
-					<span class="inline-flex text">{{ item.title }}</span>
-					<span class="direction-indicator">▲</span>
+				<button class="menu-link inline-flex space-x-1.5 text-sm ">
+					{% include "/templates/components/menu-list/menu-text.twig" %}
 				</button>
 				{% else %}
-				<a href="{{ item.link }}" class="inline-flex text-sm transition duration-150 ease-out menu-link hover:text-blue-600" target="{{ item.target }}">
-                    <span>{{ item.title }}</span>
+				<a href="{{ item.link }}" class="inline-flex space-x-1.5 text-sm transition duration-150 ease-linear menu-link hover:text-white" target="{{ item.target }}">
+                    {% include "/templates/components/menu-list/menu-text.twig" %}
                 </a>
 			{% endif %}
 			{% if item.children %}
-				{% include 'components/menu-list/menu-list-header.twig' with {'items': item.children} %}
+				{# {% include 'components/menu-list/menu-list-header.twig' with {'items': item.children} %} #}
+                 <div class="absolute invisible pt-6 -ml-40 text-left left-1/2 top-8 z-1 w-80 group-hover:visible">
+                    <div class="overflow-hidden transition duration-300 ease-out origin-top scale-75 rounded-lg shadow-xl opacity-0 bg-wood-smoke-950 ring-1 ring-wood-smoke-900/80 group-hover:scale-100 group-hover:opacity-100">
+                        <div class="p-2 transition duration-500 ease-out scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100">
+                            <h4 class="p-3 text-xs font-semibold tracking-wider text-blue-600 uppercase dark:text-blue-400">
+                                Featured
+                            </h4>
+                        </div>
+                    </div>
+                </div>
 			{% endif %}
 		</li>
 	{% endfor %}

@@ -10,7 +10,7 @@
     }  | merge(options)  %}
 
     {% set typeClass = {
-        'primary': 'bg-blue-700 border-blue-700 text-white hover:text-white hover:bg-blue-600 hover:border-blue-600 focus:ring focus:ring-blue-400 focus:ring-opacity-50 active:bg-blue-700 active:border-blue-700',
+        'primary': 'bg-wood-smoke-950 hover:text-flamingo-500/70 hover:border-flamingo-500/70 border-2 border-dodger-blue-600  text-dodger-blue-600 rounded-full space-x-4 ring-0',
         'secondary': 'bg-blue-100 border-blue-200 text-blue-800 hover:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-25 active:border-blue-200 active:shadow-none',
         'simple': 'bg-white border-gray-200 text-gray-800 hover:border-gray-300 hover:shadow-sm',
     }[options.type] %}
@@ -22,13 +22,13 @@
     }[options.size] %}
 
     {# Generate button HTML #}
-    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} border inline-flex items-center justify-center space-x-2 leading-5 font-semibold rounded-lg">
+    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out">
 
-        <span>{{ options.text }}</span>
+        <span class="text-white">{{ options.text }}</span>
         {# Include an optional SVG icon #}
         {% if options.icon is not null %}
-            <span class="inline-flex items-center opacity-50">
-                {{ icons.icon(options.icon, 'w-5 h-5') }}
+            <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full hover:left-4">
+                {{ icons.icon(options.icon, 'w-4 h-4 text-wood-smoke-950') }}
             </span>
         {% endif %}
     </a>

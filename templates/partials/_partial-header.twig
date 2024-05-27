@@ -12,11 +12,15 @@
 		<div
 			class="flex items-center">
 			<!-- Logo -->
-			<a 
-                href="javascript:void(0)" 
-                class="inline-flex items-center space-x-2 text-lg font-bold tracking-wide text-gray-900 group hover:text-gray-600">
-				{{ icons.icon('temp-logo', 'w-8 h-8 text-blue-600 group-hover:text-blue-500') }}
-				<span>Company Name</span>
+			<a href="{{ site.link }}" class="inline-flex space-x-2">
+				{# {{ icons.icon('temp-logo', 'w-8 h-8 text-blue-600 group-hover:text-blue-500') }} #}
+                <span class="">
+                    {{ icons.icon('brand-glyph', 'w-8 h-auto') }}
+                </span>
+                <span class="">
+                    {{ icons.icon('brand-text', 'w-28 h-auto') }}
+                </span>
+				<span class="sr-only">{{ site.title }}</span>
 			</a>
 			<!-- END Logo -->
 		</div>
@@ -37,25 +41,22 @@
 		<div
 			class="flex items-center">
 			<!-- Actions -->
-			<div class="flex items-center justify-center gap-2">
-
+			<div class="items-center justify-center hidden gap-2 lg:flex"> 
                 {% for item in menu.header_buttons.get_items %}
                     {{ btns.btnLink({
                         text: item.title,
                         link: item.link,
-                        type: 'simple',
+                        type: 'primary',
                         icon: 'arrow-right',
                     }) }}
                 {% endfor %}
-
-                
                 
 			</div>
 			<!-- END Actions -->
 
 			<!-- Open Mobile Navigation  -->
 			<div class="ml-3 lg:hidden">
-				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2 space-x-2 text-sm font-semibold leading-5 text-gray-800 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:text-gray-900 hover:shadow-sm focus:ring focus:ring-gray-300 focus:ring-opacity-25 active:border-gray-200 active:shadow-none dark:border-gray-700 dark:bg-transparent dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-200 dark:focus:ring-gray-600 dark:focus:ring-opacity-40 dark:active:border-gray-700" aria-controls="tkMobileNav">
+				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2.5 leading-5 border rounded border-wood-smoke-600/60 hover:border-gray-300 hover:text-gray-900" aria-controls="tkMobileNav">
 					<svg class="inline-block w-5 h-5 hi-mini hi-bars-3" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
 					</svg>
