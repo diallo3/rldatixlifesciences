@@ -1,0 +1,23 @@
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-button.twig" as buttons %}
+{% import "components/ui/_macro-heading.twig" as headings %}
+
+<div id="page{{ post.id }}" class="px-6 content-wrapper lg:px-8 inview-container page-{{ post.slug }}">
+    <article
+        x-data="visibleNavHighlighter('.article-body h2')"
+        x-on:scroll.window.throttle.50ms="onScroll()"
+        id="{{ post.slug }}"  class="page-{{ post.slug }}">
+        {% block page_hero %}
+            {% include "pages/page/partials/_partial-page-hero.twig" with {
+                title: title,
+                subTitle: subTitle ?? ''
+            } %}
+        {% endblock %}
+
+        <section class="max-w-screen-xl pb-32 mx-auto page-body article-body inview-content">
+            {% block page_content %}
+                <p>Page Content</p>
+            {% endblock %}
+        </section>
+    </article>
+</div>

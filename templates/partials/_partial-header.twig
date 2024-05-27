@@ -70,21 +70,18 @@
 
     {% embed 'components/containers/slideover/_component-slideover.twig' with {
             trigger: 'mobileNavOpen',
-            slideTitle: 'Navigation',
+            slideTitle: '',
         }
     %}
         {% block slideContent %}
-            <nav class="flex flex-col items-start justify-between flex-1 space-y-4">
-                <a href="javascript:void(0)" class="text-sm font-semibold text-gray-900 hover:text-blue-600">
-                    <span>Features</span>
-                </a>
-                <a href="javascript:void(0)" class="text-sm font-semibold text-gray-900 hover:text-blue-600">
-                    <span>Pricing</span>
-                </a>
-                <a href="javascript:void(0)" class="text-sm font-semibold text-gray-900 hover:text-blue-600">
-                    <span>Support</span>
-                </a>
-            </nav>
+            <dl class="space-y-4 mobile-content">
+                <dd class="pt-4 mobile-content__main-nav">
+                    {% include "components/menu-list/menu-list-mobile.twig" %}
+                </dd>
+                <dd class="pt-4 text-white border-t border-wood-smoke-900/60 mobile-content__footer-nav">
+                     {% include "/templates/components/footer/_component-footer-social.twig" %}
+                </dd>
+            </dl>
         {% endblock %}
     {% endembed  %}
 </header>

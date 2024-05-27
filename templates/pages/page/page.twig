@@ -3,8 +3,27 @@
 {% block content %}
 
 
-<div class="container mx-auto">
-    {{post.content}}
-</div>
+{% embed "/components/containers/pages/_embed-page-title.twig" with {
+        title: title,
+    } %}
+        {% block page_content %}
+            <div class="grid gap-4 lg:gap-8 lg:grid-cols-3">
+                <section class="page-body__content lg:prose-lg lg:col-span-2 inview-content__item">
+                    <div class="prose prose-invert max-w-none">{{ post.content }}</div>
+                </section>
+                {% embed "components/containers/asides/_embed-asides-sticky.twig" %}
+                
+                    {% block aside_content %}
+                        {% if ext_links |  length %}
+                                {% include "pages/single/partials/_partial-single-ext-links.twig" %}
+                            {% endif %}
+                    {% endblock %}
+                    
+                {% endembed %}
+                
+            </div>
+        {% endblock %}
+        
+    {% endembed %}
 			
 {% endblock %}

@@ -1,0 +1,47 @@
+
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+{% set heroFeatured = hero.image %}
+{% set heroImages = hero.image_gallery %}
+{% set heroAccent = hero.accent %}
+
+<header
+	id="{{ post.slug }}-hero" class="relative px-4 py-8 lg:py-12 lg:px-8 page-hero inview-hero post-{{ post.type }}">
+	<div class="relative max-w-screen-xl pb-8 mx-auto">
+		<div class="gap-4 page-hero__entry lg:grid lg:grid-cols-12 lg:gap-8">
+			<div
+				class="space-y-8 page-hero__content lg:col-span-7">
+				<!-- hero content -->
+				<hgroup class="space-y-4 hero-heading inview-hero__item">
+                    <div class="inline-flex">
+                        {% if title is not empty %}
+                            {{ badges.accentBadge({
+                                title: post.title
+                            }) }}
+                        {% endif %}
+
+                        <span class="inline-flex items-center text-sm font-bold text-gray-800 uppercase"> 
+                        {% if heroAccent %}
+                            :<span class="ml-2 inlne-flex">{{ heroAccent }}</span>
+                        {% endif %}
+                        </span>
+                    </div>
+                    
+					<h1 class="flex flex-col secondary-heading-display hero-heading__title inview-hero__item">
+						{{ title ? title : post.title }}
+					</h1>
+				</hgroup>
+
+                {% if subTitle %}
+                    <div class="max-w-2xl prose xl:prose-lg hero-entry lg:mt-8 inview-hero__item">
+                        {{ subTitle }}
+                    </div>
+                {% endif %}
+			</div>
+            {# featured images #}
+            <div class="relative lg:col-span-5">
+                
+            </div>
+		</div>
+	</div>
+</header>

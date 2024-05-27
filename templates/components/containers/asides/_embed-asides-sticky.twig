@@ -1,0 +1,11 @@
+
+<aside class="{{ post.post_type }}-body__aside mt-8 lg:mt-0 inview-content__item hidden lg:block">
+    <div class=" lg:sticky lg:top-24">
+        <template x-if="headings">
+            <div class="pb-4 mb-4 article-aside__item ">
+                {% include "pages/single/partials/_partial-single-navigation.twig" %}
+            </div>
+        </template>
+        {% block aside_content %}{% endblock %}
+    </div>
+</aside>

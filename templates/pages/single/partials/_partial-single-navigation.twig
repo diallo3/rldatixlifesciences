@@ -1,0 +1,20 @@
+
+<template x-if="headings.length">
+<nav class="article-content__nav toc">
+    <h6 class="mb-4 text-xs font-semibold uppercase tracking-wides">
+        On this Page
+    </h6>
+    <ul class="space-y-3 list-disc page-nav lg:pl-4">
+        <template x-for="heading in headings" :key="heading.textContent">
+            <li class="text-sm font-medium text-gray-300 xl:text-base page-nav__item">
+                <a 
+                    :href="'#' + heading.id"
+                    :class="visibleHeadingId == heading.id && 'font-semibold text-gray-900' "
+                    class="text-gray-600 transition-colors duration-200 ease-in-out page-nav__link line-clamp-2 hover:text-blue-500"
+                    x-text="heading.textContent"></a>
+            </li>
+            {{ video }}
+        </template>
+    </ul>
+</nav>
+</template>

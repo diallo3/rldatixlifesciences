@@ -1,6 +1,6 @@
 {% import "components/ui/_macro-icon.twig" as icons %}
 
-<footer class="px-6 lg:px-8" aria-labelledby="footer-heading">
+<footer class="px-6 lg:px-8 main-footer" aria-labelledby="footer-heading">
 	<h2 id="footer-heading" class="sr-only">Footer</h2>
 	<div class="pt-16 pb-8 mx-auto max-w-screen-2xl sm:pt-24 lg:pt-32">
 		<div class="flex flex-col items-center w-full">
@@ -17,17 +17,10 @@
                    {% endif %}
                 </nav>
 
-                {% if menu.footer_social.get_items %}
-                    <div class="flex items-center justify-center mx-auto space-x-6 lg:space-x-8">
-                        {% for item in menu.footer_social.get_items %}
-                            <a href="{{ item.link }}" class="text-gray-500 transition duration-150 ease-linear hover:text-gray-400" target="{{ item.target }}">
-                                <span class="sr-only">{{ item.name }}</span>
-                                {{ icons.icon(item.name | lower, 'w-5 h-5') }}
-                            </a>
-                        {% endfor %}
-                        
-                    </div>
-                {% endif %}
+                <!-- Social Media Icons -->
+                <div class="hidden main-footer__social lg:block">
+                    {% include "/templates/components/footer/_component-footer-social.twig" %}
+                </div>
 
                 {#  #}
                 <div class="pt-8 mt-16 sm:mt-20 lg:mt-24">
