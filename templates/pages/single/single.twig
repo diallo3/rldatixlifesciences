@@ -1,20 +1,57 @@
 {% extends "layouts/base.twig" %}
+{% import "components/ui/_macro-heading.twig" as headings %}
+{% import "components/ui/_macro-image-object.twig" as images %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-badge.twig" as badges %}
+
+{% set hero =  post.meta('hero')[0] %}
+{% set heroImages = hero.image_gallery %}
+{% set term = get_term(term_id) %}
+
+
+{% set post_category = post.categories[0].name %}
+{% set accent = post_term ?? post_category %}
+
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-				</p>
-				<div class="article-body">
-					{{post.content}}
-				</div>
-			</section>
+    {% embed "/templates/components/containers/singles/_embed-single-title.twig" with {
+        title: post.title
+    } %}
 
-		</article>
-	</div><!-- /content-wrapper -->
+        {% block single_content %}
+            
+            
+            {% import "components/ui/_macro-image-object.twig" as images %}
+            {% import "components/ui/_macro-heading.twig" as headings %}
+            {% set prose = 'prose xl:prose-lg prose-blockquote:border-blue-300 prose-headings:tracking-tight  prose-headings:font-bold max-w-none prose-invert' %}
+            
+            <!-- Single Content -->
+            <div class="grid gap-4 lg:grid-cols-4 lg:gap-8 ">
+                    <section class="space-y-4 article-content lg:col-span-3 xl:pr-20">
+                    
+                        <!-- post thumbnail -->
+                        {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
+                        
+                        <div class="pt-8 pb-12 article-body lg:pt-12 prose-h2:scroll-mt-32 prose-table:border prose-table:rounded prose-th:px-4 prose-th:py-3 prose-th:text-sm prose-th:bg-gray-100/70 prose-td:font-medium prose-td:px-4 prose-td:text-sm odd:prose-tr:bg-gray-50">
+                            <div class="{{ prose }}">{{post.content}}</div>
+                        </div>
+                    </section>
+
+                    {# sidebar #}
+                    <aside class="article-aside">
+                        <div class="lg:sticky top-32">
+                            <template x-if="headings.length">
+                                <div class="pb-4 mb-4 article-aside__item ">
+                                    {% include "/templates/pages/single/partials/_partial-single-navigation.twig" %}
+                                </div>
+                            </template>                    
+                            
+                        </div>
+                    </aside>
+                </div>
+            
+        {% endblock %}
+        
+    {% endembed %}
+    
 {% endblock %}

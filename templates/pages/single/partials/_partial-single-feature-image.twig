@@ -1,0 +1,18 @@
+
+{% import "components/ui/_macro-heading.twig" as headings %}
+{% import "components/ui/_macro-image-object.twig" as images %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-badge.twig" as badges %}
+<figure class="article-content__featured aspect-[16/9] overflow-hidden rounded-md">
+    {{ images.imageObject({
+        'src': post.thumbnail,
+        'alt': post.title,
+        'fit': 'object-fit !w-full !h-auto'
+    }) }}
+
+</figure>
+{% if post.thumbnail.caption %}
+    <figcaption class="mt-4 text-sm italic text-wood-smoke-500 max-w-prose">
+        {{ post.thumbnail.caption }}
+    </figcaption>
+{% endif %}

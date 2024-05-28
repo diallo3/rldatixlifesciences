@@ -8,16 +8,19 @@ if (import.meta.hot) {
 
 // import JS files if applicable
 import { initializeAlpine } from './modules/module-alpine';
+import { initializeHeadroom } from './modules/module-headroom';
+import { initializeClientSwiper } from './modules/module-swiper';
 
 // import SCSS files if applicable
 import '../src/app.css';
 
 // glob import all css or scss files
-import.meta.glob('../templates/**/*.css', { eager: true });
+// import.meta.glob('../templates/**/*.css', { eager: true });
 
 // component imports
-
 document.addEventListener('DOMContentLoaded', () => {
     // component initialization
     initializeAlpine();
+    initializeHeadroom(); 
+    initializeClientSwiper();
 });

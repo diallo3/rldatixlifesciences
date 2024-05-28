@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="page-{{ page.fileSlug }} {{ tagString }}">
+<html lang="en" class="page-{{ page.fileSlug }} {{ tagString }} scroll-smooth ">
 	<head>
 		<!-- Base meta tags -->
 		<meta charset="{{ site.charset }}">
@@ -33,7 +33,7 @@
 
 	<body 
         x-init="console.log('Im initing')"
-        class="{{ body_class }} bg-wood-smoke-950 text-white font-sans">
+        class="{{ body_class }} bg-wood-smoke-950 text-white font-sans ">
 	
 		{% block alert %}
 			{% for alert in alerts %}
@@ -41,13 +41,13 @@
 			{% endfor %}
 		{% endblock %}
 
-		<header id="header" class="header" >
-			{% block header %}
-				{% include 'partials/_partial-header.twig' %}
-			{% endblock %}
-		</header>
 
-		<main id="content" class="layout" role="main">
+        {% block header %}
+            {% include 'partials/_partial-header.twig' %}
+        {% endblock %}
+
+
+		<main id="Swup" class="pt-24 layout transition-fade" role="main">
 			{% block content %}
 				Sorry, no content
 			{% endblock %}

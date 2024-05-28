@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
+const { values } = require('tailwindcss-fluid-type/src/config/defaults');
 
 module.exports = {
     darkMode: 'class',
@@ -89,6 +90,11 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/container-queries'),
+        require("tailwindcss-fluid-type")({
+            settings: {
+                prefix: "fluid-",
+              },
+        }),
         plugin(function ({ addUtilities }) {
             const utilFormSwitch = {
                 ".form-switch": {

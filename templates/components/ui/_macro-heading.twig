@@ -1,11 +1,13 @@
 {% macro displayHeadingOne(options={}) %}
     {% set options = {
-        title: 'Heading One',
-        color: 'text-gray-900',
-        case: case | default('uppercase')
+        title: 'Heading Display',
+        color: 'text-white',
+        case: case
     } | merge(options)  %}
 
-    
+    {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
+
+    <h1 class="{{ headingOptions }} fluid-text-6xl font-bold tracking-tight">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading One #}
@@ -13,13 +15,13 @@
 
     {% set options = {
         title: 'Heading One',
-        color: 'text-gray-900',
-        case: case | default('uppercase')
+        color: 'text-white',
+        case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h1 class="{{ headingOptions }} text-3xl lg:text-5xl font-semibold tracking-tighter font-alexandria">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} fluid-text-4xl font-bold tracking-tight">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading Two #}
@@ -27,15 +29,15 @@
 
     {% set options = {
         title: 'Heading Two',
-        color: 'text-gray-900',
-        size: size | default('text-2xl lg:text-3xl'),
-        case: case | default('uppercase')
+        color: 'text-white',
+        size: size | default('fluid-text-3xl'),
+        case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
 
-    <h2 class="{{ headingOptions }} font-semibold tracking-tight uppercase font-alexandria">{{ options.title }}</h2>
+    <h2 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h2>
     
 {% endmacro %}
 
@@ -44,14 +46,14 @@
 
     {% set options = {
         title: 'Heading Three',
-        color: 'text-gray-900',
-        size: size | default('text-lg lg:text-2xl'),
-        case: case | default('uppercase')
+        color: 'text-white',
+        size: size | default('fluid-text-2xl'),
+        case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h3 class="{{ headingOptions }} font-semibold tracking-tight  !leading-7 font-alexandria">{{ options.title }}</h3>
+    <h3 class="{{ headingOptions }} font-bold tracking-tight  !leading-7">{{ options.title }}</h3>
 {% endmacro %}
 
 {# Heading four #}
@@ -59,26 +61,26 @@
 
     {% set options = {
         title: 'Heading Four',
-        color: 'text-gray-900',
-        size: size | default('text-base lg:text-xl'),
-        case: case | default('uppercase')
+        color: 'text-white',
+        size: size | default('fluid-text-xl'),
+        case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h4 class="{{ headingOptions }} font-semibold tracking-tight font-alexandria">{{ options.title }}</h4>
+    <h4 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h4>
 {% endmacro %}
 
 {% macro headingFive(options=[]) %}
 
     {% set options = {
         title: 'Heading Five',
-        color: 'text-gray-900',
-        size: size | default('text-base lg:text-lg'),
-        case: case | default('uppercase')
+        color: 'text-white',
+        size: size | default('fluid-text-lg'),
+        case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h4 class="{{ headingOptions }} font-semibold tracking-tight font-alexandria">{{ options.title }}</h4>
+    <h4 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h4>
 {% endmacro %}

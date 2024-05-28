@@ -1,13 +1,27 @@
 {% extends "layouts/base.twig" %}
 
 {% block content %}
-	<div class="bg-red-950">
-        {# <h2>{{ foo }}</h2>
-        <p>{{ qux }}</p> #}
-        {% for post in posts %}
-            {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-        {% endfor %}
-        
-        {% include 'components/pagination/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
-    </div>
+    {% embed "components/containers/archive/_embed-archive-title.twig" with {
+        title: post_type_title ?? title,
+        subtitle: description,
+    } %}
+        {% block archive_content %}
+            {% if fn('is_home') and terms %}
+                <menu class="flex items-center gap-2 pb-4">
+                    {% for item in menu.resources_nav.get_items %}
+                        <li class="resource-{{ index }}">
+                            <a href="{{ item.link }}" class="inline-flex px-2 py-1 text-sm font-semibold text-gray-500 transition-colors duration-100 ease-linear border rounded bg-gray-50 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200" title="{{ item.title }}">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                </menu>
+            {% endif %}
+            <div class="grid grid-cols-1 gap-8 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 article-posts">
+                {% for post in posts %}
+                    <div id="article-{{ post.id }}" class="artice-posts__item inview-content__item">
+                        {% include "/components/cards/_component-card-post.twig" %}
+                    </div>
+                {% endfor %} 
+            </div>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

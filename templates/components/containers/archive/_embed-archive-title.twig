@@ -1,0 +1,60 @@
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+
+{% set post_title = post.title %}
+{% set term = get_term(term_id) %}
+{% set subtitle = term.meta('subtitle') %}
+
+{% set ctas = term.meta('call_to_actions') %}
+<div class="px-6 pb-20 content-wrapper lg:px-8 inview-container">
+    
+    <div class="mx-auto max-w-screen-2xl">
+        {# archive hero #}
+        <article
+            id="{{ post.type_archive }}Hero" 
+            class="relative py-8 lg:py-12 archive-hero post-{{ post.type }} inview-hero">
+            
+            <div class="relative gap-4 archive-hero__entry lg:grid lg:grid-cols-12 lg:gap-8">
+                <div
+                    class="space-y-8 page-hero__content lg:col-span-9">
+                    <!-- hero content -->
+                    <div class="space-y-2 hero-heading inview-hero__item">
+                        <span class="block text-sm font-medium tracking-tight uppercase text-dodger-blue-600 hero-heading__accent">
+                            {{ badges.accentBadge({
+                                title: post_title,
+                            }) }}
+                        </span>
+
+                         {{ headings.headingOne({
+                            title: title ? title : 'Longer Page Title Description',
+                        }) }}
+                    </div>
+
+                    {% if subtitle %}
+                        <div class="prose xl:prose-lg hero-entry lg:mt-8 inview-hero__item">
+                            <p class="font-medium lg:lead">{{ subtitle }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if ctas %}
+                        {% include "/templates/components/ctas/_component-hero-ctas.twig" %}
+                    {% endif %}
+                </div>
+            </div>
+            
+        </article>
+
+        <div class="archive-body inview-content">
+            {% block archive_content %}
+                <p>Archive Content</p>
+            {% endblock %}
+        </div>
+
+        <div class="archive-pagination">
+            {% include 'components/pagination/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+        </div>
+    </div>
+</div>

@@ -1,13 +1,13 @@
 {% import "components/ui/_macro-icon.twig" as icons %}
 
 {% if posts.pagination.pages is not empty %}
-    <nav class="mt-12 border-t border-gray-200">
+    <nav class="mt-12 border-t border-wood-smoke-900/60">
         <ul class="relative flex items-center justify-between px-4 -mt-[2px] pb-12 pagination pagination-block sm:px-0">
 
             {# First #}
             {% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
                 <li class="first btn">
-                    <a href="{{ posts.pagination.pages|first.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:border-gray-300 hover:text-gray-700">
+                    <a href="{{ posts.pagination.pages|first.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium border-t-2 border-transparent text-black-rock-200/80 hover:border-dodger-blue-600 hover:text-dodger-blue-600">
                     <span class="inline-flex w-5 h-4 mr-3 text-gray-400">
                         {{ icons.icon('arrow-long', 'w-full h-full') }}
                     </span>
@@ -15,18 +15,18 @@
                 </li>
             {% else %}
                 <li class="first btn disabled">
-                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium opacity-25" disabled>First</button>
+                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-wood-smoke-200/40" disabled>First</button>
                 </li>
             {% endif %}
 
             {# Previous #}
             {% if posts.pagination.prev %}
                 <li class="prev btn">
-                    <a href="{{ posts.pagination.prev.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:border-gray-300 hover:text-gray-700">Previous</a>
+                    <a href="{{ posts.pagination.prev.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium border-t-2 border-transparent text-black-rock-200/80 hover:border-dodger-blue-600 hover:text-dodger-blue-600">Previous</a>
                 </li>
             {% else %}
                 <li class="prev btn disabled">
-                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium opacity-25" disabled>Previous</button>
+                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-wood-smoke-200/40" disabled>Previous</button>
                 </li>
             {% endif %}
 
@@ -35,10 +35,10 @@
                 {% for page in posts.pagination.pages %}
                     {% if page.link %}
                         <li>
-                            <a href="{{ page.link }}" class="{{ page.class }} inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">{{ page.title }}</a>
+                            <a href="{{ page.link }}" class="{{ page.class }} inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-black-rock-200/80 hover:border-dodger-blue-600 hover:text-dodger-blue-600">{{ page.title }}</a>
                         </li>
                     {% else %}
-                        <li class="inline-flex items-center px-4 pt-4 text-sm font-bold text-blue-600 border-t-2 border-blue-500 current">
+                        <li class="inline-flex items-center px-4 pt-4 text-sm font-bold text-white border-t-2 border-dodger-blue-600 current">
                             <span class="{{ page.class }} -top-px inline-flex relative">{{ page.title }}</span>
                         </li>
                     {% endif %}
@@ -48,18 +48,18 @@
             {# Next #}
             {% if posts.pagination.next %}
                 <li class="next btn">
-                    <a href="{{ posts.pagination.next.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:border-gray-300 hover:text-gray-700">Next</a>
+                    <a href="{{ posts.pagination.next.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium border-t-2 border-transparent text-black-rock-200/80 hover:border-dodger-blue-600 hover:text-dodger-blue-600">Next</a>
                 </li>
             {% else %}
                 <li class="next btn disabled">
-                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium opacity-25" disabled>Next</button>
+                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-wood-smoke-200/40" disabled>Next</button>
                 </li>
             {% endif %}
 
             {# Last #}
             {% if posts.pagination.pages|last and posts.pagination.pages|last.current != true %}
                 <li class="last btn">
-                    <a href="{{ posts.pagination.pages|last.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:border-gray-300 hover:text-gray-700">
+                    <a href="{{ posts.pagination.pages|last.link }}" class="inline-flex items-center pt-4 pr-1 text-sm font-medium border-t-2 border-transparent text-black-rock-200/80 hover:border-dodger-blue-600 hover:text-dodger-blue-600">
                         Last
                         <span class="inline-flex w-5 h-4 ml-3 text-gray-400 -rotate-180">
                             {{ icons.icon('arrow-long', 'w-full h-full') }}
@@ -68,7 +68,7 @@
                 </li>
             {% else %}
                 <li class="last btn disabled">
-                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium opacity-25" disabled>Last</button>
+                    <button class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-wood-smoke-200/40" disabled>Last</button>
                 </li>
             {% endif %}
 

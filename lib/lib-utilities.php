@@ -50,3 +50,24 @@ function site_logo() {
 	}
 	return $logo;
 }
+
+/**
+ * Add a custom field to the general settings page
+ */
+add_filter('register_post_type_args', 'my_post_type_args', 10, 2);
+function my_post_type_args($args, $post_type){
+
+    $post_types = array('post', 'case-study', 'document');
+    
+    // target "my-post-type"
+    if($post_type && in_array($post_type, $post_types)) {
+    
+        // admin
+        $args['acfe_admin_archive'] = true;
+    
+    }
+    
+    // return
+    return $args;
+    
+}
