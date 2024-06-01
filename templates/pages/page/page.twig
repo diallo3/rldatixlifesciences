@@ -1,29 +1,68 @@
 {% extends "layouts/base.twig" %}
 
+{% set hero =  post.meta('page_hero')[0] %}
+{% set heroTitle = hero.title %}
+{% set heroSubTitle = hero.sub_title %}
+{% set heroEntry = hero.entry %}
+{% set heroCTAs  = hero.call_to_actions %}
+{% set heroImage = hero.image %}
+
+{% set pageContent = post.meta('page_content') %}
+{% set callToAction = post.meta('call_to_action')[0] %}
+
 {% block content %}
+{% embed "/templates/components/containers/pages/_embed-page-title.twig" %}
+    {% block page_content %}
 
-
-{% embed "/components/containers/pages/_embed-page-title.twig" with {
-        title: title,
-    } %}
-        {% block page_content %}
-            <div class="grid gap-4 lg:gap-8 lg:grid-cols-3">
-                <section class="page-body__content lg:prose-lg lg:col-span-2 inview-content__item">
-                    <div class="prose prose-invert max-w-none">{{ post.content }}</div>
-                </section>
-                {% embed "components/containers/asides/_embed-asides-sticky.twig" %}
+         {% for content in pageContent %}
+                {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
                 
-                    {% block aside_content %}
-                        {% if ext_links |  length %}
-                                {% include "pages/single/partials/_partial-single-ext-links.twig" %}
-                            {% endif %}
-                    {% endblock %}
+                {% if featureWithImage %}
+                    {% set featureGroupContent = content.feature_with_image[0] %}
+                    {% set accent = featureGroupContent.accent %}
+                    {% set title = featureGroupContent.title %}
+                    {% set subTitle = featureGroupContent.sub_title %}
+                    {% set entry = featureGroupContent.entry %}
+                    {% set link = featureGroupContent.link %}
+                    {% set image = featureGroupContent.image %}
+
+                    {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
+
+                {% elseif content.acf_fc_layout == 'card_with_image' %}
+                    {% set cardWithImage = content.acf_fc_layout == 'card_with_image' %}
+
+                    {% set cards = content.card_with_image[0].cards %}
+
+                    {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+                        id: 'section-content-' ~ loop.index,
+                        class: 'feature-card-with-image',
+                        maxWidth: 'max-w-screen-xl' 
+                    } %}
+                        {% block section_content %}
+                            <ul class="space-y-4 lg:space-y-8 lg:-mx-12 stack-cards js-stack-cards">
+                                {% for card in cards %}
+                                    {% set title = card.title %}
+                                    {% set entry = card.entry %}
+                                    {% set image = card.image %}
+                                    {% set link = card.link %}
+                                    <li class="stack-cards__item js-stack-cards__item">
+                                        {% include "/templates/components/cards/_component-card-featured-image.twig" %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endblock %}
+                    {% endembed %}
                     
-                {% endembed %}
-                
-            </div>
+                {% endif %}
+                    
+            {% endfor %}
         {% endblock %}
-        
-    {% endembed %}
-			
-{% endblock %}
+     {% endembed %}   
+
+     {% include "partials/_partial-call-to-action.twig" with {
+            title: callToAction.title,
+            entry: callToAction.entry,
+            link: callToAction.link,
+        } %}
+    
+{% endblock %}     

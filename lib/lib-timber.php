@@ -49,6 +49,7 @@ class StarterTimber extends Site {
 
 		$context['menu'] = $menu;
 		$context['site']  = $this;
+        $context['options'] = get_fields('option');
 		return $context;
 	}
 

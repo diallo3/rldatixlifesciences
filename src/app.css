@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.admin-bar {
+    .site-header {
+        top: 32px;
+    }
+}
+
 /* Headroom */
 .headroom {
     will-change: transform;
@@ -14,6 +20,7 @@
 .headroom--unpinned {
     transform: translateY(-100%);
 }
+
 
 
 /* SWUG Define a transition duration during page visits */
@@ -33,4 +40,26 @@ html.is-animating .transition-fade {
         opacity: 1;
     }
 }
+
+.stack-cards {
+    --stack-cards-gap: 0.75rem;
+    --stack-cards-item-ratio: 2/1;
+  }
+  @media (min-width: 64rem) {
+    .stack-cards {
+      --stack-cards-gap: 1.125rem;
+    }
+  }
+  
+  .stack-cards__item {
+    @apply top-8 lg:top-20;
+    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
+    
+    height: 0;
+    padding-bottom: calc(100%/(var(--stack-cards-item-ratio)));
+    transform-origin: center top;
+  }
+
 

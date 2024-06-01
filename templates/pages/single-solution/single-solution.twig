@@ -1,0 +1,55 @@
+{% extends "layouts/base.twig" %}
+{% import "components/ui/_macro-heading.twig" as headings %}
+{% import "components/ui/_macro-image-object.twig" as images %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-badge.twig" as badges %}
+{% import "components/ui/_macro-button.twig" as btn %}
+
+
+{% set hero =  post.meta('page_hero')[0] %}
+{% set heroTitle = hero.title %}
+{% set heroSubTitle = hero.sub_title %}
+{% set heroEntry = hero.entry %}
+{% set heroCTAs  = hero.call_to_actions %}
+{% set heroImage = hero.image %}
+
+{% set solutionContent = post.meta('solution_content') %}
+{% set callToAction = post.meta('call_to_action')[0] %}
+
+
+{% block content %}
+
+<script>console.log({{ post.meta('call_to_action') | json_encode | raw }})</script>
+
+    <article id="{{ post.type ~ '~' ~ post.id }}" class="{{ post.type ~ '-' ~ post.slug }} article">
+        {% include "/templates/pages/single-solution/partials/_partial-solution-hero.twig" %}
+        <div class="max-w-3xl mx-auto">
+            <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
+                {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
+            </div>
+        </div>
+        {% for content in solutionContent %}
+            {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
+        
+            {% if featureWithImage %}
+                {% set featureGroupContent = content.feature_with_image[0] %}
+                {% set accent = featureGroupContent.accent %}
+                {% set title = featureGroupContent.title %}
+                {% set subTitle = featureGroupContent.sub_title %}
+                {% set entry = featureGroupContent.entry %}
+                {% set link = featureGroupContent.link %}
+                {% set image = featureGroupContent.image %}
+                
+                {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
+            {% endif %}
+        {% endfor %}
+    </article>
+
+    {% include "partials/_partial-call-to-action.twig" with {
+        title: callToAction.title,
+        entry: callToAction.entry,
+        link: callToAction.link,
+    } %}
+
+    
+{% endblock %}

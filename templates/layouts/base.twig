@@ -3,7 +3,7 @@
 	<head>
 		<!-- Base meta tags -->
 		<meta charset="{{ site.charset }}">
-		<title>{{ title }}</title>
+		<title>{{ site.title }}</title>
 		<meta name="language" content="english" />
 		<meta name="description" content="{{ site.description }}" />
 		
@@ -33,29 +33,35 @@
 
 	<body 
         x-init="console.log('Im initing')"
-        class="{{ body_class }} bg-wood-smoke-950 text-white font-sans ">
-	
-		{% block alert %}
-			{% for alert in alerts %}
-				{% include 'components/alert/alert.twig' %}
-			{% endfor %}
-		{% endblock %}
+        class="{{ body_class }} bg-wood-smoke-950 text-white font-sans relative ">
+
+        <div class="relative overflow-clip">
+
+        <div class="absolute -top-96 left-20 rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-30"></div>
+            {% block alert %}
+                {% for alert in alerts %}
+                    {% include 'components/alert/alert.twig' %}
+                {% endfor %}
+            {% endblock %}
 
 
-        {% block header %}
-            {% include 'partials/_partial-header.twig' %}
-        {% endblock %}
+            {% block header %}
+                {% include 'partials/_partial-header.twig' %}
+            {% endblock %}
 
 
-		<main id="Swup" class="pt-24 layout transition-fade" role="main">
-			{% block content %}
-				Sorry, no content
-			{% endblock %}
-		</main>
+            <main id="Swup" class="pt-24 layout transition-fade" role="main">
+                {% block content %}
+                    Sorry, no content
+                {% endblock %}
+            </main>
 
-		{% block footer %}
-            {% include 'partials/_partial-footer.twig' %}
-		{% endblock %}
+            {% block footer %}
+                {% include 'partials/_partial-footer.twig' %}
+            {% endblock %}
+        </div>
+
+        
 
 		{{ function('wp_footer') }}
 

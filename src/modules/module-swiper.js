@@ -2,8 +2,10 @@ import Swiper from "swiper";
 import { Autoplay } from "swiper/modules";
 import 'swiper/css/bundle';
 
+let clientSwiper = null;
+
 const initializeClientSwiper = () => {
-    const swiper = new Swiper('.logos-swiper', {
+    clientSwiper = new Swiper('.logos-swiper', {
         modules: [Autoplay],
         // Optional parameters
         autoplay: {
@@ -15,6 +17,15 @@ const initializeClientSwiper = () => {
         slidesPerView: 5,
         spaceBetween: 50,
       });
+
+    return clientSwiper;
 }
 
-export { initializeClientSwiper };
+const destroyClientSwiper = () => {
+    if (clientSwiper !== null) {
+        clientSwiper.destroy(true, true);
+        clientSwiper = null;
+    }
+}
+
+export { initializeClientSwiper, destroyClientSwiper };

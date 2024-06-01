@@ -9,7 +9,10 @@ if (import.meta.hot) {
 // import JS files if applicable
 import { initializeAlpine } from './modules/module-alpine';
 import { initializeHeadroom } from './modules/module-headroom';
-import { initializeClientSwiper } from './modules/module-swiper';
+// import { initializeClientSwiper, destroyClientSwiper } from './modules/module-swiper';
+import { navHeader, generalInView, brandsInView } from './modules/module-motionOne';
+
+import { initializeStackedCards } from './modules/module-codyhouse';
 
 // import SCSS files if applicable
 import '../src/app.css';
@@ -20,7 +23,27 @@ import '../src/app.css';
 // component imports
 document.addEventListener('DOMContentLoaded', () => {
     // component initialization
+    navHeader();
+    generalInView();
     initializeAlpine();
     initializeHeadroom(); 
-    initializeClientSwiper();
+    brandsInView();
+    initializeStackedCards();
+
+    // function checkAndManageSwiper() {
+    //     const logosSwiper = document.querySelector('.logos-swiper');
+    //     if( logosSwiper ) {
+    //         console.log('initializeClientSwiper');
+    //         initializeClientSwiper();
+    //     } else {
+    //         destroyClientSwiper();
+    //         console.log('destroyClientSwiper');
+    //     }
+    // }
+    
+    // checkAndManageSwiper();
+
+    // window.addEventListener('hashchange', () => {
+    //     checkAndManageSwiper();
+    // });
 });

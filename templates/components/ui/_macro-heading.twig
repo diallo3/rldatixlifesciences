@@ -16,12 +16,13 @@
     {% set options = {
         title: 'Heading One',
         color: 'text-white',
+        size: size | default('fluid-text-5xl'),
         case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h1 class="{{ headingOptions }} fluid-text-4xl font-bold tracking-tight">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading Two #}
@@ -29,8 +30,8 @@
 
     {% set options = {
         title: 'Heading Two',
-        color: 'text-white',
-        size: size | default('fluid-text-3xl'),
+        color: color,
+        size: size ?? 'fluid-text-3xl',
         case: case
     } | merge(options)  %}
 
@@ -53,7 +54,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h3 class="{{ headingOptions }} font-bold tracking-tight  !leading-7">{{ options.title }}</h3>
+    <h3 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h3>
 {% endmacro %}
 
 {# Heading four #}

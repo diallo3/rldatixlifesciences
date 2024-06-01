@@ -1,0 +1,19 @@
+{% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+        id: 'section-content-' ~ loop.index,
+        class: 'feature-card-with-image',
+        maxWidth: 'max-w-screen-xl' 
+    } %}
+        {% block section_content %}
+            <ul class="space-y-4 stack-cards js-stack-cards">
+                {% for card in cards %}
+                    {% set title = card.title %}
+                    {% set entry = card.entry %}
+                    {% set image = card.image %}
+                    {% set link = card.link %}
+                    <li class="stack-cards__item js-stack-cards__item">
+                        {% include "/templates/components/cards/_component-card-featured-image.twig" %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    {% endembed %}

@@ -1,0 +1,49 @@
+{% import "components/ui/_macro-heading.twig" as headings %}
+{% import "components/ui/_macro-image-object.twig" as images %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-badge.twig" as badges %}
+{% import "components/ui/_macro-button.twig" as buttons %}
+
+{% set generalTitle = title ?? options.general_call_to_action.title %}
+{% set generalEntry = entry ?? options.general_call_to_action.entry %}
+{% set generalLink = link ?? options.general_call_to_action.link %}
+
+<section class="relative px-6 lg:px-8 section-page-cta">
+
+    <div class="relative max-w-xl py-20 mx-auto mt-16 overflow-hidden lg:max-w-7xl border-y border-wood-smoke-700 lg:pb-40">
+        <div class="absolute inset-x-0 bottom-0">
+            <svg width="1063" height="241" viewBox="0 0 1063 241" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1063" height="241" fill="url(#paint0_radial_204_17543)"/>
+            <defs>
+            <radialGradient id="paint0_radial_204_17543" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(531.5 241) rotate(-90) scale(172.685 564.997)">
+            <stop stop-color="#0D1453"/>
+            <stop offset="1" stop-color="#050822" stop-opacity="0"/>
+            </radialGradient>
+            </defs>
+            </svg>
+        </div>
+
+        <div class="relative gap-8 lg:grid lg:grid-cols-2">
+            <div class="section-page-cta__heading">
+                {{ headings.headingTwo({
+                    title: generalTitle,
+                    size: 'fluid-text-5xl',
+                })}}
+            </div>
+            <div class="section-page-cta__enter lg:pt-4">
+                <p class="text-xl">{{ entry ?? generalEntry }}</p>
+
+                <div class="mt-8">
+                    {{ buttons.btnLink({
+                        text: link.title ?? generalLink.title,
+                        link: link.url ?? generalLink.url,
+                        type: 'primary',
+                        icon: 'arrow-right',
+                        size: 'lg'
+                    })}}
+            </div>
+        </div>
+    </div>
+
+
+</section>

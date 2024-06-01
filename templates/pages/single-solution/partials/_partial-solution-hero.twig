@@ -1,0 +1,70 @@
+
+{% import "components/ui/_macro-heading.twig" as headings %}
+{% import "components/ui/_macro-image-object.twig" as images %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "components/ui/_macro-badge.twig" as badges %}
+{% import "components/ui/_macro-button.twig" as btn %}
+
+<section id="{{ post.id }}-hero" class="px-4 lg:px-8 lg:py-24 solution-hero">
+    <div class="mx-auto max-w-screen-2xl xl:px-12">
+        <div class="relative isolate">
+            <div class="items-center gap-8 lg:grid lg:grid-cols-12 lg:gap-16">
+            
+                <div class="lg:col-span-6 solution-hero__entry">
+                    <div class="space-y-8 ">
+
+                        <!-- Badge -->
+                        <div class="inline-flex solution-hero__title">
+                            {{ badges.accentBadge({
+                                title: post.title,
+                            })}}
+                        </div>
+
+                        <!-- Headings -->
+                        <hgroup class="mb-8 space-y-4 solution-hero__headers">
+                            {{ headings.headingOne({
+                                title: heroTitle,
+                                size: 'fluid-text-5xl',
+                            })}}
+
+                            {{ headings.headingTwo({
+                                title: heroSubTitle,
+                                size: 'fluid-text-lg',
+                                color: 'text-dodger-blue-500',
+                            })}}
+                        </hgroup>
+
+                        <!-- Entry -->
+                        <div class="prose prose-invert max-w-none prose-p:font-semibold solution-hero__entry">
+                            {{ heroEntry }}
+                        </div>
+
+                        <!-- Call to action buttons -->
+                        <div class="solution-hero__ctas">
+                            {% for item in heroCTAs %}
+
+                                {{ btn.btnLink({
+                                    text: item.link.title,
+                                    size: 'lg',
+                                    icon: 'arrow-right',
+                                })}}
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="relative lg:col-span-6">
+                    <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/60 blur-xl"></div>
+                    <figure class="relative w-full h-full border border-blue-700 rounded-md aspect-w-16 aspect-h-12 bg-wood-smoke-950">
+                        {{ images.imageObject({
+                            src: hero.image.url,
+                            alt: hero.title,
+                            classes: 'object-cover object-center rounded-md',
+                        })}}
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
