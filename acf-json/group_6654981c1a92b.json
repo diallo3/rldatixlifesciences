@@ -3,11 +3,11 @@
     "title": "Page Hero Fields",
     "fields": [
         {
-            "key": "field_665498e8dd780",
-            "label": "Page Hero",
-            "name": "page_hero",
+            "key": "field_665ca154e551d",
+            "label": "Hero Type",
+            "name": "hero_type",
             "aria-label": "",
-            "type": "component_field",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,16 +16,104 @@
                 "class": "",
                 "id": ""
             },
-            "field_group_key": "group_658b32a3911fa",
+            "hide_field": "",
+            "hide_label": "",
+            "hide_instructions": "",
+            "hide_required": "",
+            "message": "",
+            "default_value": 0,
+            "acfe_settings": "",
+            "acfe_validate": "",
+            "instruction_placement": "",
+            "acfe_permissions": "",
+            "ui_on_text": "General",
+            "ui_off_text": "Simple",
+            "ui": 1,
             "acfe_field_group_condition": 0,
-            "repeatable": false,
+            "style": ""
+        },
+        {
+            "key": "field_665498e8dd780",
+            "label": "Page Hero",
+            "name": "page_hero",
+            "aria-label": "",
+            "type": "component_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_665ca154e551d",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "hide_field": "",
+            "hide_label": "",
+            "hide_instructions": "",
+            "hide_required": "",
+            "field_group_key": "group_658b32a3911fa",
+            "layout": "block",
+            "repeatable": 0,
+            "acfe_settings": "",
+            "acfe_validate": "",
+            "instruction_placement": "",
+            "acfe_permissions": "",
+            "button_label": "Add Row",
+            "appearances": "",
+            "acfe_field_group_condition": 0,
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "layout": "block",
-            "button_label": "Add Row",
             "collapsed": "",
-            "appearances": [],
+            "sub_fields": []
+        },
+        {
+            "key": "field_665ca0d5366f0",
+            "label": "Page Hero Simple",
+            "name": "page_hero_simple",
+            "aria-label": "",
+            "type": "component_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_665ca154e551d",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "hide_field": "",
+            "hide_label": "",
+            "hide_instructions": "",
+            "hide_required": "",
+            "field_group_key": "group_665ca05d53e28",
+            "layout": "block",
+            "repeatable": 0,
+            "acfe_settings": "",
+            "acfe_validate": "",
+            "instruction_placement": "",
+            "acfe_permissions": "",
+            "button_label": "Add Row",
+            "appearances": "",
+            "acfe_field_group_condition": 0,
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": []
         }
     ],
@@ -61,7 +149,12 @@
     "acfe_form": 1,
     "acfe_display_title": "Hero",
     "acfe_permissions": "",
-    "acfe_meta": "",
+    "acfe_meta": {
+        "acfcloneindex": {
+            "acfe_meta_key": "",
+            "acfe_meta_value": ""
+        }
+    },
     "acfe_note": "",
     "is_acf_component": 0,
     "acf_component_defaults": {
@@ -74,5 +167,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717107609
+    "modified": 1717346984
 }

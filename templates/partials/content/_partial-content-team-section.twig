@@ -1,0 +1,64 @@
+ {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+    id: 'section-content-' ~ loop.index,
+    class: 'feature-card-with-image',
+    maxWidth: 'max-w-screen-2xl' 
+} %}
+    {% block section_content %}
+        {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+        {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+        {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+        {% import "/templates/components/ui/_macro-image-object.twig" as images %}
+        {% import "/templates/components/ui/_macro-badge.twig" as badges %}
+
+        <div class="px-6 mx-auto max-w-screen-2xl lg:px-8 team-section">
+            <div class="max-w-2xl mx-auto lg:mx-0 team-section__content">
+                {{ headings.headingTwo({
+                    title: team.title,
+                    size: 'fluid-text-3xl',
+                })}}
+
+                <div class="mt-6 prose prose-p:fluid-text-sm prose-invert team-section__entry">
+                    {{ team.entry }}
+                </div>
+                
+            </div>
+            <ul role="list" class="grid max-w-2xl grid-cols-1 mx-auto mt-20 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 inview-container team-section__members">
+                {% for member in members %}
+                    
+                    {% set title = member.title %}
+                    {% set position = member.meta('position') %}
+                    {% set social = member.meta('linked_in') %}
+                    <li id="{{ loop.index}}-member" class="inview-item team-section__member">
+                        <figure class="aspect-[3/2] rounded-lg overflow-hidden">
+                            {{ images.imageObject({
+                                src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+                                alt: member.image.alt,
+                                class: 'w-full h-full',
+                            })}}
+                        </figure>
+                        {# <img class="aspect-[3/2] w-full rounded-2xl object-cover" src="" alt=""> #}
+
+                        <div class="flex justify-between py-2">
+                            <div class="flex-grow">
+                                {{ headings.headingThree({
+                                    title: title,
+                                    size: 'fluid-text-base',
+                                }) }}
+                                <p class="text-base leading-7 text-dodger-blue-500">{{ position }}</p>
+                            </div>
+
+                            <div class="flex-shrink">
+                                <a href="{{ social }}" class="block py-1 text-gray-400 hover:text-gray-100" target="_blank">
+                                    <span class="sr-only">LinkedIn for {{ title }}</span>
+                                    {{ icons.icon('linkedin', 'size-5') }}
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    {% endblock %}
+{% endembed %}

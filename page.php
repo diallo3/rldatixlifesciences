@@ -24,7 +24,51 @@
 
 use Timber\Timber;
 
+$page_content = get_field('page_content');
+
+
+
 $context = Timber::context();
+
+if (have_rows('page_content')) {
+    while (have_rows('page_content')) {
+        the_row();
+
+        if (get_row_layout() == 'featured_posts') {
+            $featured_posts = get_sub_field('featured_posts')[0];
+            
+            $type = $featured_posts['type_of_posts'];
+
+            if ($type == 'recommended') {
+                $recommended = $featured_posts['recommended'];
+                $context['featured_posts'] = Timber::get_posts($recommended);
+
+            } elseif ($type == 'popular') {
+                $context['featured_posts'] = Timber::get_posts([
+                    'post_type' => 'post',
+                    'posts_per_page' => 3,
+                    'orderby' => 'comment_count'
+                ]);
+            } elseif ($type == 'category') {
+                $category = $featured_posts['post_category'];
+                // var_dump($category);
+                $category = $featured_posts['post_category'];
+                $context['featured_posts'] =Timber::get_posts([
+                    'post_type' => 'post',
+                    'posts_per_page' => 3,
+                    'category__in' => $category
+                ]);
+            } else {
+                $context['featured_posts'] = Timber::get_posts([
+                    'post_type' => 'post',
+                    'posts_per_page' => 3
+                ]);
+            }
+           
+        }
+        
+    }
+}
 
 $timber_post     = Timber::get_post();
 $context['post'] = $timber_post;

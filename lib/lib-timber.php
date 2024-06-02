@@ -47,6 +47,11 @@ class StarterTimber extends Site {
 			$menu['footer_utility'] = Timber::get_menu('footer_utility');
 		}
 
+       
+        
+         // Fetch the posts using Timber
+
+
 		$context['menu'] = $menu;
 		$context['site']  = $this;
         $context['options'] = get_fields('option');

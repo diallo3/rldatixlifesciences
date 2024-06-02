@@ -4,13 +4,20 @@
 {% set heroTitle = hero.title %}
 {% set heroSubTitle = hero.sub_title %}
 {% set heroEntry = hero.entry %}
-{% set heroCTAs  = hero.call_to_actions %}
+{% set heroCTAs  = hero.call_to_actions[0] %}
 {% set heroImage = hero.image %}
+
+{% set heroSimple =  post.meta('page_hero_simple')[0] %}
+{% set heroSimpleAccent = heroSimple.accent %}
+{% set heroSimpleTitle = heroSimple.title %}
+{% set heroSimpleEntry = heroSimple.entry %}
 
 {% set pageContent = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
 {% block content %}
+<script>console.log({{ pageContent | json_encode | raw }})</script>
+
 {% embed "/templates/components/containers/pages/_embed-page-title.twig" %}
     {% block page_content %}
 
@@ -53,6 +60,111 @@
                         {% endblock %}
                     {% endembed %}
                     
+                
+                {% elseif content.acf_fc_layout == 'featured_posts' %}
+
+                    {% set featuredPosts = content.acf_fc_layout == 'featured_posts' %}
+
+                    {% set featured = content.featured_posts[0] %}
+
+
+                    {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+                        id: 'section-content-' ~ loop.index,
+                        class: 'feature-card-with-image',
+                        maxWidth: 'max-w-screen-2xl' 
+                    } %}
+                        {% block section_content %}
+                        {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+                        {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+                         <div class="px-0 space-y-8 featured_posts inview-container lg:px-12">
+                                <div class="flex items-center lg:justify-between featured_posts">
+                                    <div class="space-y-4 featured_posts__content inview-item">
+                                        {{ headings.headingTwo({
+                                            title: featured.title,
+                                            size: 'fluid-text-2xl',
+                                        }) }}
+
+                                        <div class="prose prose-invert featured_posts__entry inview-item">
+                                            {{ featured.entry }}
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="hidden lg:block featured_posts__cta inview-item">
+                                        {% if featured.link.title %}
+                                            {{ buttons.btnLink({
+                                                text: featured.link.title,
+                                                link: featured.link.url,
+                                                type: 'primary',
+                                                icon: 'arrow-right',
+                                                size: 'sm'
+                                            }) }}
+                                        {% endif %}
+                                    </div>
+
+                                    {# <a href="{{ post.link }}" class="text-sm text-dodger-blue-500">View all</a> #}
+                                </div>
+                                <ul class="grid grid-cols-1 gap-4 space-y-8 lg:grid-cols-3 lg:gap-8 lg:space-y-0 inview-container featured_posts__items">
+                               
+                                    {% for post in featured_posts %}
+                                        {% set title = post.title %}
+                                        {% set entry = post.excerpt %}
+                                        {% set image = post.featured_image %}
+                                        {% set link = post.link %}
+                                        <li class="inview-item featured_posts__item">
+                                            {% include "/templates/components/cards/_component-card-post.twig" %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                                <div class="lg:hidden featured_posts__cta">
+                                        {% if featured.link.title %}
+                                            {{ buttons.btnLink({
+                                                text: featured.link.title,
+                                                link: featured.link.url,
+                                                type: 'primary',
+                                                icon: 'arrow-right',
+                                                size: 'sm'
+                                            }) }}
+                                        {% endif %}
+                                </div>
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+
+                {% elseif content.acf_fc_layout == 'team_section' %}
+                    {% set teamSection = content.acf_fc_layout == 'team_section' %}
+
+                    {% set team = content.team_section[0] %}
+
+                    {% set members = get_posts(team.team_members) %}
+
+                   {% include "/templates/partials/content/_partial-content-team-section.twig" %}
+
+                {% elseif content.acf_fc_layout == 'content_section' %}
+                    <script>console.log({{ content.acf_fc_layout == 'content_section' | json_encode | raw }})</script>
+
+                    {% set content = content.content_section %}
+                    {% set title = content.title %}
+                    {% set entry = content.entry %}
+                    {% set link = content.link %}
+                    {% set image = content.image %}
+
+                    <script>console.log({{ content | json_encode | raw }})</script>
+
+                    {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+                        id: 'section-content-' ~ loop.index,
+                        class: 'feature-card-with-image',
+                        maxWidth: 'max-w-screen-2xl' 
+                    } %}
+                        {% block section_content %}
+
+                            {% include "/templates/partials/content/_partials-content-section.twig" %}
+
+                        {% endblock %}
+                    {% endembed %}
+
+
                 {% endif %}
                     
             {% endfor %}
@@ -60,9 +172,9 @@
      {% endembed %}   
 
      {% include "partials/_partial-call-to-action.twig" with {
-        title: callToAction.title,
-        entry: callToAction.entry,
-        link: callToAction.link,
+        title: callToAction.title ? callToAction.title : options.general_call_to_action.title ,
+        entry: callToAction.entry ? callToAction.entry : options.general_call_to_action.entry,
+        link: callToAction.link ? callToAction.link : options.general_call_to_action.link,
     } %}
     
 {% endblock %}     

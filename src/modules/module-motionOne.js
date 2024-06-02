@@ -62,7 +62,7 @@ const generalInView = () => {
         if( target) {
             animate(sectionItems, 
                 { opacity: ['0', '1'], y: ['5rem', '0'] }, 
-                { delay: stagger(0.1), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
+                { delay: stagger(0.5), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
             );
         }
         

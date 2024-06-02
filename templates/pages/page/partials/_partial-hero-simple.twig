@@ -1,0 +1,48 @@
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+<header id="{{ post.id }}-hero">
+    <div class="py-10 mx-auto max-w-screen-2xl lg:px-24">
+		<div class="pb-8 hero-content">
+            <div class="">
+                {# accent #}
+                {% if heroSimpleAccent or post.title %}
+                    <div class="hero__accent hero-content__item">
+                        {{ badges.accentBadge({
+                            title: heroSimpleAccent ? heroSimpleAccent :  post.title,
+                        })}}
+                    </div>
+                {% endif %}
+
+                {# headings #}
+                <hgroup class="mx-auto mt-8 space-y-6 hero__headings">
+                    {% if heroSimpleTitle %}
+                        <span class="inline-block hero-content__item">
+                            {{ headings.headingOne({
+                                    title: heroSimpleTitle,
+                            })}}
+                        </span>
+                    {% endif %}
+                </hgroup>
+
+                 {% if heroSimpleEntry %}
+                        <div class="inline-block max-w-4xl mt-8 prose prose-p:fluid-text-base hero-content__item prose-invert">
+                           {{ heroSimpleEntry }}
+                        </div>
+                 {% endif %}
+            </div>
+        </div>
+
+         {# divider #}
+        {% if not fn('is_front_page') %}
+        <div class="mx-auto">
+            <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
+                {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</header>
