@@ -8,9 +8,9 @@
 {% set generalEntry = entry ?? options.general_call_to_action.entry %}
 {% set generalLink = link ?? options.general_call_to_action.link %}
 
-<section class="relative px-6 lg:px-8 section-page-cta">
+<section id="{{ post.id }}-cta" class="relative px-6 lg:px-8 section-cta">
 
-    <div class="relative max-w-xl py-20 mx-auto mt-16 overflow-hidden lg:max-w-7xl border-y border-wood-smoke-700 lg:pb-40">
+    <div class="relative max-w-xl py-20 mx-auto mt-16 overflow-hidden lg:max-w-4xl xl:max-w-7xl border-y border-wood-smoke-700 lg:pb-40">
         <div class="absolute inset-x-0 bottom-0">
             <svg width="1063" height="241" viewBox="0 0 1063 241" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1063" height="241" fill="url(#paint0_radial_204_17543)"/>
@@ -23,17 +23,17 @@
             </svg>
         </div>
 
-        <div class="relative gap-8 lg:grid lg:grid-cols-2">
-            <div class="section-page-cta__heading">
+        <div class="relative gap-8 space-y-4 lg:space-y-0 lg:grid lg:grid-cols-12">
+            <div class="section-page-cta__heading section-cta__item lg:col-span-5 xl:col-span-6">
                 {{ headings.headingTwo({
                     title: generalTitle,
-                    size: 'fluid-text-5xl',
+                    size: 'fluid-text-3xl xl:fluid-text-5xl',
                 })}}
             </div>
-            <div class="section-page-cta__enter lg:pt-4">
-                <p class="text-xl">{{ entry ?? generalEntry }}</p>
+            <div class="section-page-cta__enter xl:pt-4 lg:col-span-7 xl:col-span-6">
+                <p class="text-base lg:text-xl section-cta__item">{{ entry ?? generalEntry }}</p>
 
-                <div class="mt-8">
+                <div class="mt-8 section-cta__item">
                     {{ buttons.btnLink({
                         text: link.title ?? generalLink.title,
                         link: link.url ?? generalLink.url,

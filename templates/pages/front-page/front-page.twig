@@ -16,79 +16,19 @@
     <!-- Hero -->
     {% set hero = post.meta('page_hero')[0] %}
 
-    <section class="relative px-4 overflow-hidden sm:px-6 lg:px-8">
-        <div class="py-10 mx-auto max-w-screen-2xl">
-            <div class="mx-auto text-center max-w-7xl">
-
-                <div class="mt-8 space-y-6">
-                    {{ headings.displayHeadingOne({
-                        title: hero.title,
-                    })}}
-        
-                    {{ headings.headingThree({
-                        title: hero.sub_title,
-                        color: 'text-dodger-blue-700',
-                        size: 'fluid-text-lg',
-        
-                    })}}
-                </div>
-
-            </div>
-
-            {# image #}
-
-            <div class="relative mx-auto mt-10 max-w-7xl">
-                <div class="relative">
-                    <div class="absolute inset-0 p-4 overflow-hidden rounded-md bg-wood-smoke-900 blur-lg"></div>
-                    <figure class="rounded-md aspect-w-16 aspect-h-8 bg-wood-smoke-950 isolate">
-                        {{ images.imageObject({
-                            src: hero.image.url,
-                            alt: hero.title,
-                            classes: 'object-cover object-center rounded-md',
-                        })}}
-                    </figure>
-                </div>
-            </div>
-
-            {# entry #}
-            <div class="pb-24 mx-auto mt-20 max-w-7xl lg:grid lg:grid-cols-3 lg:gap-8">
-                <div class="pt-8 lg:col-span-1">
-                    <h2 class="font-bold fluid-text-2xl">{{ hero.entry_title }}</h2>
-                </div>
-                <div class="lg:col-span-2">
-                    <div class="relative mx-auto mt-10 prose-xl ">
-                        <p>{{ hero.entry }}</p>
-
-                        <div class="max-w-sm mt-8">
-                            {{ buttons.btnLink({
-                                text: 'Tour the Platform',
-                                link: item.link,
-                                type: 'primary',
-                                icon: 'arrow-right',
-                                size: 'lg'
-                            })}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mx-auto max-w-7xl">
-                <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
-                    {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
-                </div>
-            </div>
-
-        
-
-            
-        </div>
-    </section>
+    {% include "pages/page/partials/_partial-page-hero.twig"  with {
+        heroAccent: hero.accent,
+        heroTitle: hero.title,
+        heroSubTitle: hero.sub_title,
+        heroImage: hero.image,
+    
+    } %}
     <!-- End Hero -->
 
     <!-- Brands -->
-    <section class="relative px-4 pt-32 pb-56 section-brands sm:px-6 lg:px-8">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-30"></div>
-            <div class="relative max-w-5xl mx-auto space-y-8">
+    <section class="relative px-20 pb-24 pt_12 lg:pt-32 lg:pb-56 section-brands lg:px-8">
+            <div class="absolute top-44 lg:top-0 left-1/2 -translate-x-1/2 rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-30"></div>
+            <div class="relative mx-auto space-y-8 lg:max-w-5xl">
 
                 <div class="space-y-6 text-center section-brands__header inview-container">
                     <div class="inview-item">
@@ -100,12 +40,13 @@
                     <div class="inview-item">
                     {{ headings.headingThree({
                         title: 'Brands Coming Together',
+                        size: 'fluid-text-3xl',
                     })}}
                     </div>
                 </div>
 
-                <div class="gap-1 lg:flex lg:items-center lg:w-full section-brands__content">
-                    <div class="relative text-black-rock-950">
+                <div class="flex flex-col gap-1 px-20 text-center lg:flex-row lg:items-center lg:w-full section-brands__content lg:px-0">
+                    <div class="relative hidden lg:block text-black-rock-950">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
                     <div class="relative flex justify-center align-middle size-full text-black-rock-800 section-brands__item brand__icoach">
@@ -128,7 +69,7 @@
                             <img src="{{ theme.link }}/public/img/img-logo-icontracts.png" class="w-full max-w-44" alt="">
                         </figure>
                     </div>
-                    <div class="relative text-black-rock-950">
+                   <div class="relative hidden lg:block text-black-rock-950">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
                 </div>
@@ -212,9 +153,6 @@
         </div>
     </section>
 
-
-
-
     {% for content in pageContent %}
         {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
         {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
@@ -223,8 +161,7 @@
         {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
 
         {% if featureContentIcons %}
-        
-
+            {# feature with icons #}
             {% set features = content.features_content_with_icons[0].features %}
 
             {% set icon = item.icon %}
@@ -243,13 +180,13 @@
                 maxWidth: 'max-w-screen-xl' 
             } %}
                 {% block section_content %}
-                    <ul class="space-y-4 stack-cards js-stack-cards">
+                    <ul class="stack-cards js-stack-cards">
                         {% for card in cards %}
                             {% set title = card.title %}
                             {% set entry = card.entry %}
                             {% set image = card.image %}
                             {% set link = card.link %}
-                            <li class="stack-cards__item js-stack-cards__item inview-item">
+                            <li class="pb-20 stack-cards__item js-stack-cards__item inview-item">
                                 {% include "/templates/components/cards/_component-card-featured-image.twig" %}
                             </li>
                         {% endfor %}
@@ -258,158 +195,29 @@
             {% endembed %}
 
         {% elseif featuredStats %}
+            {# featured stats #}
             {% set stats = content.featured_stats[0] %}
-
-
-            {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
-                id: 'section-content-' ~ loop.index,
-                class: 'feature-stats',
-                maxWidth: 'max-w-screen-xl' 
-            } %}
-
-                
-                {% block section_content %}
-
-                    {% import "/templates/components/ui/_macro-badge.twig" as badges %}
-                    {% import "/templates/components/ui/_macro-heading.twig" as headings %}
-                    {% import "/templates/components/ui/_macro-button.twig" as buttons %}
-                    {% import "/templates/components/ui/_macro-icon.twig" as icons %}
-                    <div class="absolute top-0 right-0 -translate-y-1/2">
-                        <svg width="858" height="1278" viewBox="0 0 858 1278" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g filter="url(#filter0_f_204_17276)">
-                            <circle cx="639" cy="639" r="499" fill="#060D4C" fill-opacity="0.2"/>
-                            </g>
-                            <defs>
-                            <filter id="filter0_f_204_17276" x="0" y="0" width="1278" height="1278" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                            <feGaussianBlur stdDeviation="70" result="effect1_foregroundBlur_204_17276"/>
-                            </filter>
-                            </defs>
-                        </svg>
-                    </div>
-
-                    <div class="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
-                        <div class="relative inview-item">
-                            <div class="space-y-6">
-                                {{ badges.accentBadge({
-                                    title: stats.accent,
-                                })}}
-                                {{ headings.headingTwo({
-                                    title: stats.title,
-                                    size: 'fluid-text-4xl',
-                                })}}
-
-                                <div class="prose prose-span:text-dodger-blue-600 fluid-prose-lg">
-                                    {{ stats.entry }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div class="grid grid-cols-2">
-                                {% for item in stats.stats %}
-                                    <div class="pb-12 space-y-2 text-white [&_span]:text-dodger-blue-600 inview-item">
-                                        <div class="text-5xl font-bold">{{ item.stat }} <span class="inline-flex -ml-3">{{ item.caret }}</span></div>
-                                        <div class="text-base text-gray-200">{{ item.entry }}</div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                {% endblock %}
-            {% endembed %}
+            {% include "partials/content/_partial-content-featured-stats.twig" %}
 
         {% elseif featuredKeyList %}
-
+            {# featured key list #}
             {% set keyList = content.featured_stats[0] %}
-
-            {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
-                id: 'section-content-' ~ loop.index,
-                class: 'feature-with-key-list',
-                maxWidth: 'max-w-screen-xl' 
-            } %}
-                {% block section_content %}
-
-                    <div class="absolute -top-72 -left-20 rounded-full size-[70rem] bg-gradient-to-t from-black-rock-900/80 to-transparent blur-3xl opacity-30"></div>
-                    
-                    {% import "/templates/components/ui/_macro-badge.twig" as badges %}
-                    {% import "/templates/components/ui/_macro-heading.twig" as headings %}
-                    {% import "/templates/components/ui/_macro-icon.twig" as icons %}
-                    {% import "/templates/components/ui/_macro-button.twig" as buttons %}
-
-                    <div class="space-y-6 text-center section-services__header">
-                        {{ badges.accentBadge({
-                            title: keyList.accent,
-                        })}}
-                        
-                        {{ headings.headingThree({
-                            title: keyList.title,
-                        })}}
-                    </div>
-                    <div class="max-w-xl mx-auto mt-16 lg:max-w-7xl inview-container">
-                        <dl class="grid grid-cols-1 gap-4 lg:grid lg:grid-cols-4">
-                            {% for list in keyList.list %}
-                            <dd class="flex items-start space-x-8 inview-item">
-                                <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div>
-                                <span class="inline-flex text-lg font-semibold">{{ list.item }}</span>
-                            </dd>
-                            {% endfor %}
-                        </dl>
-                    </div>
-                {% endblock %}
-            {% endembed %}
+            {% include "/templates/partials/content/_partials-content-featured-key-list.twig" %}
 
         {% elseif featuredList %}
+            {# featured entry list #}
             {% set list = content.featured_entry_list[0] %}
-
-            
-
-            {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
-                id: 'section-content-' ~ loop.index,
-                class: 'feature-with-list',
-                maxWidth: 'max-w-screen-xl' 
-            } %}
-                {% block section_content %}
-                    {% import "/templates/components/ui/_macro-badge.twig" as badges %}
-                    {% import "/templates/components/ui/_macro-heading.twig" as headings %}
-                    {% import "/templates/components/ui/_macro-icon.twig" as icons %}
-                    {% import "/templates/components/ui/_macro-button.twig" as buttons %}
-                    <div class="grid grid-cols-1 gap-4 lg:grid lg:grid-cols-2">
-
-                    <div class="space-y-6 section-support__header lg:max-w-md inview-item">
-                        <span class="text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
-                        
-                        {{ badges.accentBadge({
-                            title: list.accent,
-                        })}}
-                        
-                        {{ headings.headingTwo({
-                            title: list.title,
-                            size: 'fluid-text-4xl',
-                        })}}
-                    </div>
-
-                <div>
-                    <ul class="space-y-4">
-                        {% for item in list.list %}
-                            <li class="flex items-center space-x-4 text-lg inview-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 11.917L9.724 16.5L19 7.5" stroke="#0258FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span class="inline-block"> {{ item.item }}</span>
-                            
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-                {% endblock %}
-            {% endembed %}
-
+            {% include "/templates/partials/content/_partials-content-featured-entry-list.twig" %}
         {% endif %}
             
         
     {% endfor %}
+
+    {% include "partials/_partial-call-to-action.twig" with {
+        title: callToAction.title,
+        entry: callToAction.entry,
+        link: callToAction.link,
+    } %}
 
 </article>
 

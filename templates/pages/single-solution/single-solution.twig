@@ -19,30 +19,30 @@
 
 {% block content %}
 
-<script>console.log({{ post.meta('call_to_action') | json_encode | raw }})</script>
-
     <article id="{{ post.type ~ '~' ~ post.id }}" class="{{ post.type ~ '-' ~ post.slug }} article">
-        {% include "/templates/pages/single-solution/partials/_partial-solution-hero.twig" %}
-        <div class="max-w-3xl mx-auto">
+        {% include "pages/single-solution/partials/_partial-solution-hero.twig" %}
+        <div class="max-w-3xl px-20 mx-auto">
             <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
                 {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
             </div>
         </div>
-        {% for content in solutionContent %}
-            {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
-        
-            {% if featureWithImage %}
-                {% set featureGroupContent = content.feature_with_image[0] %}
-                {% set accent = featureGroupContent.accent %}
-                {% set title = featureGroupContent.title %}
-                {% set subTitle = featureGroupContent.sub_title %}
-                {% set entry = featureGroupContent.entry %}
-                {% set link = featureGroupContent.link %}
-                {% set image = featureGroupContent.image %}
-                
-                {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
-            {% endif %}
-        {% endfor %}
+        <div class="max-w-4xl mx-auto xl:max-w-none">
+            {% for content in solutionContent %}
+                {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
+            
+                {% if featureWithImage %}
+                    {% set featureGroupContent = content.feature_with_image[0] %}
+                    {% set accent = featureGroupContent.accent %}
+                    {% set title = featureGroupContent.title %}
+                    {% set subTitle = featureGroupContent.sub_title %}
+                    {% set entry = featureGroupContent.entry %}
+                    {% set link = featureGroupContent.link %}
+                    {% set image = featureGroupContent.image %}
+            
+                    {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </article>
 
     {% include "partials/_partial-call-to-action.twig" with {

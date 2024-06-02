@@ -6,8 +6,8 @@
 <div class="relative py-12 overflow-hidden border-2 rounded-md bg-wood-smoke-950 border-wood-smoke-900">
 
     <div class="absolute inset-x-0 w-[120%] h-full rounded-full -translate-x-1/3 -bottom-1/2 bg-gradient-to-t from-wood-smoke-800 to-transparent blur-3xl left-1/2"></div>
-    <div class="px-6 mx-auto lg:px-24">
-        <div class="relative max-w-xl mx-auto lg:mx-0">
+    <div class="px-6 pb-8 mx-auto lg:px-24 lg:pb-0">
+        <div class="relative mx-auto lg:max-w-md xl:max-w-xl lg:mx-0">
             <div class="col-span-2 space-y-4 lg:pr-8 lg:pt-4">
                 <span class="inline-flex text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
                 <div class="space-y-4 lg:pr-3">
@@ -28,14 +28,14 @@
     </div>
 
     {% if image.url %}
-    <div class="absolute w-full max-w-3xl border-4 rounded-md top-[18%] left-[55%] border-wood-smoke-900">
-        <figure class="bg-wood-smoke-950 aspect-1">
-        {{ images.imageObject({
-            src: image.url,
-            alt: image.alt,
-            class: 'w-full h-full',
-        })}}
-        </figure>
-    </div>
+        <div class="lg:absolute w-full px-6 lg:px-0 lg:max-w-3xl  lg:top-[18%] lg:left-[55%] ">
+            <figure class="border-4 rounded-md bg-wood-smoke-950 aspect-w-16 aspect-h-9 lg:aspect-1 border-wood-smoke-900">
+                {{ images.imageObject({
+                    src: image.url,
+                    alt: image.alt,
+                    class: 'w-full h-full',
+                })}}
+            </figure>
+        </div>
     {% endif %}
 </div>

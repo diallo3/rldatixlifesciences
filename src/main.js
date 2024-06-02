@@ -10,7 +10,7 @@ if (import.meta.hot) {
 import { initializeAlpine } from './modules/module-alpine';
 import { initializeHeadroom } from './modules/module-headroom';
 // import { initializeClientSwiper, destroyClientSwiper } from './modules/module-swiper';
-import { navHeader, generalInView, brandsInView } from './modules/module-motionOne';
+import { navHeader, heroContent, generalInView, brandsInView, ctaInview } from './modules/module-motionOne';
 
 import { initializeStackedCards } from './modules/module-codyhouse';
 
@@ -24,10 +24,12 @@ import '../src/app.css';
 document.addEventListener('DOMContentLoaded', () => {
     // component initialization
     navHeader();
+    heroContent();
     generalInView();
     initializeAlpine();
     initializeHeadroom(); 
     brandsInView();
+    ctaInview();
     initializeStackedCards();
 
     // function checkAndManageSwiper() {

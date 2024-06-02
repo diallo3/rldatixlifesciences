@@ -39,13 +39,13 @@
                         maxWidth: 'max-w-screen-xl' 
                     } %}
                         {% block section_content %}
-                            <ul class="space-y-4 lg:space-y-8 lg:-mx-12 stack-cards js-stack-cards">
+                            <ul class=" lg:space-y-8 lg:-mx-12 stack-cards js-stack-cards">
                                 {% for card in cards %}
                                     {% set title = card.title %}
                                     {% set entry = card.entry %}
                                     {% set image = card.image %}
                                     {% set link = card.link %}
-                                    <li class="stack-cards__item js-stack-cards__item">
+                                    <li class="pb-20 stack-cards__item js-stack-cards__item bg-wood-smoke-950">
                                         {% include "/templates/components/cards/_component-card-featured-image.twig" %}
                                     </li>
                                 {% endfor %}
@@ -60,9 +60,9 @@
      {% endembed %}   
 
      {% include "partials/_partial-call-to-action.twig" with {
-            title: callToAction.title,
-            entry: callToAction.entry,
-            link: callToAction.link,
-        } %}
+        title: callToAction.title,
+        entry: callToAction.entry,
+        link: callToAction.link,
+    } %}
     
 {% endblock %}     

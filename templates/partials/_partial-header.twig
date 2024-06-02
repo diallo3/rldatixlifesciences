@@ -11,7 +11,7 @@
     @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
     id="siteHeader" 
     :class="{ 'bg-wood-smoke-950/70 backdrop-blur-xl' : scrolledFromTop}"
-    class="fixed inset-x-0 top-0 z-50 flex items-center flex-none px-6 transition-all duration-500 ease-in-out site-header lg:px-8 js-header">
+    class="fixed inset-x-0 top-0 z-50 flex items-center flex-none px-8 py-8 transition-all duration-500 ease-in-out site-header js-header">
 	<!-- Main Header Content -->
 	<div  class="container flex items-center justify-between mx-auto text-center">
 		<!-- Left Section -->
@@ -61,7 +61,7 @@
 
 			<!-- Open Mobile Navigation  -->
 			<div class="ml-3 lg:hidden">
-				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2.5 leading-5 border rounded border-wood-smoke-600/60 hover:border-gray-300 hover:text-gray-900" aria-controls="tkMobileNav">
+				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2.5 leading-5 border rounded border-wood-smoke-600/60 hover:bg-black-rose-900 hover:border-wood-smoke-600" aria-controls="tkMobileNav">
 					<svg class="inline-block w-5 h-5 hi-mini hi-bars-3" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
 					</svg>

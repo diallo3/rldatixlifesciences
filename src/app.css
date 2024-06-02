@@ -43,7 +43,7 @@ html.is-animating .transition-fade {
 
 .stack-cards {
     --stack-cards-gap: 0.75rem;
-    --stack-cards-item-ratio: 2/1;
+    --stack-cards-item-ratio: 3/2
   }
   @media (min-width: 64rem) {
     .stack-cards {
@@ -56,9 +56,11 @@ html.is-animating .transition-fade {
     position: relative;
     position: -webkit-sticky;
     position: sticky;
-    
+    /* 
     height: 0;
     padding-bottom: calc(100%/(var(--stack-cards-item-ratio)));
+     
+    padding-bottom: 56.25%;*/
     transform-origin: center top;
   }
 

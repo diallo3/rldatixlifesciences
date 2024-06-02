@@ -1,0 +1,36 @@
+{% embed "components/containers/sections/_component-section-full.twig" with {
+    id: 'section-content-' ~ loop.index,
+    class: 'feature-with-key-list',
+    maxWidth: 'max-w-screen-xl' 
+} %}
+    {% block section_content %}
+
+        <div class="absolute -top-72 -left-20 rounded-full size-[70rem] bg-gradient-to-t from-black-rock-900/80 to-transparent blur-3xl opacity-30"></div>
+        
+        {% import "components/ui/_macro-badge.twig" as badges %}
+        {% import "components/ui/_macro-heading.twig" as headings %}
+        {% import "components/ui/_macro-icon.twig" as icons %}
+        {% import "components/ui/_macro-button.twig" as buttons %}
+
+        <div class="space-y-4 lg:text-center section-services__header">
+            {{ badges.accentBadge({
+                title: keyList.accent,
+            })}}
+            
+            {{ headings.headingThree({
+                title: keyList.title,
+                size: 'fluid-text-4xl',
+            })}}
+        </div>
+        <div class="max-w-3xl mx-auto mt-16 lg:max-w-7xl inview-container">
+            <dl class="grid grid-cols-2 gap-4 lg:grid lg:grid-cols-4">
+                {% for list in keyList.list %}
+                <dd class="flex items-start space-x-4 lg:space-x-8 inview-item">
+                    <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div>
+                    <span class="inline-flex text-lg font-semibold">{{ list.item }}</span>
+                </dd>
+                {% endfor %}
+            </dl>
+        </div>
+    {% endblock %}
+{% endembed %}

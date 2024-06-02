@@ -5,10 +5,10 @@
 {% import "components/ui/_macro-badge.twig" as badges %}
 {% import "components/ui/_macro-button.twig" as btn %}
 
-<section id="{{ post.id }}-hero" class="px-4 lg:px-8 lg:py-24 solution-hero">
+<section id="{{ post.id }}-hero" class="px-12 pt-24 lg:py-24 solution-hero">
     <div class="mx-auto max-w-screen-2xl xl:px-12">
         <div class="relative isolate">
-            <div class="items-center gap-8 lg:grid lg:grid-cols-12 lg:gap-16">
+            <div class="items-center gap-8 space-y-8 xl:grid xl:grid-cols-12 xl:gap-16">
             
                 <div class="lg:col-span-6 solution-hero__entry">
                     <div class="space-y-8 ">
@@ -24,7 +24,7 @@
                         <hgroup class="mb-8 space-y-4 solution-hero__headers">
                             {{ headings.headingOne({
                                 title: heroTitle,
-                                size: 'fluid-text-5xl',
+                                size: 'fluid-text-6xl',
                             })}}
 
                             {{ headings.headingTwo({
@@ -35,7 +35,7 @@
                         </hgroup>
 
                         <!-- Entry -->
-                        <div class="prose prose-invert max-w-none prose-p:font-semibold solution-hero__entry">
+                        <div class="prose prose-lg sm:prose-xl xl:prose-base prose-invert max-w-none prose-p:font-semibold solution-hero__entry">
                             {{ heroEntry }}
                         </div>
 
@@ -53,9 +53,9 @@
                         
                     </div>
                 </div>
-                <div class="relative lg:col-span-6">
+                <div class="relative lg:col-span-6 solution-hero__featured">
                     <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/60 blur-xl"></div>
-                    <figure class="relative w-full h-full border border-blue-700 rounded-md aspect-w-16 aspect-h-12 bg-wood-smoke-950">
+                    <figure class="relative w-full h-full border border-blue-700 rounded-md solution-hero__image aspect-w-16 aspect-h-9 xl:aspect-h-12 bg-wood-smoke-950">
                         {{ images.imageObject({
                             src: hero.image.url,
                             alt: hero.title,

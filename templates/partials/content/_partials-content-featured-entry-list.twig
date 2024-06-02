@@ -1,0 +1,43 @@
+{% embed "components/containers/sections/_component-section-full.twig" with {
+    id: 'section-content-' ~ loop.index,
+    class: 'feature-with-list',
+    maxWidth: 'max-w-screen-xl' 
+} %}
+    {% block section_content %}
+        {% import "components/ui/_macro-badge.twig" as badges %}
+        {% import "components/ui/_macro-heading.twig" as headings %}
+        {% import "components/ui/_macro-icon.twig" as icons %}
+        {% import "components/ui/_macro-button.twig" as buttons %}
+        <div class="grid grid-cols-1 gap-4 lg:grid lg:grid-cols-2 section-featured-list">
+
+                <div class="space-y-6 section-st__header lg:max-w-md inview-item section-featured-list__entry">
+                    <span class="text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
+                    
+                    {{ badges.accentBadge({
+                        title: list.accent,
+                    })}}
+                    
+                    {# title #}
+                    <div class="section-featured-list__title">
+                        {{ headings.headingTwo({
+                            title: list.title,
+                            size: 'fluid-text-4xl',
+                        })}}
+                    </div>
+                </div>
+
+            <div class="section-featured-list__items">
+                <ul class="space-y-4 section-featured-list__list">
+                    {% for item in list.list %}
+                        <li class="flex items-center space-x-4 text-lg inview-item section-featured-list__item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 11.917L9.724 16.5L19 7.5" stroke="#0258FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="inline-block"> {{ item.item }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

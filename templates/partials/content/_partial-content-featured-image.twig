@@ -9,9 +9,9 @@
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-button.twig" as btn %}
         <div class="absolute -top-72 {{ loop.index is even ? 'left-20 ' : 'right-20 ' }} rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-20"></div>
-        <div class="flex flex-col gap-12  lg:items-center relative lg:gap-16 {{ loop.index is even ? 'lg:flex-row-reverse' : 'lg:flex-row' }}">
+        <div class="flex flex-col gap-12  xl:items-center relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
 
-            <div class="relative flex-none group lg:w-1/2 inview-item">
+            <div class="relative flex-none hidden group lg:w-1/2 inview-item xl:block">
                 <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
                 <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-4 aspect-h-3">
                     {{ images.imageObject({
@@ -21,9 +21,10 @@
                     })}}
                 </figure>
             </div>
-            <div class="space-y-10 lg:w-1/2 inview-item">
+
+            <div class="space-y-10 xl:w-1/2 inview-item">
                 <!-- content -->
-                <div class="space-y-4 lg:max-w-2xl solution-hero__content">
+                <div class="space-y-4 xl:max-w-2xl solution-hero__content">
                         <!-- Badge -->
                     <div class="inline-flex solution-hero__accent">
                         {{ badges.accentBadge({
@@ -35,7 +36,7 @@
                     <hgroup class="space-y-2 solution-hero__headings">
                         {{ headings.headingTwo({
                             title: title,
-                            size: 'fluid-text-2xl',
+                            size: 'fluid-text-3xl',
                         })}}
                         {{ headings.headingThree({
                             title: subTitle,
@@ -43,13 +44,27 @@
                             color: 'text-dodger-blue-500',
                         })}}
                     </hgroup>
-                    
-                    <!-- Entry -->
-                    <div class="solution-hero__entry">
-                        <div class="prose prose-invert prose-ul:list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
+
+                    {# small image #}
+                    <div class="relative flex-none group inview-item xl:hidden">
+                        <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
+                        <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-16 aspect-h-9">
+                            {{ images.imageObject({
+                                src: image.url,
+                                alt: image.alt,
+                                class: 'w-full h-full',
+                            })}}
+                        </figure>
+                    </div>
+
+                     <!-- Entry -->
+                    <div class="pt-8 solution-hero__entry inview-item lg:pt-0">
+                        <div class="prose prose-lg sm:prose-xl xl:prose-base prose-invert max-w-none prose-ul:list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
                             {{ entry }}
                         </div>
                     </div>
+                    
+                   
                 </div>
                 <!-- END Heading -->
                 

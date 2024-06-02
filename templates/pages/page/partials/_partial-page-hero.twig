@@ -5,126 +5,46 @@
 {% import "/templates/components/ui/_macro-heading.twig" as headings %}
 {% import "/templates/components/ui/_macro-icon.twig" as icons %}
 
-<section class="relative px-4 overflow-hidden sm:px-6 lg:px-8">
+<header id="{{ post.id }}-hero" class="relative px-6 overflow-hidden sm:px-12 lg:px-8 hero">
 	<div class="py-10 mx-auto max-w-screen-2xl">
-		<div class="mx-auto text-center max-w-7xl">
-
-            {{ badges.accentBadge({
-                title: post.title,
-            })}}
-
-			<div class="max-w-6xl mx-auto mt-8 space-y-6">
-                {{ headings.headingOne({
-                        title: heroTitle,
-                })}}
-    
-                {{ headings.headingThree({
-                    title: heroSubTitle,
-                    color: 'text-dodger-blue-700',
-                    size: 'fluid-text-lg',
-    
-                })}}
-            </div>
-
-		</div>
-
-        {% if hero.image.url %}
-		<div class="relative mx-auto mt-10 max-w-7xl">
-            <div class="relative">
-                <div class="absolute p-4 overflow-hidden rounded-md -inset-1 bg-wood-smoke-900 blur-xl"></div>
-                <figure class="border border-blue-700 rounded-md aspect-w-16 aspect-h-8 bg-wood-smoke-950 isolate">
-                    {{ images.imageObject({
-                        src: hero.image.url,
-                        alt: hero.title,
-                        classes: 'object-cover object-center rounded-md',
-                    })}}
-                </figure>
-            </div>
-		</div>
-        {% endif %}
-
-        {# entry #}
-            <div class="pb-24 mx-auto mt-20 max-w-7xl lg:grid lg:grid-cols-3 lg:gap-8">
-                <div class="pt-8 lg:col-span-1">
-                    <h2 class="font-bold fluid-text-xl">{{ hero.entry_title }}</h2>
-                </div>
-                <div class="lg:col-span-2">
-                    <div class="relative mx-auto mt-10 prose-xl ">
-                        <p>{{ hero.entry }}</p>
-
-                        <div class="max-w-sm mt-8">
-                            {{ buttons.btnLink({
-                                text: 'Tour the Platform',
-                                link: hero.link,
-                                type: 'primary',
-                                icon: 'arrow-right',
-                                size: 'lg'
-                            })}}
-                        </div>
+		<div class="hero-content">
+            <div class="mx-auto text-center max-w-7xl">
+                {# accent #}
+                {% if heroAccent or post.title %}
+                    <div class="hero__accent hero-content__item">
+                        {{ badges.accentBadge({
+                            title: heroAccent ?? post.title,
+                        })}}
                     </div>
-                </div>
-            </div>
+                {% endif %}
 
-            <div class="mx-auto max-w-7xl">
-                <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
-                    {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
-                </div>
-            </div>
-	</div>
-</section>
-
-<header id="{{ post.id }}-hero" class="hidden px-4 lg:px-8 lg:py-24 page-hero">
-    <div class="mx-auto max-w-screen-2xl xl:px-12">
-        <div class="relative isolate">
-            <div class="items-center gap-8 lg:grid lg:grid-cols-12 lg:gap-12">
-            
-                <div class="col-span-7 page-hero__entry">
-                    <div class="space-y-8">
-
-                        <!-- Badge -->
-                        <div class="inline-flex solution-hero__title">
-                            {{ badges.accentBadge({
-                                title: post.title,
-                            })}}
-                        </div>
-
-                        <!-- Headings -->
-                        <hgroup class="max-w-5xl mx-auto mb-8 space-y-4 solution-hero__headers">
+                {# headings #}
+                <hgroup class="max-w-6xl mx-auto mt-8 space-y-6 hero__headings">
+                    {% if heroTitle %}
+                        <span class="inline-block hero-content__item">
                             {{ headings.headingOne({
-                                title: heroTitle,
-                                size: 'fluid-text-6xl',
+                                    title: heroTitle,
                             })}}
+                        </span>
+                    {% endif %}
 
-                            {{ headings.headingTwo({
+                    {% if heroSubTitle %}
+                        <span class="inline-block hero-content__item">
+                            {{ headings.headingThree({
                                 title: heroSubTitle,
+                                color: 'text-dodger-blue-700',
                                 size: 'fluid-text-lg',
-                                color: 'text-dodger-blue-500',
                             })}}
-                        </hgroup>
-
-                        <!-- Entry -->
-                        <div class="prose prose-invert max-w-none prose-p:font-semibold solution-hero__entry">
-                            {{ heroEntry }}
-                        </div>
-
-                        <!-- Call to action buttons -->
-                        <div class="solution-hero__ctas">
-                            {% for item in heroCTAs %}
-
-                                {{ btn.btnLink({
-                                    text: item.link.title,
-                                    size: 'lg',
-                                    icon: 'arrow-right',
-                                })}}
-                            {% endfor %}
-                        </div>
-                        
-                    </div>
-                </div>
-               
-                    <div class="relative lg:col-span-5 page-hero__featured">
-                        <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/60 blur-xl"></div>
-                        <figure class="relative w-full h-full border border-blue-700 rounded-md aspect-w-3 aspect-h-4 bg-wood-smoke-950">
+                        </span>
+                    {% endif %}
+                </hgroup>
+            </div>
+            
+            {% if hero.image.url %}
+                <div class="relative mx-auto mt-10 max-w-7xl hero-content__item">
+                    <div class="relative">
+                        <div class="absolute p-4 overflow-hidden rounded-md -inset-1 bg-wood-smoke-900 blur-xl"></div>
+                        <figure class="border border-blue-700 rounded-md aspect-w-16 aspect-h-8 bg-wood-smoke-950 isolate">
                             {{ images.imageObject({
                                 src: hero.image.url,
                                 alt: hero.title,
@@ -132,9 +52,41 @@
                             })}}
                         </figure>
                     </div>
-                
+                </div>
+            {% endif %}
+        </div>
+
+        {# entry #}
+        <div class="pb-24 mx-auto mt-20 max-w-7xl lg:grid lg:grid-cols-3 lg:gap-8 inview-container hero__entry">
+            <div class="lg:pt-12 lg:col-span-1 inview-item hero__entry-title">
+                {{ headings.headingTwo({
+                    title: hero.entry_title,
+                    size: 'font-bold fluid-text-xl',
+                })}}
+            </div>
+            <div class="lg:col-span-2">
+                <div class="relative mx-auto mt-10 prose-xl inview-item hero__entry-content">
+                    {{ hero.entry }}
+                </div>
+                <div class="max-w-sm mt-8 inview-item hero__entry-cta">
+                    {{ buttons.btnLink({
+                        text: 'Tour the Platform',
+                        link: hero.link,
+                        type: 'primary',
+                        icon: 'arrow-right',
+                        size: 'lg'
+                    })}}
+                </div>
             </div>
         </div>
 
-    </div>
+        {# divider #}
+        {% if not fn('is_front_page') %}
+        <div class="mx-auto max-w-7xl">
+            <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
+                {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
+            </div>
+        </div>
+        {% endif %}
+	</div>
 </header>

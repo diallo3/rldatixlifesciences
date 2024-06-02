@@ -4,17 +4,17 @@
     maxWidth: 'max-w-screen-xl' 
 } %}
     {% block section_content %}
-        <dl class="grid grid-cols-1 gap-16 lg:grid lg:grid-cols-3">
+        <dl class="grid grid-cols-1 gap-16 lg:grid lg:grid-cols-3 feature-icon">
             {% for item in features %}
-            <div class="inview-item">
-                <dt>
+            <div class="inview-item feature-icon__content">
+                <dt class="flex items-center space-x-8 lg:items-start lg:flex-col lg:space-x-0 feature-icon__title">
                     <div class="flex items-center justify-center size-10 text-dodger-blue-600 rounded-xl">
                         {{ item.icon }}
                     </div>
-                    <p class="mt-6 font-semibold leading-8 tracking-tight text-gray-100 fluid-text-lg">{{ item.title }}</p>
+                    <p class="font-semibold leading-8 tracking-tight text-gray-100 lg:mt-6 fluid-text-lg">{{ item.title }}</p>
                 </dt>
-                <dd class="mt-8 text-base leading-7 text-gray-300">
-                {{ item.entry }}
+                <dd class="pl-[4.25rem] mt-8 text-xl leading-7 text-gray-300 lg:text-base lg:pl-0 feature-icon__entry">
+                    {{ item.entry }}
                 </dd>
             </div>
             {% endfor %}
