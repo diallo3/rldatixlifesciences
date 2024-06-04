@@ -1,61 +1,80 @@
-{% import "/templates/components/ui/_macro-heading.twig" as headings %}
-{% import "/templates/components/ui/_macro-button.twig" as buttons %}
-{% import "/templates/components/ui/_macro-image-object.twig" as images %}
-{% import "/templates/components/ui/_macro-icon.twig" as icons %}
-{% import "/templates/components/ui/_macro-badge.twig" as badges %}
 
-<div class="mx-auto md:px-6 lg:px-8 inview-container content-section">
-	<div class="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-center">
-		<div class="px-6 lg:px-0 lg:pr-4 lg:pt-4 inview-item">
-			<div class="max-w-2xl mx-auto space-y-10 lg:mx-0 lg:max-w-lg">
-				
-                {# accent #}
-                <div class="space-y-6 content-section__content">
-                    {% if accent %}
-                        <div class="inline-flex scontent-section__accent">
-                            {{ badges.accentBadge({
-                                title: accent,
-                            })}}
+{% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+    id: 'section-content-' ~ loop.index,
+    class: 'feature-card-with-image',
+    maxWidth: 'max-w-screen-2xl' 
+} %}
+    {% block section_content %}
+        {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+        {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+        {% import "/templates/components/ui/_macro-image-object.twig" as images %}
+        {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+        {% import "/templates/components/ui/_macro-badge.twig" as badges %}
+
+        <div class="mx-auto md:px-6 lg:px-8 inview-container content-section">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 {{ image.url ? 'lg:grid-cols-2 ' : '' }} lg:items-center">
+                <div class="px-6 lg:px-0 lg:pr-4 lg:pt-4 inview-item">
+                    <div class="max-w-2xl mx-auto space-y-10 lg:mx-0 {{ image.url ? ' lg:max-w-lg ' : 'lg:max-w-none' }}" >
+                        
+                        
+                        <div class="space-y-6 content-section__content inview-item">
+                            
+                            {% if accent %}
+                                {# accent #}
+                                <div class="inline-flex scontent-section__accent">
+                                    {{ badges.accentBadge({
+                                        title: accent,
+                                    })}}
+                                </div>
+                            {% endif %}
+                            
+                            {# title #}
+                            <div class="inview-item content-section__title">
+                                {{ headings.headingTwo({
+                                    title: title,
+                                    size: 'fluid-text-4xl',
+                                })}}
+                            </div>
+                            {# entry #}
+                            <div class="mt-6 prose inview-item prose-base prose-invert content-section__entry max-w-none">
+                                {{ entry }}
+                            </div>
                         </div>
-                    {% endif %}
-                    
-                    <div class="inview-item content-section__title">
-                        {{ headings.headingTwo({
-                            title: title,
-                            size: 'fluid-text-4xl',
-                        })}}
-                    </div>
-                    {# entry #}
-                    <div class="mt-6 prose inview-item prose-base prose-invert content-section__entry">
-                        {{ entry }}
+
+                        {# cta #}
+                        {% if link.url %}
+                            <div class="inview-item content-section__cta">
+                                {{ buttons.btnLink({
+                                    text: link.title,
+                                    link: link.url,
+                                    type: 'primary',
+                                    icon: 'arrow-right',
+                                    size: 'md'
+                                }) }}
+                            </div>
+                        {% endif %}
+                        
                     </div>
                 </div>
 
-                {# cta #}
-                <div class="inview-item content-section__cta">
-                    {{ buttons.btnLink({
-                        text: link.title,
-                        link: link.url,
-                        type: 'primary',
-                        icon: 'arrow-right',
-                        size: 'md'
-                    }) }}
-                </div>
-				
-			</div>
-		</div>
-		<div class="sm:px-6 lg:px-0 inview-item">
-			<div class="relative bg-wood-smoke-900 isolate sm:mx-auto sm:max-w-2xl sm:rounded-3xl lg:mx-0 lg:max-w-none">
-                    <div class="absolute -inset-1 bg-black-rock-800/40 blur-2xl sm:block"></div>
-                    <figure class="aspect-[16/12] rounded-lg overflow-hidden relative">
-                        {{ images.imageObject({
-                            src: image.url,
-                            alt: image.alt,
-                            class: 'w-full h-full',
-                        })}}
-                    </figure>
-				<div class="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10 sm:rounded-3xl" aria-hidden="true"></div>
-			</div>
-		</div>
-	</div>
-</div>
+                {% if image.url %}
+                    {# featured image #}
+                    <div class="sm:px-6 lg:px-0 inview-item content-section__featured">
+                        <div class="relative bg-wood-smoke-900 isolate sm:mx-auto sm:max-w-2xl sm:rounded-3xl lg:mx-0 lg:max-w-none">
+                                <div class="absolute -inset-2 bg-black-rock-800/30 blur-xl sm:block"></div>
+                                <figure class="aspect-[16/12] rounded-lg overflow-hidden relative content-section__image">
+                                    {{ images.imageObject({
+                                        src: image.url,
+                                        alt: image.alt,
+                                        class: 'w-full h-full',
+                                    })}}
+                                </figure>
+                            <div class="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10 sm:rounded-3xl" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endblock %}
+{% endembed %}

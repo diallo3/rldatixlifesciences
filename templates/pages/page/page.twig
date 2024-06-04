@@ -16,7 +16,6 @@
 {% set callToAction = post.meta('call_to_action')[0] %}
 
 {% block content %}
-<script>console.log({{ pageContent | json_encode | raw }})</script>
 
 {% embed "/templates/components/containers/pages/_embed-page-title.twig" %}
     {% block page_content %}
@@ -142,7 +141,6 @@
                    {% include "/templates/partials/content/_partial-content-team-section.twig" %}
 
                 {% elseif content.acf_fc_layout == 'content_section' %}
-                    <script>console.log({{ content.acf_fc_layout == 'content_section' | json_encode | raw }})</script>
 
                     {% set content = content.content_section %}
                     {% set title = content.title %}
@@ -150,21 +148,81 @@
                     {% set link = content.link %}
                     {% set image = content.image %}
 
-                    <script>console.log({{ content | json_encode | raw }})</script>
+                    {% include "/templates/partials/content/_partials-content-section.twig" %}
+
+                {% elseif content.acf_fc_layout == 'call_to_action' %}
+                    {% set callToAction = content.call_to_action[0] %}
+
+                    <script>console.log({{ callToAction | json_encode | raw }})</script>
+
+                    
 
                     {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
                         id: 'section-content-' ~ loop.index,
                         class: 'feature-card-with-image',
-                        maxWidth: 'max-w-screen-2xl' 
+                        maxWidth: 'max-w-screen-xl' 
                     } %}
                         {% block section_content %}
+                            {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+                            {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+                            {% import "/templates/components/ui/_macro-image-object.twig" as images %}
+                            {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+                            {% import "/templates/components/ui/_macro-badge.twig" as badges %}
 
-                            {% include "/templates/partials/content/_partials-content-section.twig" %}
+                            {% set accent = callToAction.accent %}
+                            {% set title = callToAction.title %}
+                            {% set entry = callToAction.entry %}
 
-                        {% endblock %}
-                    {% endembed %}
+                            <div class="relative overflow-hidden border-y border-wood-smoke-800 isolate inview-container">
+                                <div class="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+                                    <div class="max-w-2xl mx-auto text-center">
+                                        
+                                        <div class="space-y-4">
+                                            {% if accent %}
+                                                <div class="inview-item">
+                                                    {{ badges.accentBadge({
+                                                        title: accent,
+                                                    })}}
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="inview-item">
+                                                {{ headings.headingThree({
+                                                    title: title,
+                                                    size: 'text-3xl sm:fluid-text-4xl',
+                                                }) }}
+                                            </div>
+                                        </div>
+                                        <div class="max-w-xl mx-auto mt-6 text-lg leading-8 text-gray-300 inview-item">
+                                            {{ entry }}
+                                        </div>
+                                        <div class="flex items-center justify-center mt-10 gap-x-6 inview-item">
+                                            {{ buttons.btnLink({
+                                                text: callToAction.link.title,
+                                                link: callToAction.link.url,
+                                                type: 'primary',
+                                                icon: 'arrow-right',
+                                                size: 'lg'
+                                            }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <svg viewbox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+                                    <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
+                                    <defs>
+                                        <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+                                            <stop stop-color="#0113d2"/>
+                                            <stop offset="1" stop-color="#0113d2"/>
+                                        </radialGradient>
+                                    </defs>
+                                </svg>
+                            </div>
 
 
+                     {% endblock %}
+                {% endembed %}
+                        
+                    
                 {% endif %}
                     
             {% endfor %}

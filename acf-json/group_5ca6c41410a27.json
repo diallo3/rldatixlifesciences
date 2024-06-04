@@ -271,8 +271,7 @@
                     "return_format": "array",
                     "acfe_field_group_condition": 0,
                     "geolocation_token": "",
-                    "parent_repeater": "field_5cb36016df542",
-                    "repeatable": true
+                    "parent_repeater": "field_5cb36016df542"
                 }
             ]
         },
@@ -737,5 +736,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717005885
+    "modified": 1717422693
 }

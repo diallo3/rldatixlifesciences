@@ -65,3 +65,39 @@ html.is-animating .transition-fade {
   }
 
 
+  .hbspt-form {
+    .hs-form-field {
+        input[type=text], input[type=email], input[type=tel], input[type=url], input[type=number], input[type=date], input[type=tel], input[type=range], input[type=hidden], input[type=password], input[type=search], select, textarea {
+            @apply block w-full bg-wood-smoke-900/50 !rounded-md !border-wood-smoke-950 !px-4 !py-3 text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 mb-4;
+        }
+        input[type=checkbox], input[type=radio] {
+            @apply block !text-gray-100 !font-medium !text-sm !leading-5 !size-4 bg-wood-smoke-700 border-wood-smoke-700 rounded-sm mt-1;
+        }
+        label:not(.hs-error-msg) {
+            @apply !text-sm !font-medium !text-dodger-blue-100/80 mb-2 !flex items-start space-x-2;
+        }
+        
+    }
+    label p {
+        @apply block !text-sm !font-medium !text-dodger-blue-100/80;
+    }
+    
+    .hs-submit {
+        @apply py-4;
+    }
+    .hs-button {
+        @apply block w-auto bg-flamingo-600 !rounded-md !px-4 !py-3 text-white shadow-sm cursor-pointer hover:bg-dodger-blue-600 transition-colors duration-200 ease-in-out;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .hs-error-msgs {
+        @apply block !text-red-600 !font-medium !text-sm !leading-5 mb-2;
+    }
+
+    .legal-consent-container .hs-form-booleancheckbox-display>span {
+        @apply !ml-4;
+    }
+  }
+ 
+
+
