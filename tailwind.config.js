@@ -12,6 +12,7 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
             sans: ['Manrope', 'sans-serif'],
         },
         extend: {

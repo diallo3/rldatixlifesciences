@@ -2,12 +2,13 @@
     {% set options = {
         title: 'Heading Display',
         color: 'text-white',
+        size: size | default('fluid-text-6xl'),
         case: case
     } | merge(options)  %}
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h1 class="{{ headingOptions }} fluid-text-6xl font-bold tracking-tight">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} font-montserrat font-semibold">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading One #}
@@ -16,6 +17,7 @@
     {% set options = {
         title: 'Heading One',
         color: 'text-white',
+        font: font | default('font-sans'),
         size: size | default('fluid-text-5xl'),
         case: case
     } | merge(options)  %}
@@ -31,6 +33,7 @@
     {% set options = {
         title: 'Heading Two',
         color: color,
+        font: font | default('font-sans'),
         size: size ?? 'fluid-text-3xl',
         case: case
     } | merge(options)  %}
@@ -48,6 +51,7 @@
     {% set options = {
         title: 'Heading Three',
         color: 'text-white',
+        font: font | default('font-sans'),
         size: size | default('fluid-text-2xl'),
         case: case
     } | merge(options)  %}
@@ -63,6 +67,7 @@
     {% set options = {
         title: 'Heading Four',
         color: 'text-white',
+        font: font | default('font-sans'),
         size: size | default('fluid-text-xl'),
         case: case
     } | merge(options)  %}
@@ -77,6 +82,7 @@
     {% set options = {
         title: 'Heading Five',
         color: 'text-white',
+        font: font | default('font-sans'),
         size: size | default('fluid-text-lg'),
         case: case
     } | merge(options)  %}

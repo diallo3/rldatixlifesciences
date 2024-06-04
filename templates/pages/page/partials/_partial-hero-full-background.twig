@@ -1,0 +1,83 @@
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+<header id="{{ post.id }}-hero" class="relative overflow-hidden hero">
+    <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/2"></div>
+	<div class="px-6 bg-top bg-no-repeat bg-cover py-36 sm:px-12 lg:px-8 bck min-h-svh" style="background-image: url('{{ hero.image.url }}')">
+        <div class="absolute inset-0 bg-[#090C36]/50 mix-blend-multiply"></div>
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/2"></div>
+        <div class="relative max-w-screen-xl py-20 mx-auto">
+            <div class="hero-content">
+                    <div class="max-w-4xl space-y-6 lg:space-y-12">
+                        {# accent #}
+                        {% if heroAccent or post.title and not fn('is_front_page') %}
+                            <div class="hero__accent hero-content__item">
+                                {{ badges.accentBadge({
+                                    title: heroAccent ?? post.title,
+                                })}}
+                            </div>
+                        {% endif %}
+        
+                        {# headings #}
+                        <hgroup class="mx-auto max-w-7xl hero__headings">
+                            {% if heroTitle %}
+                                <span class="inline-block hero-content__item">
+                                    {{ headings.displayHeadingOne({
+                                        title: heroTitle,
+                                        case: 'uppercase',
+                                        size: 'fluid-text-7xl',
+                                    })}}
+                                </span>
+                            {% endif %}
+                        </hgroup>
+
+                        {# entry #}
+                        <div class="pb-24 inview-container hero__entry lg:max-w-2xl">
+                            {% if heroSubTitle %}
+                                <div class="hero-content__item">
+                                    {{ headings.headingThree({
+                                        title: heroSubTitle,
+                                        size: 'fluid-text-xl',
+                                    })}}
+                                </div>
+                            {% endif %}
+
+                            <div class="">
+                                <div class="relative mx-auto mt-10 prose-xl inview-item hero__entry-content">
+                                    {{ hero.entry }}
+                                </div>
+                                
+                                {#  #}
+                                <div class="max-w-sm mt-8 inview-item hero__entry-cta">
+                                    {% if heroCTAs %}
+                                        {% for cta in heroCTAs %}
+                                            <script>console.log({{ cta | json_encode | raw }})</script>
+                                            {{ cta.title}}
+                                            {{ buttons.btnLink({
+                                                text: cta.link.title,
+                                                link: cta.link.url,
+                                                type: 'primary',
+                                                icon: 'arrow-right',
+                                                size: 'lg'
+                                            })}}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+        </div>
+        
+             {# divider #}
+            <div class="relative mx-auto max-w-7xl">
+                <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-dodger-blue-800/50  before:content-[''] after:h-px after:flex-1 after:bg-dodger-blue-800/50  after:content-['']">
+                    {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
+                </div>
+            </div>
+    </div>
+</header>
