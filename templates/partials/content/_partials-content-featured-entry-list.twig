@@ -26,9 +26,11 @@
                 <ul class="space-y-4 section-featured-list__list">
                     {% for item in list.list %}
                         <li class="flex items-center space-x-4 text-base lg:text-lg inview-item section-featured-list__item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 11.917L9.724 16.5L19 7.5" stroke="#0258FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <span class="text-dodger-blue-700">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 11.917L9.724 16.5L19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
                             <span class="inline-block"> {{ item.item }}</span>
                         </li>
                     {% endfor %}

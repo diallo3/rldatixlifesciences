@@ -28,18 +28,17 @@
 
     <!-- Brands -->
     <section class="relative px-16 pt-12 pb-8 sm:px-20 lg:pb-16 section-brands lg:px-8">
-            <div class="absolute top-0 -inset-x-8 -bottom-3/4 opacity-85 ">
-                    <svg width="1440" height="2035" class="size-full" viewBox="0 0 1440 2035" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <ellipse cx="714" cy="1017.5" rx="1000" ry="1017.5" fill="url(#paint0_radial_296_549)" fill-opacity="0.8"/>
-                    <defs>
+            <div class="absolute top-0 -inset-x-8 -bottom-3/4 opacity-90 ">
+                <svg width="1440" height="2035" class="size-full" viewBox="0 0 1440 2035" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="714" cy="1017.5" rx="1000" ry="1017.5" fill="url(#paint0_radial_296_549)" fill-opacity="0.8"/>
+                <defs>
                     <radialGradient id="paint0_radial_296_549" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(714 1017.5) rotate(90) scale(1017.5 1000)">
                     <stop stop-color="#1B3262" stop-opacity="0.6"/>
                     <stop offset="1" stop-color="#1B3262" stop-opacity="0"/>
                     </radialGradient>
-                    </defs>
-                    </svg>
-
-                </div>
+                </defs>
+                </svg>
+            </div>
             <div class="relative mx-auto space-y-8 lg:max-w-7xl">
 
                 {# divider #}
@@ -67,7 +66,8 @@
                             {{ icons.icon('brand-glyph', 'w-12') }}
                         </div>
                         <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icoach">
-                            {{ icons.icon('hexagon', 'absolute inset-0') }}
+                            <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
+                            <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
                             <figure class="absolute inset-0 flex items-center justify-center px-8 py-4" >
                                 <img src="{{ theme.link }}/public/img/img-logo-icoach.png" class="w-full max-w-44" alt="">
                             </figure>
@@ -76,14 +76,16 @@
                     
                     
                         <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__porzio">
-                            {{ icons.icon('hexagon', 'absolute inset-0') }}
+                            <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
+                            <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
                             <figure class="absolute inset-0 flex items-center justify-center px-8 py-4">
                                 <img src="{{ theme.link }}/public/img/img-logo-porzio.png" class="w-full max-w-44" alt="">
                             </figure>
                         </div>
                     
                             <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icontracts">
-                                {{ icons.icon('hexagon', 'absolute inset-0') }}
+                                <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
+                                <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
                                 <figure class="absolute inset-0 flex items-center justify-center px-8 py-4">
                                     <img src="{{ theme.link }}/public/img/img-logo-icontracts.png" class="w-full max-w-44" alt="">
                                 </figure>
@@ -171,72 +173,102 @@
         </div>
     </section>
 
-    {% for content in pageContent %}
-        {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
-        {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
-        {% set featuredStats = content.acf_fc_layout == 'featured_stats' %}
-        {% set featuredKeyList = content.acf_fc_layout == 'featured_key_list' %}
-        {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
+    <div class="relative">
 
-        {% if featureContentIcons %}
-            {# feature with icons #}
-            {% set features = content.features_content_with_icons[0].features %}
-
-            {% set icon = item.icon %}
-            {% set title = item.title %}
-            {% set entry = item.entry %}
-
-            {% include "/templates/partials/content/_partial-content-feature-icons.twig" %}
-
-             {# divider #}
-             {% if fn('is_front_page') %}
-                <div class="text-dodger-blue-800/50 section-divider">
-                    {% include "/templates/components/dividers/_component-divider-icon.twig" %}
-                </div>
-            {% endif %}
-
-        {% elseif cardImage %}
-
-            {% set cards = content.card_with_image[0].cards %}
-
-            {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
-                id: 'section-content-' ~ loop.index,
-                class: 'feature-card-with-image',
-                maxWidth: 'max-w-screen-2xl' 
-            } %}
-                {% block section_content %}
-                    <ul class="stack-cards js-stack-cards">
-                        {% for card in cards %}
-                            {% set title = card.title %}
-                            {% set entry = card.entry %}
-                            {% set image = card.image %}
-                            {% set link = card.link %}
-                            <li class="pb-20 stack-cards__item js-stack-cards__item inview-item">
-                                {% include "/templates/components/cards/_component-card-featured-image.twig" %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endblock %}
-            {% endembed %}
-
-        {% elseif featuredStats %}
-            {# featured stats #}
-            {% set stats = content.featured_stats[0] %}
-            {% include "partials/content/_partial-content-featured-stats.twig" %}
-
-        {% elseif featuredKeyList %}
-            {# featured key list #}
-            {% set keyList = content.featured_stats[0] %}
-            {% include "/templates/partials/content/_partials-content-featured-key-list.twig" %}
-
-        {% elseif featuredList %}
-            {# featured entry list #}
-            {% set list = content.featured_entry_list[0] %}
-            {% include "/templates/partials/content/_partials-content-featured-entry-list.twig" %}
-        {% endif %}
-            
+        <div class="absolute bottom-0 inset-x-12 opacity-70">
+            <svg class="size-full" viewBox="0 0 1440 2035" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="714" cy="1017.5" rx="1000" ry="1017.5" fill="url(#paint0_radial_296_549)" fill-opacity="0.8"/>
+            <defs>
+                <radialGradient id="paint0_radial_296_549" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(714 1017.5) rotate(90) scale(1017.5 1000)">
+                <stop stop-color="#1B3262" stop-opacity="0.6"/>
+                <stop offset="1" stop-color="#1B3262" stop-opacity="0"/>
+                </radialGradient>
+            </defs>
+            </svg>
+        </div>
         
-    {% endfor %}
+        {% for content in pageContent %}
+            {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
+            {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
+            {% set featuredStats = content.acf_fc_layout == 'featured_stats' %}
+            {% set featuredKeyList = content.acf_fc_layout == 'featured_key_list' %}
+            {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
+            {% if featureContentIcons %}
+                {# feature with icons #}
+                {% set features = content.features_content_with_icons[0].features %}
+                {% set icon = item.icon %}
+                {% set title = item.title %}
+                {% set entry = item.entry %}
+                {% include "/templates/partials/content/_partial-content-feature-icons.twig" %}
+                 {# divider #}
+                 {% if fn('is_front_page') %}
+                    <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                        {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+                    </div>
+                {% endif %}
+            {% elseif cardImage %}
+                {% set cards = content.card_with_image[0].cards %}
+                {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+                    id: 'section-content-' ~ loop.index,
+                    class: 'feature-card-with-image',
+                    maxWidth: 'max-w-screen-2xl'
+                } %}
+                    {% block section_content %}
+                        <ul class="stack-cards js-stack-cards">
+                            {% for card in cards %}
+                                {% set title = card.title %}
+                                {% set entry = card.entry %}
+                                {% set image = card.image %}
+                                {% set link = card.link %}
+                                <li class="pb-20 stack-cards__item js-stack-cards__item inview-item">
+                                    {% include "/templates/components/cards/_component-card-featured-image.twig" %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endblock %}
+                {% endembed %}
+
+                {# divider #}
+                 {% if fn('is_front_page') %}
+                    <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                        {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+                    </div>
+                {% endif %}
+            {% elseif featuredStats %}
+                {# featured stats #}
+                {% set stats = content.featured_stats[0] %}
+                {% include "partials/content/_partial-content-featured-stats.twig" %}
+                {# divider #}
+                 {% if fn('is_front_page') %}
+                    <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                        {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+                    </div>
+                {% endif %}
+            {% elseif featuredKeyList %}
+                {# featured key list #}
+                {% set keyList = content.featured_stats[0] %}
+                {% include "/templates/partials/content/_partials-content-featured-key-list.twig" %}
+                {# divider #}
+                 {% if fn('is_front_page') %}
+                    <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                        {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+                    </div>
+                {% endif %}
+            {% elseif featuredList %}
+                {# featured entry list #}
+                {% set list = content.featured_entry_list[0] %}
+                {% include "/templates/partials/content/_partials-content-featured-entry-list.twig" %}
+                {# divider #}
+                 {% if fn('is_front_page') %}
+                    <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                        {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        
+        
+        {% endfor %}
+    </div>
 
     {% include "partials/_partial-call-to-action.twig" with {
         title: callToAction.title,

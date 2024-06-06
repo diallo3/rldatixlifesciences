@@ -10,8 +10,8 @@
 
 <section id="{{ post.id }}-cta" class="relative px-6 lg:px-8 section-cta">
 
-    <div class="relative max-w-xl py-20 mx-auto mt-16 overflow-hidden lg:max-w-4xl xl:max-w-7xl border-y border-wood-smoke-700 lg:pb-40">
-        <div class="absolute inset-x-0 bottom-0">
+    <div class="relative max-w-xl py-20 mx-auto mt-16 overflow-hidden lg:max-w-4xl xl:max-w-7xl lg:py-40">
+        <div class="absolute inset-x-0 bottom-0 hidden">
             <svg width="1063" height="241" viewBox="0 0 1063 241" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1063" height="241" fill="url(#paint0_radial_204_17543)"/>
             <defs>
@@ -24,16 +24,29 @@
         </div>
 
         <div class="relative gap-8 space-y-4 lg:space-y-0 lg:grid lg:grid-cols-12">
-            <div class="section-page-cta__heading section-cta__item lg:col-span-5 xl:col-span-6">
+            <div class="space-y-6 section-page-cta__heading section-cta__item lg:col-span-5 xl:col-span-6 lg:pt-8">
                 {{ headings.headingTwo({
                     title: generalTitle,
-                    size: 'fluid-text-3xl xl:fluid-text-5xl',
+                    size: 'fluid-text-3xl xl:fluid-text-4xl',
                 })}}
+                <p class="text-base/loose lg:text-xl/loose section-cta__item">{{ entry ?? generalEntry }}</p>
             </div>
             <div class="section-page-cta__enter xl:pt-4 lg:col-span-7 xl:col-span-6">
-                <p class="text-base lg:text-xl section-cta__item">{{ entry ?? generalEntry }}</p>
+                
+                
+                <div class="p-8 border-2 rounded border-dodger-blue-950/60 bg-wood-smoke-950/50">
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            region: "na1", 
+                            portalId: "6118984", 
+                            formId: "e355e836-1125-4a91-bfe1-c43dc2c7a146",
+                            css: '',
+                        });
+                    </script>
 
-                <div class="mt-8 section-cta__item">
+                </div>
+                {# <div class="mt-8 section-cta__item">
                     {{ buttons.btnLink({
                         text: link.title ?? generalLink.title,
                         link: link.url ?? generalLink.url,
@@ -41,7 +54,7 @@
                         icon: 'arrow-right',
                         size: 'lg'
                     })}}
-            </div>
+                </div> #}
         </div>
     </div>
 
