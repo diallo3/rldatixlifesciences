@@ -1,4 +1,4 @@
-import { animate, inView, stagger, timeline } from 'motion';
+import { animate, scroll, inView, stagger, timeline } from 'motion';
 
 const navHeader = () => {
     const navHeader = document.querySelector('.site-header__logo');
@@ -26,25 +26,42 @@ const heroContent = () => {
 
 const brandsInView = () => {
 
-    const brandHeader = document.querySelector('.section-brands');
+    const brandHeader = document.querySelector('.section-brands__entry');
 
     inView( brandHeader, ({ target }) => {
-        const icoach = target.querySelector('.brand__icoach');
-        const porzio = target.querySelector('.brand__porzio');
-        const icontracts = target.querySelector('.brand__icontracts');
+        // const icoach = target.querySelector('.brand__icoach');
+        // const porzio = target.querySelector('.brand__porzio');
+        // const icontracts = target.querySelector('.brand__icontracts');
         const rldatix = target.querySelector('.brand__rldatix');
+        const items = target.querySelectorAll('.section-brands__item');
+        
 
         const brandsSequence = [
-            [icoach, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.7 }],
-            [porzio, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.7}],
-            [icontracts, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.7}],
-            [rldatix, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.85}],
+            [rldatix, { opacity: ['0', '1'] }, { duration: 0.7, easing: [0.17, 0.55, 0.55, 1]}],
+            // [icoach, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5 }],
+            // [porzio, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5}],
+            // [icontracts, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5}],
+            [items, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { delay: stagger(0.5), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
+           
             
         ]
 
         timeline(brandsSequence);
+
     });
 }
+
+// const brandsScrollInView = () => {
+//     const icoach = target.querySelector('.brand__icoach');
+//     const porzio = target.querySelector('.brand__porzio');
+//     const icontracts = target.querySelector('.brand__icontracts');
+//     const rldatix = target.querySelector('.brand__rldatix');
+
+   
+//     scroll(animate, rldatix,);
+// }
+
+// { opacity: ['0', '1'], y: ['5rem', '0'] }, { duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
 
 const generalInView = () => {
     const sections = document.querySelectorAll('.inview-container');

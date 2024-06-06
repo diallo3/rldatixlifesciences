@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 const { values } = require('tailwindcss-fluid-type/src/config/defaults');
@@ -12,10 +13,13 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            montserrat: ['Montserrat', 'sans-serif'],
             sans: ['Manrope', 'sans-serif'],
+            serif: ['Montserrat', 'serif'],
         },
         extend: {
+            fontFamily: {
+                'montserrat': ['Montserrat', 'sans-serif'],
+            },
             colors: {
                 'wood-smoke': {
                     '50': '#f1f1fe',

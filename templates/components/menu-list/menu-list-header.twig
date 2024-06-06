@@ -45,7 +45,7 @@
                     {% if item.meta('mega_menu_item') %}
                         <menu class="flex gap-12 px-4 py-2">
                             {% for item in item.children %}
-                                <li class="{{ item.classes.join('') }} relative min-w-36 space-y-2  text-sm">
+                                <li class="{{ item.classes.join('') }} relative min-w-36 space-y-2  text-sm font-montserrat">
                                     <a href="{{ item.link }}" class="block py-0.5 text-gray-100 transition duration-150 ease-in-out whitespace-nowrap  hover:text-dodger-blue-600 uppercase">{{ item.title }}</a>
                                     <ul class="flex-none">
                                         {% for child in item.children %}

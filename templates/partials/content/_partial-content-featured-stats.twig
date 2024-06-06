@@ -11,27 +11,13 @@
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-button.twig" as buttons %}
         {% import "components/ui/_macro-icon.twig" as icons %}
-        <div class="absolute top-0 right-0 -translate-y-1/2">
-            <svg width="858" height="1278" viewBox="0 0 858 1278" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_f_204_17276)">
-                <circle cx="639" cy="639" r="499" fill="#060D4C" fill-opacity="0.2"/>
-                </g>
-                <defs>
-                <filter id="filter0_f_204_17276" x="0" y="0" width="1278" height="1278" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feGaussianBlur stdDeviation="70" result="effect1_foregroundBlur_204_17276"/>
-                </filter>
-                </defs>
-            </svg>
-        </div>
 
         <div class="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div class="relative inview-item">
                 <div class="space-y-6">
-                    {{ badges.accentBadge({
+                    {# {{ badges.accentBadge({
                         title: stats.accent,
-                    })}}
+                    })}} #}
                     {{ headings.headingTwo({
                         title: stats.title,
                         size: 'fluid-text-4xl',
@@ -42,12 +28,12 @@
                     </div>
                 </div>
             </div>
-            <div class="relative">
-                <div class="grid grid-cols-2">
+            <div class="relative max-w-xl lg:max-w-none">
+                <div class="grid grid-cols-2 gap-4 lg:gap-2">
                     {% for item in stats.stats %}
                         <div class="pb-12 space-y-2 text-white [&_span]:text-dodger-blue-600 inview-item">
-                            <div class="text-5xl font-bold">{{ item.stat }} <span class="inline-flex -ml-3">{{ item.caret }}</span></div>
-                            <div class="text-base text-gray-200">{{ item.entry }}</div>
+                            <div class="font-bold fluid-text-4xl lg:text-5xl">{{ item.stat }} <span class="inline-flex -ml-1 lg:-ml-3">{{ item.caret }}</span></div>
+                            <div class="text-sm text-gray-200 md:text-base">{{ item.entry }}</div>
                         </div>
                     {% endfor %}
                 </div>

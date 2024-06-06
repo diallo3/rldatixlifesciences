@@ -24,7 +24,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h1 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} font-bold">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading Two #}
@@ -41,7 +41,7 @@
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
 
-    <h2 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h2>
+    <h2 class="{{ headingOptions }} font-bold">{{ options.title }}</h2>
     
 {% endmacro %}
 
@@ -58,7 +58,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h3 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h3>
+    <h3 class="{{ headingOptions }} font-bold">{{ options.title }}</h3>
 {% endmacro %}
 
 {# Heading four #}
@@ -74,7 +74,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h4 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h4>
+    <h4 class="{{ headingOptions }} font-bold">{{ options.title }}</h4>
 {% endmacro %}
 
 {% macro headingFive(options=[]) %}
@@ -89,5 +89,5 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case %}
 
-    <h4 class="{{ headingOptions }} font-bold tracking-tight">{{ options.title }}</h4>
+    <h4 class="{{ headingOptions }} font-bold">{{ options.title }}</h4>
 {% endmacro %}
