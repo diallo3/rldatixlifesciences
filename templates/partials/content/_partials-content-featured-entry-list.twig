@@ -1,4 +1,4 @@
-{% embed "components/containers/sections/_component-section-full.twig" with {
+{% embed "components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-list',
     maxWidth: 'max-w-screen-xl' 
@@ -8,7 +8,7 @@
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-button.twig" as buttons %}
-        <div class="grid grid-cols-1 gap-4 space-y-8 lg:grid lg:grid-cols-2 section-featured-list lg:space-y-0">
+        <div class="grid items-center grid-cols-1 gap-4 space-y-8 lg:grid lg:grid-cols-2 section-featured-list lg:space-y-0">
 
             <div class="space-y-6 section-st__header lg:max-w-md inview-item section-featured-list__entry">
                 <span class="text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
@@ -19,6 +19,10 @@
                         title: list.title,
                         size: 'fluid-text-4xl',
                     })}}
+                </div>
+                {#  #}
+                <div class="prose prose-span:text-dodger-blue-600 fluid-prose-lg">
+                    {{ list.entry }}
                 </div>
             </div>
 

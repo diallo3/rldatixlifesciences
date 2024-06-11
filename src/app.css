@@ -108,7 +108,17 @@ html.is-animating .transition-fade {
     .legal-consent-container .hs-form-booleancheckbox-display>span {
         @apply !ml-4;
     }
-  }
+}
+
+/* .feature-with-key-list__item {
+    display: flex;
+    height: 100%;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+} */
  
 
 

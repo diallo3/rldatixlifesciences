@@ -1,4 +1,4 @@
-{% embed "components/containers/sections/_component-section-full.twig" with {
+{% embed "components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-stats',
     maxWidth: 'max-w-screen-xl' 
@@ -31,9 +31,9 @@
                 </div>
             </div>
             <div class="relative max-w-xl lg:max-w-none">
-                <div class="grid grid-cols-2 gap-4 lg:gap-2">
+                <div class="grid grid-cols-2 gap-4 lg:gap-8">
                     {% for item in stats.stats %}
-                        <div class="pb-12 space-y-2 text-white [&_span]:text-dodger-blue-600 inview-item">
+                        <div class=" space-y-2 text-white [&_span]:text-dodger-blue-600 inview-item px-4 py-8 bg-wood-smoke-950/50 rounded border-2 border-dodger-blue-800/35">
                             <div class="font-bold fluid-text-4xl lg:text-5xl">{{ item.stat }} <span class="inline-flex -ml-1 lg:-ml-3">{{ item.caret }}</span></div>
                             <div class="text-sm text-gray-200 md:text-base">{{ item.entry }}</div>
                         </div>

@@ -1,6 +1,7 @@
-{% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-image',
+    maxWidth: 'max-w-screen-2xl'
 } %}
     {% block section_content %}
         {% import "components/ui/_macro-heading.twig" as headings %}
@@ -9,11 +10,12 @@
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-button.twig" as btn %}
         <div class="absolute -top-72 {{ loop.index is even ? 'left-20 ' : 'right-20 ' }} rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-20"></div>
-        <div class="flex flex-col gap-12  xl:items-center relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
 
-            <div class="relative flex-none hidden group lg:w-1/2 inview-item xl:block">
+        <div class="flex flex-col gap-12 border border-white   xl:items-center relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
+
+            <div class="relative flex-none hidden group lg:w-1/2 inview-item xl:block ">
                 <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
-                <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-4 aspect-h-3">
+                <figure class="overflow-hidden border border-blue-700 rounded-md relative aspect-[16/9]">
                     {{ images.imageObject({
                         src: image.url,
                         alt: image.alt,

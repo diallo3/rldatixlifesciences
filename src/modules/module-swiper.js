@@ -2,30 +2,46 @@ import Swiper from "swiper";
 import { Autoplay } from "swiper/modules";
 import 'swiper/css/bundle';
 
-let clientSwiper = null;
+const initializeExcellentSwiper = () => {
+    let excellenceSwiper = null;
 
-const initializeClientSwiper = () => {
-    clientSwiper = new Swiper('.logos-swiper', {
-        modules: [Autoplay],
-        // Optional parameters
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 5,
-        spaceBetween: 50,
-      });
+    const init = () => {
+        const swiperElement = document.querySelector('.excellence-swiper');
+       
+        if (swiperElement) {
+            excellenceSwiper = new Swiper(swiperElement, {
+                modules: [Autoplay],  // Ensure the Autoplay module is included properly
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                loop: true,
+                centeredSlides: true,
+                slidesPerView: 3,
+                spaceBetween: 30,
+            });
+            console.log('Swiper initialized');
+        }
+    };
 
-    return clientSwiper;
-}
+    const destroyExcellenceSwiper = () => {
+        if (excellenceSwiper) {
+            excellenceSwiper.destroy();
+            excellenceSwiper = null;
+            console.log('Swiper destroyed');
+        }
+    };
 
-const destroyClientSwiper = () => {
-    if (clientSwiper !== null) {
-        clientSwiper.destroy(true, true);
-        clientSwiper = null;
-    }
-}
+    init();
 
-export { initializeClientSwiper, destroyClientSwiper };
+    return {
+        excellenceSwiper,
+        destroyExcellenceSwiper
+    };
+
+
+};
+
+export { initializeExcellentSwiper };
+
+

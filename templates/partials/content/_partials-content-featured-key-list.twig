@@ -1,36 +1,84 @@
-{% embed "components/containers/sections/_component-section-full.twig" with {
+{% embed "components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-key-list',
-    maxWidth: 'max-w-screen-xl' 
+    maxWidth: 'max-w-none'
 } %}
     {% block section_content %}
-
-
-        
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-button.twig" as buttons %}
 
-        <div class="space-y-4 lg:text-center section-services__header">
-            {# {{ badges.accentBadge({
-                title: keyList.accent,
-            })}} #}
-            
-            {{ headings.headingThree({
-                title: keyList.title,
-                size: 'fluid-text-4xl',
-            })}}
-        </div>
-        <div class="max-w-3xl mx-auto mt-16 lg:max-w-7xl inview-container">
-            <dl class="grid gap-4 sm:grid-cols-2 lg:grid lg:grid-cols-4">
-                {% for list in keyList.list %}
-                <dd class="flex items-start space-x-4 lg:space-x-8 inview-item">
-                    <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div>
-                    <span class="inline-flex text-lg font-semibold">{{ list.item }}</span>
-                </dd>
-                {% endfor %}
-            </dl>
+        {# content #}
+        <div class="relative">
+            <div id="keyListContent" class="relative mx-auto max-w-screen-2xl feature-with-key-list__content">
+
+                {# sticky container #}
+                <div class="mx-auto space-y-12 feature-with-key-list__header">
+
+                    <div class="py-20">
+                        <div class="absolute inset-0 flex items-center h-full">
+                            <div class="relative flex items-center justify-center w-full -my-8 aspect-[16/9] mix-blend-soft-light opacity-50">
+                                <svg width="1400" height="1400" viewBox="0 0 1400 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="700" cy="700" r="700" fill="url(#paint0_radial_340_90)"/>
+                                <defs>
+                                <radialGradient id="paint0_radial_340_90" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 700) rotate(90) scale(700)">
+                                <stop stop-color="#1B3262" stop-opacity="1"/>
+                                <stop offset="1" stop-color="#1B3262" stop-opacity="0"/>
+                                </radialGradient>
+                                </defs>
+                                </svg>
+
+
+                            </div>
+
+                        </div>
+                    
+                        <div class="relative mx-auto space-y-12 max-w-7xl inview-container">
+                            {# title #}
+                            <div class="lg:text-center feature-with-key-list__title inview-item">
+                                {{ headings.headingThree({
+                                    title: keyList.title,
+                                    size: 'fluid-text-4xl',
+                                })}}
+                            </div>
+                            {# entry #}
+                            <div>
+                                <div class="mx-auto swiper excellence-swiper lg:-mx-4 lg:px-4">
+                                    <dl class="flex justify-items-stretch feature-with-key-list__items swiper-wrapper">
+                                        {% for list in keyList.list %}
+                                        <dd class=" feature-with-key-list__item swiper-slide">
+                                            {# <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div> #}
+                                            <div class="flex items-center justify-center w-full h-32 px-8 text-center border-2 rounded-md border-dodger-blue-800 bg-wood-smoke-950/50 inview-item">
+                                                <span class="relative block font-semibold fluid-text-base/7">{{ list.item }}</span>
+                                            </div>
+                                        </dd>
+                                        {% endfor %}
+                                    </dl>
+                                </div>
+                            </div>
+                            {# cta #}
+                            <div class="relative flex justify-center feature-with-key-list__cta">
+
+                                <div class="max-w-4xl mx-auto space-y-8 text-center feature-with-key-list__cta-entry">
+                                    {# <div class="prose prose-invert prose-p:fluid-text-base">
+                                        {{ keyList.entry}}
+                                    </div> #}
+                                
+                                    <div class="text-center">
+                                        {{ buttons.btnLink({
+                                            text: 'Tour the Platform',
+                                            link: keyList.link.title,
+                                            size: 'xl',
+                                            icon: 'arrow-right',
+                                        })}}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     {% endblock %}
 {% endembed %}

@@ -585,9 +585,30 @@
                     "library": "all"
                 },
                 {
+                    "key": "field_66636cac09e95",
+                    "label": "Hubspot Form Title",
+                    "name": "hubspot_form_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "Hubspot Form Title",
+                    "prepend": "",
+                    "append": "",
+                    "acfe_field_group_condition": 0
+                },
+                {
                     "key": "field_6661c7c9f1916",
-                    "label": "Hubsot Form ID",
-                    "name": "hubsot_form_id",
+                    "label": "Hubspot Form ID",
+                    "name": "hubspot_form_id",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -785,5 +806,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717684219
+    "modified": 1717791943
 }

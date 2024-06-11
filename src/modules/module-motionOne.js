@@ -27,41 +27,51 @@ const heroContent = () => {
 const brandsInView = () => {
 
     const brandHeader = document.querySelector('.section-brands__entry');
+    
 
-    inView( brandHeader, ({ target }) => {
-        // const icoach = target.querySelector('.brand__icoach');
-        // const porzio = target.querySelector('.brand__porzio');
-        // const icontracts = target.querySelector('.brand__icontracts');
-        const rldatix = target.querySelector('.brand__rldatix');
+    
+
+    inView(brandHeader, ({ target }) => {
         const items = target.querySelectorAll('.section-brands__item');
-        
 
         const brandsSequence = [
-            [rldatix, { opacity: ['0', '1'] }, { duration: 0.7, easing: [0.17, 0.55, 0.55, 1]}],
-            // [icoach, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5 }],
-            // [porzio, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5}],
-            // [icontracts, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { duration: 0.5}],
-            [items, {opacity: ['0', '1'], transform: ['scale(0)', 'scale(1)']}, { delay: stagger(0.5), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
-           
-            
+            [items, { opacity: ['0', '1'], transform: ['scale(0)',  'scale(1)']}, { delay: stagger(0.25), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
         ]
 
         timeline(brandsSequence);
-
     });
+
 }
 
-// const brandsScrollInView = () => {
-//     const icoach = target.querySelector('.brand__icoach');
-//     const porzio = target.querySelector('.brand__porzio');
-//     const icontracts = target.querySelector('.brand__icontracts');
-//     const rldatix = target.querySelector('.brand__rldatix');
+const keyListInview = () => {
+    const target = document.querySelector('.feature-with-key-list__content');
+    const listContainer = document.querySelector('.feature-with-key-list__items');
+    const listItems = listContainer.querySelectorAll('.feature-with-key-list__item');
+    const listCTA = target.querySelector('.feature-with-key-list__cta');
 
-   
-//     scroll(animate, rldatix,);
-// }
+    target.style.height = `${ target.clientWidth }px`;
 
-// { opacity: ['0', '1'], y: ['5rem', '0'] }, { duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
+    const keyListSequence = [
+        [ listContainer, { 
+            transform: ["none", `translateX(-${ target.scrollWidth }px)`] 
+        },
+        { 
+            duration: 5, easing: [0.17, 0.55, 0.55, 1],
+        }],
+        [listCTA, { y: ['0rem', '-20rem']}, { at: "-0.15" }]
+    ]
+
+    scroll(
+        timeline(keyListSequence, {
+            duration: 5,
+            easing: [0.17, 0.55, 0.55, 1]
+        }),
+        { 
+            target: target,
+         }
+         
+    );
+}
 
 const generalInView = () => {
     const sections = document.querySelectorAll('.inview-container');
@@ -70,19 +80,13 @@ const generalInView = () => {
 
         const sectionItems = target.querySelectorAll('.inview-item');
 
-       
-        animate(target, 
-            { opacity: ['0', '1'], y: ['5rem', '0'] }, 
-            { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] },
-        );
-
-        if( target) {
-            animate(sectionItems, 
-                { opacity: ['0', '1'], y: ['5rem', '0'] }, 
-                { delay: stagger(0.1), duration: 0.25, easing: [0.17, 0.55, 0.55, 1] }
-            );
-        }
+        const sectionSequence = [
+            [target, { opacity: ['0', '1'], y: ['5rem', '0'] }, { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] }],
+            [sectionItems, { opacity: ['0', '1'], y: ['5rem', '0'] }, { delay: stagger(0.1), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
+        ]
         
+
+        timeline(sectionSequence);
     });
 }
 
@@ -92,16 +96,35 @@ const ctaInview = () => {
     inView(cta, ({ target }) => {
         const ctaItems = target.querySelectorAll('.section-cta__item');
 
-        animate(target, 
-            { opacity: ['0', '1'], transform: ['scale(0.5)', 'scale(1)']}, 
-            { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] },
-        );
+        const ctaSequence = [
+            [target, { opacity: ['0', '1'], transform: ['scale(0.5)', 'scale(1)']}, { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] }],
+            [ctaItems, { opacity: ['0', '1'], y: ['5rem', '0'] }, { delay: stagger(0.85), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
+        ]
 
-        animate(ctaItems, 
-            { opacity: ['0', '1'], y: ['5rem', '0'] }, 
-            { delay: stagger(0.35), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
-        );
+        timeline(ctaSequence);
     });
 }
 
-export { navHeader, heroContent,  generalInView, brandsInView, ctaInview};
+const dividerInView = () => {
+    const dividers = document.querySelectorAll('.page-content .page-content__item');
+
+
+    dividers.forEach( (divider) => {
+        const icon = divider.querySelector('.divider-icon');
+
+        const blue = icon.style.color = '#1962b4';
+        const red = icon.style.color = '#f4511e';
+
+        const dividerSequence = [
+            [icon, { color: [blue, blue, red, red, blue]  }, { duration: 0.1 }]
+        ]
+
+        scroll(timeline(dividerSequence),
+            {
+            target: icon,
+            offset: [ "end", "start"],
+        });
+    });
+}
+
+export { navHeader, heroContent,  generalInView, brandsInView, ctaInview, dividerInView, keyListInview };

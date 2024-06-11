@@ -9,8 +9,8 @@ if (import.meta.hot) {
 // import JS files if applicable
 import { initializeAlpine } from './modules/module-alpine';
 import { initializeHeadroom } from './modules/module-headroom';
-// import { initializeClientSwiper, destroyClientSwiper } from './modules/module-swiper';
-import { navHeader, heroContent, generalInView, brandsInView, ctaInview } from './modules/module-motionOne';
+import { initializeExcellentSwiper } from './modules/module-swiper';
+import { navHeader, heroContent, generalInView, brandsInView, ctaInview, dividerInView } from './modules/module-motionOne';
 
 import { initializeStackedCards } from './modules/module-codyhouse';
 
@@ -31,21 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     brandsInView();
     ctaInview();
     initializeStackedCards();
+    dividerInView();
+    initializeExcellentSwiper();
 
-    // function checkAndManageSwiper() {
-    //     const logosSwiper = document.querySelector('.logos-swiper');
-    //     if( logosSwiper ) {
-    //         console.log('initializeClientSwiper');
-    //         initializeClientSwiper();
-    //     } else {
-    //         destroyClientSwiper();
-    //         console.log('destroyClientSwiper');
-    //     }
-    // }
+
     
-    // checkAndManageSwiper();
-
-    // window.addEventListener('hashchange', () => {
-    //     checkAndManageSwiper();
-    // });
 });

@@ -4,12 +4,14 @@
 {% import "/templates/components/ui/_macro-heading.twig" as headings %}
 {% import "/templates/components/ui/_macro-icon.twig" as icons %}
 
+{% set front = fn('is_front_page') %}
+
 <header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden ">
-    <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/2"></div>
+    <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
 	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero min-h-svh bck" style="background-image: url('{{ hero.image.url }}')">
-        <div class="absolute inset-0 bg-[#090C36]/45 lg:bg-[#090C36]/65 mix-blend-multiply"></div>
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/2"></div>
-        <div class="max-w-screen-xl pt-20 mx-auto relativemx">
+        <div class="absolute inset-0 bg-[#090C36]/45 lg:bg-[#090C36]/65 mix-blend-soft-light"></div>
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
+        <div class="relative max-w-screen-xl pt-20 mx-auto">
             <div class="hero-content">
                     <div class="max-w-lg space-y-6 lg:max-w-4xl lg:space-y-12">
                         {# accent #}
@@ -28,7 +30,7 @@
                                     {{ headings.displayHeadingOne({
                                         title: heroTitle,
                                         case: 'uppercase',
-                                        size: 'fluid-text-6xl lg:fluid-text-7xl',
+                                        size: front ? 'fluid-text-6xl lg:fluid-text-7xl' : 'fluid-text-3xl lg:fluid-text-4xl',
                                     })}}
                                 </span>
                             {% endif %}
@@ -40,13 +42,13 @@
                                 <div class="hero-content__item">
                                     {{ headings.headingThree({
                                         title: heroSubTitle,
-                                        size: 'fluid-text-lg lg:fluid-text-xl',
+                                        size: front ? 'fluid-text-lg lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
                                     })}}
                                 </div>
                             {% endif %}
 
-                            <div class="">
-                                <div class="relative mx-auto mt-10 prose-lg lg:prose-xl inview-item hero__entry-content">
+                            <div class="mt-4">
+                                <div class="relative mx-auto {{ front ? 'prose-lg lg:prose-xl' : 'prose-sm lg:prose-base' }} inview-item hero__entry-content">
                                     {{ hero.entry }}
                                 </div>
                                 
@@ -54,8 +56,7 @@
                                 <div class="max-w-sm mt-8 inview-item hero__entry-cta">
                                     {% if heroCTAs %}
                                         {% for cta in heroCTAs %}
-                                            <script>console.log({{ cta | json_encode | raw }})</script>
-                                            {{ cta.title}}
+                                            {# {{ cta.title}} #}
                                             {{ buttons.btnLink({
                                                 text: cta.link.title,
                                                 link: cta.link.url,
