@@ -1,6 +1,6 @@
 {% macro imageObject(options=[]) %}
     {% set options = {
-        src: src ? src : 'null',
+        src: src ? src,
         fit: fit | default('object-cover !w-full !h-full'),
         alt: alt ? alt : 'Image alt text',
     } | merge(options)  %}

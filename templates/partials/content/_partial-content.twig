@@ -32,6 +32,11 @@
 
             {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
 
+             {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+
         {% elseif cardImage %}
             {% set cards = content.card_with_image[0].cards %}
             {% embed "/templates/components/containers/sections/_embed-section-full.twig" with {

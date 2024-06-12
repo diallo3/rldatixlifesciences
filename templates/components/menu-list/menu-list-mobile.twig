@@ -1,18 +1,20 @@
 {% import "components/ui/_macro-icon.twig" as icons %}
 {% if menu.header_nav %}
-    <menu id="mobileMenu" class="text-sm mobile-menu text-black-rock-100/80">
+    <menu id="mobileMenu" class="pb-4 text-white mobile-menu">
         {% for item in menu.header_nav.get_items %}
             {% if item.children %}
                  <li 
                     x-data="{ expanded: false,}" 
-                    role="region" class="{{ item.classes|join(' ') }} mobile-menu_item">
+                    role="region" 
+                    :class="{ 'bg-dodger-blue-900/20': expanded }"
+                    class="{{ item.classes|join(' ') }} mobile-menu_item px-8">
                     <button
                         x-on:click="expanded = !expanded"
                         :aria-expanded="expanded"
-                        class="flex items-center justify-between w-full py-2 font-semibold border-none"
+                        class="flex items-center justify-between w-full py-1.5 font-semibold border-none"
                     >
                         <span 
-                             :class="{ 'text-white': expanded }"
+                            :class="{ 'text-white/5': expanded }"
                             class="inline-flex mobile-menu__title">{{ item.name }}</span>
                         <span 
                             :class="{ 'transform rotate-180': expanded }"
@@ -23,25 +25,45 @@
                     
                     {#  #}
                     <div x-show="expanded" x-collapse>
-                        <ul class="px-4 py-2 rounded nav-children bg-gray-50">
+                        <ul class="pb-4 nav-children">
+                            <li class="">
+                                <a href="{{ item.link }}" class="block py-2 font-semibold"  alt="{{ item.title }}">{{ item.title }}</a>
+                            </li>
                             {% for child in item.children %}
-                                <li class="py-1 text-sm font-semibold text-gray-500 {{ item.classes|join(' ') }}">
-                                    <a href="{{ child.url }}" class="block p-2 rounded hover:text-blue-700 hover:bg-blue-100/60">{{ child.title }}</a>
+                                <li class="{{ item.classes|join(' ') }}">
+                                    <a 
+                                        href="{{ child.url }}"
+                                        class="{{ child.children ? 'uppercase text-sm' }} block py-4 text-blue-300 hover:text-blue-70 font-semibold ">
+                                        {{ child.title }}
+                                    </a>
+                                    {% if child.children %}
+                                        <ul class="pt-2 pb-6 space-y-4 text-sm nav-children">
+                                            {% for subchild in child.children %}
+                                                <li class="">
+                                                    <a href="{{ subchild.link }}" class="text-blue-50/70">{{ subchild.title }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
                 </li>
             {% else %}
-                <li class="{{ item.classes|join(' ') }}">
-                    <a href="{{ item.url }}" class="block py-2 font-semibold">{{ item.title }}</a>
+                <li class="{{ item.classes|join(' ') }} px-8">
+                    <a href="{{ item.url }}" class="block py-2.5 font-semibold">{{ item.title }}</a>
                 </li>
             {% endif %}
         {% endfor %}
-        {% for item in menu.footer_nav.get_items %}
-            <li class="{{ item.classes|join(' ') }}">
-                <a href="{{ item.url }}" class="block py-2 font-semibold">{{ item.title }}</a>
-            </li>
-        {% endfor %}
+        </menu>
+        <menu class="pt-4 border-t border-wood-smoke-900/60 ">
+            {% for item in menu.footer_nav.get_items %}
+                <li class="{{ item.classes|join(' ') }} px-8">
+                    <a href="{{ item.url }}" class="block py-1.5 text-blue-100/60 text-sm font-semibold">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </menu>
     </menu>
 {% endif %}
