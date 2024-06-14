@@ -6,20 +6,20 @@
 
 {% set front = fn('is_front_page') %}
 
-<header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden ">
+<header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden">
     <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
 	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero min-h-svh bck" style="background-image: url('{{ hero.image.url }}')">
-        <div class="absolute inset-0 bg-[#090C36]/45 lg:bg-[#090C36]/65 mix-blend-soft-light"></div>
+        
         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
         <div class="relative pt-20 mx-auto max-w-screen-2xl lg:px-12">
             <div class="hero-content">
                     <div class="max-w-lg space-y-6 lg:max-w-4xl lg:space-y-12">
                         <div class="space-y-4">
                             {# accent #}
-                            {% if heroAccent or post.title and not fn('is_front_page') %}
+                            {% if heroAccent or post.title and not front %}
                                 <div class="hero__accent hero-content__item">
                                     {{ badges.accentBadge({
-                                        title: heroAccent ?? post.title,
+                                        title: heroAccent ?: post.title,
                                     })}}
                                 </div>
                             {% endif %}
@@ -76,12 +76,12 @@
         </div>
         
         {# divider #}
-        {% if not fn('is_front_page') %}
+        {# {% if not fn('is_front_page') %}
         <div class="relative mx-auto max-w-7xl">
             <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-dodger-blue-800/50  before:content-[''] after:h-px after:flex-1 after:bg-dodger-blue-800/50  after:content-['']">
                 {{ icons.icon('brand-glyph', 'size-8') }}
             </div>
         </div>
-        {% endif %}
+        {% endif %} #}
     </div>
 </header>

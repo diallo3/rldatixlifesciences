@@ -1,6 +1,5 @@
 {% extends "layouts/base.twig" %}
 
-
 {% set pageContent = post.meta('page_content') %}
 {% block content %}
 
@@ -43,62 +42,63 @@
 
     <!-- Brands -->
     <section class="relative px-16 section-brands lg:px-8 scroll-start">
-            <div class="absolute top-0 -inset-x-8 -bottom-3/4 opacity-90 ">
-                {{ icons.icon('glow-blue', 'size-full') }}
-            </div>
-            <div class="absolute opacity-15 text-wood-smoke-950 -inset-48 mix-blend-multiply">
-                <svg class="size-full" viewBox="0 0 968 631" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
-                </svg>
-            </div>
-            <div class="relative mx-auto space-y-8 lg:max-w-7xl page-content__item">
+       
+        <div class="absolute top-0  inset-x-24 -bottom-[70%] opacity-50">
+           {{ images.imageObject({
+                src: theme.link ~ '/public/img/img-glow-blue.png',
+                alt: 'icon',
+                class: 'w-full h-full',
+            })}}
+        </div>
+        <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-wood-smoke-950 to--wood-smoke-950/0 h-1/3"></div>
+        <div class="absolute opacity-15 text-wood-smoke-950 -inset-48 mix-blend-multiply">
+            {{ icons.icon('pattern-hexagon', 'size-full') }}
+        </div>
+        <div class="relative mx-auto space-y-8 lg:max-w-7xl page-content__item">
 
-                {# divider #}
-                <div class="mb-20 -mx-12 section-divider lg:mx-auto">
-                    {% include "/templates/components/dividers/_component-divider-icon.twig" %}
-                </div>
+            {# divider #}
+            <div class="mb-20 -mx-12 section-divider lg:mx-auto">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
 
-                <div class="pt-12 pb-8 section-brands__entry sm:px-20 lg:pb-16">
-                    <div class="pt-12 space-y-6 text-center md:space-y-10 lg:space-y-12 section-brands__header inview-container">
-                    
-                        <div class="section-brands__item">
-                            {{ headings.headingThree({
-                                title: 'Brands Coming Together',
-                                font: 'font-montserrat',
-                                size: 'fluid-text-sm  uppercase',
-                            })}}
-                        </div>
-                        <!-- Brands Logo -->
-                        <div class="max-w-xs mx-auto lg:max-w-md section-brands__logo section-brands__item brand__rldatix ">
-                            {{ icons.icon('brand', 'w-full') }}
-                        </div>
+            <div class="pt-12 pb-8 section-brands__entry sm:px-20 lg:pb-16">
+                <div class="pt-12 space-y-6 text-center md:space-y-10 lg:space-y-12 section-brands__header inview-container">
+                
+                    <div class="section-brands__item">
+                        {{ headings.headingThree({
+                            title: 'Brands Coming Together',
+                            font: 'font-montserrat',
+                            size: 'fluid-text-sm  uppercase',
+                        })}}
                     </div>
-                    <div class="flex flex-col items-center gap-3 px-12 mx-auto mt-8 text-center lg:max-w-7xl sm:px-10 md:flex-row md:w-full section-brands__content md:px-0">
-                        <div class="relative hidden px-12 lg:block text-dodger-blue-900/60">
-                            {{ icons.icon('brand-glyph', 'w-12') }}
-                        </div>
-
-                        {% for item in companyBrands %}
-                            <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icoach">
-                                <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
-                                <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
-                                <figure class="absolute inset-0 flex items-center justify-center px-8 py-4 lg:px-16" >
-                                    <figcaption class="sr-only">{{ item.name }}</figcaption>
-                                    {{ icons.icon(item.icon, 'w-full max-w-40') }}
-                                </figure>
-                            </div>
-                        {% endfor %}
-                    
-                    
-                       <div class="relative hidden px-12 lg:block text-dodger-blue-950/60">
-                            {{ icons.icon('brand-glyph', 'w-12') }}
-                        </div>
+                    <!-- Brands Logo -->
+                    <div class="max-w-xs mx-auto lg:max-w-md section-brands__logo section-brands__item brand__rldatix ">
+                        {{ icons.icon('brand', 'w-full') }}
                     </div>
                 </div>
+                <div class="flex flex-col items-center gap-3 px-12 mx-auto mt-8 text-center lg:max-w-7xl sm:px-10 md:flex-row md:w-full section-brands__content md:px-0">
+                    <div class="relative hidden px-12 lg:block text-dodger-blue-900/60">
+                        {{ icons.icon('brand-glyph', 'w-12') }}
+                    </div>
+
+                    {% for item in companyBrands %}
+                        <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icoach">
+                            <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
+                            <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
+                            <figure class="absolute inset-0 flex items-center justify-center px-8 py-4 lg:px-16" >
+                                <figcaption class="sr-only">{{ item.name }}</figcaption>
+                                {{ icons.icon(item.icon, 'w-full max-w-40') }}
+                            </figure>
+                        </div>
+                    {% endfor %}
+                
+                
+                    <div class="relative hidden px-12 lg:block text-dodger-blue-950/60">
+                        {{ icons.icon('brand-glyph', 'w-12') }}
+                    </div>
+                </div>
             </div>
+        </div>
     </section>
 
 
@@ -173,10 +173,9 @@
         </div>
     </section>
 
+    {# page content #}
     <div class="relative page-content__entry">  
-        
         {% include "partials/content/_partial-content.twig" %}
-        
     </div>
 
     {% include "partials/_partial-call-to-action.twig" with {

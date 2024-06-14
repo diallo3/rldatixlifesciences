@@ -28,7 +28,7 @@
                 "title"
             ],
             "acfe_flexible_remove_button": [],
-            "acfe_flexible_layouts_state": "collapse",
+            "acfe_flexible_layouts_state": "user",
             "acfe_flexible_modal_edit": {
                 "acfe_flexible_modal_edit_enabled": "0",
                 "acfe_flexible_modal_edit_size": "large"
@@ -864,5 +864,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717378585
+    "modified": 1718289092
 }

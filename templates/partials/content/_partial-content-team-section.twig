@@ -1,4 +1,7 @@
- {% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
+{% set team = content.team_section[0] %}
+{% set members = get_posts(team.team_members) %}
+
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-card-with-image',
     maxWidth: 'max-w-screen-2xl' 

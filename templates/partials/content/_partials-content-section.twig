@@ -1,4 +1,10 @@
 
+{% set content = content.content_section %}
+{% set title = content.title %}
+{% set entry = content.entry %}
+{% set link = content.link %}
+{% set image = content.image %}
+
 {% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-card-with-image',

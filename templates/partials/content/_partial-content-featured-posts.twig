@@ -1,0 +1,65 @@
+{% set featured = content.featured_posts[0] %}
+
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
+    id: 'section-content-' ~ loop.index,
+    class: 'feature-card-with-image',
+    maxWidth: 'max-w-screen-2xl' 
+} %}
+    {% block section_content %}
+    {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+    {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+        <div class="px-0 space-y-8 featured_posts inview-container lg:px-12">
+            <div class="flex items-center lg:justify-between featured_posts">
+                <div class="space-y-4 featured_posts__content inview-item">
+                    {{ headings.headingTwo({
+                        title: featured.title,
+                        size: 'fluid-text-2xl',
+                    }) }}
+
+                    <div class="prose prose-invert featured_posts__entry inview-item">
+                        {{ featured.entry }}
+                    </div>
+                </div>
+
+                
+                <div class="hidden lg:block featured_posts__cta inview-item">
+                    {% if featured.link.title %}
+                        {{ buttons.btnLink({
+                            text: featured.link.title,
+                            link: featured.link.url,
+                            type: 'primary',
+                            icon: 'arrow-right',
+                            size: 'sm'
+                        }) }}
+                    {% endif %}
+                </div>
+
+                {# <a href="{{ post.link }}" class="text-sm text-dodger-blue-500">View all</a> #}
+            </div>
+            <ul class="grid grid-cols-1 gap-4 space-y-8 lg:grid-cols-3 lg:gap-8 lg:space-y-0 inview-container featured_posts__items">
+            
+                {% for post in featured_posts %}
+                    {% set title = post.title %}
+                    {% set entry = post.excerpt %}
+                    {% set image = post.featured_image %}
+                    {% set link = post.link %}
+                    <li class="inview-item featured_posts__item">
+                        {% include "/templates/components/cards/_component-card-post.twig" %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="lg:hidden featured_posts__cta">
+                    {% if featured.link.title %}
+                        {{ buttons.btnLink({
+                            text: featured.link.title,
+                            link: featured.link.url,
+                            type: 'primary',
+                            icon: 'arrow-right',
+                            size: 'sm'
+                        }) }}
+                    {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

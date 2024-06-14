@@ -10,7 +10,19 @@
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-button.twig" as btn %}
-        <div class="absolute -top-12 {{ loop.index is even ? 'left-20 ' : 'right-20 ' }} rounded-full size-[50rem] bg-gradient-to-t from-black-rock-400 to-transparent blur-3xl opacity-20"></div>
+        <div class="absolute -top-12 {{ loop.index is even ? '-left-32 ' : '-right-32 ' }} rounded-full size-[65rem]">
+            {# effect #}
+            <div class="absolute inset-0 opacity-50">
+                {{ images.imageObject({
+                    src: theme.link ~ '/public/img/img-glow-blue.png',
+                    alt: 'icon',
+                    class: 'w-full h-full',
+                })}}
+            </div>
+            <div class="absolute opacity-25 text-wood-smoke-950 -inset-48 mix-blend-multiply">
+                {{ icons.icon('pattern-hexagon', 'size-full') }}
+            </div>
+        </div>
 
         <div class="flex flex-col gap-12 xl:justify-stretch lg:px-8  xl:items-center relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
 

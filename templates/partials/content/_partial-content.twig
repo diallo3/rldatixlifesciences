@@ -1,14 +1,33 @@
 {% for content in pageContent %}
     <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start0">
-    
+
+        {% set featuredContent = content.acf_fc_layout == 'content_section'  %}
         {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
         {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
         {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
         {% set featuredStats = content.acf_fc_layout == 'featured_stats' %}
         {% set featuredKeyList = content.acf_fc_layout == 'featured_key_list' %}
         {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
+        {% set featuredPosts = content.acf_fc_layout == 'featured_posts' %}
+        {% set featuredTeams = content.acf_fc_layout == 'team_section' %}
+        {% set callToAction = content.acf_fc_layout == 'call_to_action' %}
 
-        {% if featureContentIcons %}
+
+        {% if featuredContent %}
+            {% include "/templates/partials/content/_partials-content-section.twig" %}
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+        {% elseif callToAction %}
+            {% include "/templates/partials/content/_partial-content-call-to-action.twig" %}
+        {% elseif featuredPosts %}
+           {% include "/templates/partials/content/_partial-content-featured-posts.twig" %}   
+           {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>  
+        {% elseif featureContentIcons %}
             {# feature with icons #}
             {% set features = content.features_content_with_icons[0].features %}
             {% set icon = item.icon %}
@@ -94,6 +113,13 @@
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}
             </div>
             
+        
+        {% elseif featuredTeams %}
+            {% include "/templates/partials/content/_partial-content-team-section.twig" %}
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
         {% endif %}
     
     </div>

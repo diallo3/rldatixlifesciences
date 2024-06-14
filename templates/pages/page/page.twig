@@ -19,6 +19,12 @@
 
     {% embed "/templates/components/containers/pages/_embed-page-title.twig"  %}
         {% block page_content %}
+
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider page-content__item">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+
             <div class="relative page-content__entry">  
                 {% include "partials/content/_partial-content.twig" %}
             </div>
