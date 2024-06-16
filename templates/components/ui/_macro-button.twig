@@ -23,12 +23,12 @@
     }[options.size] %}
 
     {# Generate button HTML #}
-    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out">
+    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out cursor-pointer group">
 
         <span class="text-white">{{ options.text }}</span>
         {# Include an optional SVG icon #}
         {% if options.icon is not null %}
-            <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full hover:left-4">
+            <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full">
                 {{ icons.icon(options.icon, 'w-4 h-4 text-wood-smoke-950') }}
             </span>
         {% endif %}

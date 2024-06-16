@@ -15,7 +15,7 @@
             @mouseenter="open = true"
             @mouseleave="open = false"
             :class="scrolledFromTop ? ' py-8' : 'py-16'"
-            class="font-semibold {{ item.classes|join(', ') }} {{ item.current ? 'text-white' : '' }} menu-list-item py-8 group relative text-white transition-all duration-500 ease-in-out hover:text-white"
+            class="font-semibold {{ item.classes|join(', ') }} {{ item.current ? 'text-white' : '' }} menu-list-item py-8 group cursor-pointer relative text-white transition-all duration-500 ease-in-out"
         >
             <div class="absolute inset-x-0 top-0 h-0.5 {{ item.current ? 'bg-dodger-blue-800' : '' }} "></div>
 			{% if item.link == '#' %}
@@ -24,7 +24,7 @@
 				</button>
 			{% else %}
 				<a href="{{ item.link }}" 
-                    class=" flex items-center space-x-1.5 text-sm transition duration-150 ease-linear menu-link hover:text-white" 
+                    class=" flex items-center space-x-1.5 text-sm transition duration-150 ease-linear menu-link hover:text-dodger-blue-500" 
                     target="{{ item.target }}"
                     :aria-expanded="open"
                 >

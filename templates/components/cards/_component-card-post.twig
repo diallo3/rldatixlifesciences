@@ -11,8 +11,8 @@
 
 <article class="flex flex-col items-start justify-between">
 	<div class="relative w-full">
-		<img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
-		<div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+		<img src="{{ post.thumbnail.src ?: theme.link ~ '/public/icons/icon-temp-image.svg' }}" alt="{{ post.thumbnail.alt }}" class="aspect-[16/9] w-full rounded-2xl bg-wood-smoke-950 border-2 border-wood-smoke-800 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+		<div class="absolute inset-0 z-10 rounded-2xl"></div>
 	</div>
 	<div class="max-w-xl">
 		<div class="flex items-center mt-8 text-xs gap-x-4">

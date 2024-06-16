@@ -149,7 +149,7 @@
         "comments",
         "the_content"
     ],
-    "active": true,
+    "active": false,
     "description": "",
     "show_in_rest": 0,
     "acfe_autosync": [
@@ -171,5 +171,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717028220
+    "modified": 1718387267
 }

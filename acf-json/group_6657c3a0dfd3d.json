@@ -827,6 +827,13 @@
                 "operator": "!=",
                 "value": "114"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "solution"
+            }
         ]
     ],
     "menu_order": 5,
@@ -864,5 +871,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1718289092
+    "modified": 1718387286
 }

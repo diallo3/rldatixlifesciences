@@ -84,7 +84,9 @@
                     {% for item in companyBrands %}
                         <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icoach">
                             <div class="absolute rounded-full opacity-50 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
-                            <div class="z-10">{{ icons.icon('hexagon', 'absolute inset-0') }}</div>
+                            <div class="z-10 ">
+                                {{ icons.icon('hexagon', 'size-full') }}
+                            </div>
                             <figure class="absolute inset-0 flex items-center justify-center px-8 py-4 lg:px-16" >
                                 <figcaption class="sr-only">{{ item.name }}</figcaption>
                                 {{ icons.icon(item.icon, 'w-full max-w-40') }}

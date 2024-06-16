@@ -8,12 +8,12 @@
 
 <header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden">
     <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
-	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero min-h-svh bck" style="background-image: url('{{ hero.image.url }}')">
+	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero bck" style="background-image: url('{{ hero.image.url ? hero.image.url : theme.link ~ '/public/img/img-bck-header-default.jpg' }}')">
         
         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
         <div class="relative pt-20 mx-auto max-w-screen-2xl lg:px-12">
             <div class="hero-content">
-                    <div class="max-w-lg space-y-6 lg:max-w-4xl lg:space-y-12">
+                    <div class="max-w-lg space-y-6 lg:max-w-5xl lg:space-y-12">
                         <div class="space-y-4">
                             {# accent #}
                             {% if heroAccent or post.title and not front %}
@@ -29,7 +29,7 @@
                                     <span class="inline-block hero-content__item">
                                         {{ headings.displayHeadingOne({
                                             title: heroTitle,
-                                            case: 'uppercase',
+                                            case: front ? 'uppercase' : 'normal-case',
                                             size: front ? 'fluid-text-6xl lg:fluid-text-7xl' : 'fluid-text-3xl lg:fluid-text-5xl',
                                         })}}
                                     </span>
@@ -38,7 +38,7 @@
                         </div>
 
                         {# entry #}
-                        <div class="pb-24 inview-container hero__entry lg:max-w-2xl">
+                        <div class="pb-24 hero__entry lg:max-w-2xl">
                             {% if heroSubTitle %}
                                 <div class="hero-content__item">
                                     {{ headings.headingThree({
@@ -49,12 +49,12 @@
                             {% endif %}
 
                             <div class="mt-4">
-                                <div class="relative mx-auto {{ front ? 'prose-lg lg:prose-xl' : 'prose-sm lg:prose-base' }} inview-item hero__entry-content">
+                                <div class="relative mx-auto {{ front ? 'prose-lg lg:prose-xl' : 'prose-sm lg:prose-base' }} hero__entry-content">
                                     {{ hero.entry }}
                                 </div>
                                 
                                 {#  #}
-                                <div class="max-w-sm mt-8 inview-item hero__entry-cta">
+                                <div class="max-w-sm mt-8 hero__entry-cta">
                                     {% if heroCTAs %}
                                         {% for cta in heroCTAs %}
                                             {# {{ cta.title}} #}

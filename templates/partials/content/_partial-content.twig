@@ -1,5 +1,5 @@
 {% for content in pageContent %}
-    <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start0">
+    <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start">
 
         {% set featuredContent = content.acf_fc_layout == 'content_section'  %}
         {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}

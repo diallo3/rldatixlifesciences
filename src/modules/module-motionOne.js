@@ -19,7 +19,7 @@ const heroContent = () => {
 
     if( heroContentItems.length === 0) return;
     animate(heroContentItems, 
-        { opacity: ['0', '1'], y: ['2rem', '0']}, 
+        { opacity: ['0', '1'], y: ['0.5rem', '0']}, 
         { delay: stagger(0.35), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }
     );
 }
@@ -27,8 +27,6 @@ const heroContent = () => {
 const brandsInView = () => {
 
     const brandHeader = document.querySelector('.section-brands__entry');
-    
-
     
 
     inView(brandHeader, ({ target }) => {
@@ -90,7 +88,7 @@ const generalInView = () => {
     });
 }
 
-const ctaInview = () => {
+const ctaInView = () => {
     const cta = document.querySelector('.section-cta');
 
     inView(cta, ({ target }) => {
@@ -127,4 +125,4 @@ const dividerInView = () => {
     });
 }
 
-export { navHeader, heroContent,  generalInView, brandsInView, ctaInview, dividerInView, keyListInview };
+export { navHeader, heroContent,  generalInView, brandsInView, ctaInView, dividerInView, keyListInview };

@@ -13,37 +13,24 @@
 {% set heroCTAs  = hero.call_to_actions %}
 {% set heroImage = hero.image %}
 
-{% set solutionContent = post.meta('solution_content') %}
+{% set pageContent = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
 
 {% block content %}
 
-    <article id="{{ post.type ~ '~' ~ post.id }}" class="{{ post.type ~ '-' ~ post.slug }} article">
-        {% include "pages/single-solution/partials/_partial-solution-hero.twig" %}
-        <div class="max-w-3xl px-20 mx-auto">
-            <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-black-rock-900/50  before:content-[''] after:h-px after:flex-1 after:bg-black-rock-900/50  after:content-['']">
-                {{ icons.icon('brand-glyph', 'size-8 text-flamingo-600') }}
+    {% embed "/templates/components/containers/singles/_embed-single-solution-title.twig" %}
+        {% block solution_content %}
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider page-content__item">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
             </div>
-        </div>
-        <div class="max-w-4xl mx-auto xl:max-w-none">
-            {% for content in solutionContent %}
-                {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
-            
-                {% if featureWithImage %}
-                    {% set featureGroupContent = content.feature_with_image[0] %}
-                    {% set accent = featureGroupContent.accent %}
-                    {% set title = featureGroupContent.title %}
-                    {% set subTitle = featureGroupContent.sub_title %}
-                    {% set entry = featureGroupContent.entry %}
-                    {% set link = featureGroupContent.link %}
-                    {% set image = featureGroupContent.image %}
-            
-                    {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
-                {% endif %}
-            {% endfor %}
-        </div>
-    </article>
+
+            <div class="relative page-content__entry">  
+                {% include "partials/content/_partial-content.twig" %}
+            </div>
+        {% endblock %}
+    {% endembed %}
 
     {% include "partials/_partial-call-to-action.twig" with {
         title: callToAction.title,

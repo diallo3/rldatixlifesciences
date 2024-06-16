@@ -1,8 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:100..900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+[x-cloak] {
+    display: none !important;
+}
+
+
+.font-montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.font-manrope {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
 
 
 .admin-bar {
@@ -110,15 +128,9 @@ html.is-animating .transition-fade {
     }
 }
 
-/* .feature-with-key-list__item {
-    display: flex;
-    height: 100%;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    overflow: hidden;
-} */
+.shape-hexagon {
+    @apply drop-shadow-[0_0_8px_rgba(143,224,255,1)];
+}
  
 
 

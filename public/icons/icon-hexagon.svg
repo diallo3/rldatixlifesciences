@@ -1,4 +1,4 @@
-<svg class="size-full" viewBox="0 0 215 245" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="{{ class }} shape-hexagon" viewBox="0 0 215 245" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d_249_76)">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M107.5 11.1547L11.0723 66.8274V178.173L107.5 233.845L203.928 178.173V66.8274L107.5 11.1547ZM204.928 66.25L107.5 10L10.0723 66.25V178.75L107.5 235L204.928 178.75V66.25Z" fill="currentColor"/>
     </g>

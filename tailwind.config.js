@@ -13,13 +13,10 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-            serif: ['Montserrat', 'serif'],
+            sans: [" 'Manrope', 'sans-serif' ", ...defaultTheme.fontFamily.sans],
+            serif: [" 'Montserrat', 'sans-serif' ", ...defaultTheme.fontFamily.sans],
         },
         extend: {
-            fontFamily: {
-                'montserrat': ['Montserrat', 'sans-serif'],
-            },
             colors: {
                 'wood-smoke': {
                     '50': '#f1f1fe',
