@@ -7,12 +7,12 @@ if (import.meta.hot) {
 }
 
 // import JS files if applicable
-import { initializeAlpine } from './modules/module-alpine';
-import { initializeHeadroom } from './modules/module-headroom';
-import { initializeExcellentSwiper } from './modules/module-swiper';
-import { navHeader, generalInView, brandsInView, ctaInView, dividerInView } from './modules/module-motionOne';
+import { initializeAlpine } from './modules/js/module-alpine';
+import { initializeHeadroom } from './modules/js/module-headroom';
+import { initializeExcellentSwiper, initializeTestimonialSwiper } from './modules/js/module-swiper';
+import { navHeader, generalInView, brandsInView, ctaInView, dividerInView } from './modules/js/module-motionOne';
 
-import { initializeStackedCards } from './modules/module-codyhouse';
+import { initializeStackedCards } from './modules/js/module-codyhouse';
 
 // import SCSS files if applicable
 import '../src/app.css';
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeStackedCards();
     dividerInView();
     initializeExcellentSwiper();
+    initializeTestimonialSwiper();
 
 
     

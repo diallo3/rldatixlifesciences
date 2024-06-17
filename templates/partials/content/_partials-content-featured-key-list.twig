@@ -14,12 +14,12 @@
         <div class="relative">
             <div id="keyListContent" class="relative mx-auto max-w-screen-2xl feature-with-key-list__content">
 
-                {# sticky container #}
+                {#  container #}
                 <div class="mx-auto space-y-12 feature-with-key-list__header">
 
-                    <div class="py-20">
+                    <div class="feature-with-key-list__entry">
                         <div class="absolute flex items-center h-full inset-y-16 -inset-x-20">
-                            <div class="relative flex items-center justify-center w-full mix-blend-soft-light opacity-40">
+                            <div class="relative flex items-center justify-center w-full opacity-50">
                                 {{ images.imageObject({
                                     src: theme.link ~ '/public/img/img-glow-blue.png',
                                     alt: 'icon',
@@ -47,19 +47,15 @@
                                 })}}
                             </div>
                             {# entry #}
-                            <div>
-                                <div class="mx-auto swiper excellence-swiper lg:-mx-4 lg:px-4">
-                                    <dl class="flex justify-items-stretch feature-with-key-list__items swiper-wrapper">
-                                        {% for list in keyList.list %}
-                                        <dd class=" feature-with-key-list__item swiper-slide">
-                                            {# <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div> #}
-                                            <div class="flex items-center justify-center w-full h-32 px-8 text-center border-2 rounded-md border-dodger-blue-800 bg-wood-smoke-950/50 inview-item">
-                                                <span class="relative block font-semibold fluid-text-base/7">{{ list.item }}</span>
-                                            </div>
-                                        </dd>
-                                        {% endfor %}
-                                    </dl>
-                                </div>
+                            <div class="max-w-3xl mx-auto mt-16 lg:max-w-7xl">
+                                <dl class="grid grid-cols-2 gap-4 lg:grid lg:grid-cols-4">
+                                    {% for list in keyList.list %}
+                                    <dd class="flex items-start space-x-4 inview-item">
+                                        <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div>
+                                        <span class="inline-flex text-lg font-semibold">{{ list.item }}</span>
+                                    </dd>
+                                    {% endfor %}
+                                </dl>
                             </div>
                             {# cta #}
                             <div class="relative flex justify-center feature-with-key-list__cta">
@@ -69,7 +65,7 @@
                                         {{ keyList.entry}}
                                     </div> #}
                                 
-                                    <div class="text-center">
+                                    <div class="text-center inview-item">
                                         {{ buttons.btnLink({
                                             text: 'Tour the Platform',
                                             link: keyList.link.title,

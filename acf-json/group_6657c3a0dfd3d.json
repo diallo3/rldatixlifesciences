@@ -777,6 +777,53 @@
                     "acfe_flexible_category": false,
                     "acfe_layout_col": "auto",
                     "acfe_layout_allowed_col": false
+                },
+                "layout_666f8ed32ccfc": {
+                    "key": "layout_666f8ed32ccfc",
+                    "name": "featured_testimonials",
+                    "label": "Featured Testimonials",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_666f8ee92ccfe",
+                            "label": "Testimonials",
+                            "name": "testimonials",
+                            "aria-label": "",
+                            "type": "component_field",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "field_group_key": "group_666f8b7f70131",
+                            "acfe_field_group_condition": 0,
+                            "repeatable": false,
+                            "min": 0,
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "layout": "block",
+                            "button_label": "Add Row",
+                            "collapsed": "",
+                            "appearances": [],
+                            "sub_fields": []
+                        }
+                    ],
+                    "min": "",
+                    "max": "",
+                    "acfe_flexible_render_template": false,
+                    "acfe_flexible_render_style": false,
+                    "acfe_flexible_render_script": false,
+                    "acfe_flexible_thumbnail": false,
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_layout_locations": [],
+                    "acfe_flexible_modal_edit_size": false,
+                    "acfe_flexible_category": false,
+                    "acfe_layout_col": "auto",
+                    "acfe_layout_allowed_col": false
                 }
             },
             "min": "",
@@ -871,5 +918,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1718387286
+    "modified": 1718587183
 }

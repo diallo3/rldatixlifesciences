@@ -1,0 +1,46 @@
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" %}
+    {% block section_content %}
+        {% import "/templates/components/ui/_macro-badge.twig" as badges %}
+        {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+        {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+        {% import "/templates/components/ui/_macro-image-object.twig" as images %}
+
+        <div class="flex items-center justify-between mx-auto max-w-7xl testimonials">
+
+            {# prev #}
+            <div class="flex items-center justify-center transition duration-150 ease-linear rounded cursor-pointer size-20 text-dodger-blue-800 hover:text-white hover:bg-wood-smoke-800/80 swiper-button__prev">
+                {{ icons.icon('arrow-right', 'size-10 rotate-180') }}
+            </div>
+
+            <div class="relative max-w-4xl mx-auto space-y-8 testimonials__items">
+                
+                <div class="max-w-xl mx-auto">
+                    {{ badges.accentBadge({
+                        title: 'What Our Clients Say',
+                    })}}
+                </div>
+                
+                <div class="overflow-hidden testimonial-swiper swiper-container">
+                    <div class=" swiper-wrapper">
+                        {% for testimonial in testimonial_posts %}
+                            <div class="swiper-slide">
+                            {% set entry = testimonial.meta('quote') %}
+                            {% set name = testimonial.meta('name') %}
+                            {% set position = testimonial.meta('position') %}
+                            {% set company = testimonial.meta('company') %}
+                            
+                            {% include "/templates/components/cards/_component-card-testimonial.twig" %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+
+            {# next #}
+            <div class="flex items-center justify-center transition duration-150 ease-linear rounded cursor-pointer size-20 text-dodger-blue-800 hover:text-white hover:bg-wood-smoke-800/80 swiper-button__next">
+                {{ icons.icon('arrow-right', 'size-10') }}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

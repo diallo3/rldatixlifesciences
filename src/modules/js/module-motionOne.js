@@ -79,8 +79,8 @@ const generalInView = () => {
         const sectionItems = target.querySelectorAll('.inview-item');
 
         const sectionSequence = [
-            [target, { opacity: ['0', '1'], y: ['5rem', '0'] }, { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] }],
-            [sectionItems, { opacity: ['0', '1'], y: ['5rem', '0'] }, { delay: stagger(0.1), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
+            [target, { opacity: ['0', '1'], y: ['1.5rem', '0'] }, { delay: 0.3, duration: 0.5, amount: 0.5, easing: [0.17, 0.55, 0.55, 1] }],
+            [sectionItems, { opacity: ['0', '1'], y: ['1.5rem', '0'] }, { delay: stagger(0.1), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
         ]
         
 

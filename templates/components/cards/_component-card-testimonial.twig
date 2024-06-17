@@ -1,0 +1,19 @@
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+<div id="{{ id }}" class="relative flex gap-8 card-testimonial">
+	<div class="flex-shrink-0 mt-2 size-28 text-flamingo-500 card-testimonial__icon">
+		{{ icons.icon('quote-left', 'w-full h-auto') }}
+	</div>
+	<blockquote class="flex-grow font-semibold prose prose-p:first-of-type:mt-0 fluid-text-lg prose-invert prose-no-quotes card-testimonial__content">
+		<div class="card-testimonial__entry">
+            {{ entry }}
+        </div>
+		<footer class+"flex flex-col card-testimonial__cite">
+			<cite class="block text-base not-italic font-bold uppercase author text-dodger-blue-500">{{ name }}</cite>
+			<cite class="flex mt-2 space-x-2 text-sm not-italic text-gray-200 company">
+                <span>{{ position }},</span>
+                <span>at {{ company }}</span>
+            </cite>
+		</footer>
+	</blockquote>
+</div>

@@ -1,136 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss/base";
+@import "modules/css/module-base.css";
+
 @import "tailwindcss/components";
+
 @import "tailwindcss/utilities";
+@import "modules/css/module-utilities.css";
 
-[x-cloak] {
-    display: none !important;
-}
-
-
-.font-montserrat {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
-.font-manrope {
-    font-family: "Manrope", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
+@import "modules/css/module-swiper.css";
+@import "modules/css/module-headroom.css";
+@import "modules/css/module-hubspot.css";
+@import "modules/css/module-codyhouse.css";
 
 
 
-.admin-bar {
-    .site-header {
-        top: 32px;
-    }
-}
-
-/* Headroom */
-.headroom {
-    will-change: transform;
-    transition: transform 200ms linear;
-}
-.headroom--pinned {
-    transform: translateY(0%);
-}
-.headroom--unpinned {
-    transform: translateY(-100%);
-}
 
 
 
-/* SWUG Define a transition duration during page visits */
-html.is-changing .transition-fade {
-    transition: opacity 0.25s;
-    opacity: 1;
-}
-
-/* Define the styles for the unloaded pages */
-html.is-animating .transition-fade {
-    opacity: 0;
-}
-
-.swiper-slide {
-    opacity: 0.45;
-    &.swiper-slide-active {
-        opacity: 1;
-    }
-}
-
-.stack-cards {
-    --stack-cards-gap: 0.75rem;
-    --stack-cards-item-ratio: 3/2
-  }
-  @media (min-width: 64rem) {
-    .stack-cards {
-      --stack-cards-gap: 1.125rem;
-    }
-  }
-  
-  .stack-cards__item {
-    @apply top-8 lg:top-20;
-    position: relative;
-    position: -webkit-sticky;
-    position: sticky;
-    /* 
-    height: 0;
-    padding-bottom: calc(100%/(var(--stack-cards-item-ratio)));
-     
-    padding-bottom: 56.25%;*/
-    transform-origin: center top;
-  }
 
 
-  .hbspt-form {
-    fieldset {
-        @apply !max-w-none border border-white;
-    }
-
-    .hs-form-field {
-        .hs-input {
-            @apply block !w-full;
-        }
-        input[type=text], input[type=email], input[type=tel], input[type=url], input[type=number], input[type=date], input[type=tel], input[type=range], input[type=hidden], input[type=password], input[type=search], select, textarea {
-            @apply block w-full bg-dodger-blue-950/50 !rounded-md !border-dodger-blue-900/40 !px-4 !py-3 text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 mb-4;
-        }
-        input[type=checkbox], input[type=radio] {
-            @apply block !text-gray-100 !font-medium !text-sm !leading-5 !size-4 bg-dodger-blue-950/70 !border-dodger-blue-900/40 rounded-sm mt-1;
-        }
-        label:not(.hs-error-msg) {
-            @apply !text-sm !font-medium !text-dodger-blue-100/80 mb-2 !flex items-start space-x-2;
-        }
-        
-    }
-    label p {
-        @apply block !text-sm !font-medium !text-dodger-blue-100/80;
-    }
-    
-    .hs-submit {
-        @apply py-4;
-    }
-    .hs-button {
-        @apply block w-auto bg-flamingo-600 !rounded-full !px-6 !pr-12 !py-2 text-white shadow-sm cursor-pointer hover:bg-dodger-blue-700 transition-colors duration-200 ease-in-out font-semibold border-2 border-wood-smoke-950 ;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" /></svg>');
-        background-repeat: no-repeat;
-        background-position: right 0.5rem center;
-        background-size: 1.8rem auto;
-    }
-    .hs-error-msgs {
-        @apply block !text-red-600 !font-medium !text-sm !leading-5 mb-2;
-    }
-
-    .legal-consent-container .hs-form-booleancheckbox-display>span {
-        @apply !ml-4;
-    }
-}
-
-.shape-hexagon {
-    @apply drop-shadow-[0_0_8px_rgba(143,224,255,1)];
-}
- 
 
 

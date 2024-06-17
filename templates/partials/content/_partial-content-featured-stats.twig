@@ -33,7 +33,8 @@
             <div class="relative max-w-xl lg:max-w-none">
                 <div class="grid grid-cols-2 gap-4 lg:gap-8">
                     {% for item in stats.stats %}
-                        <div class=" space-y-2 text-white [&_span]:text-dodger-blue-600 inview-item px-4 py-8 bg-wood-smoke-950/50 rounded border-2 border-dodger-blue-800/35">
+                        <div class=" space-y-2 text-white bg-wood-smoke-950 [&_span]:text-dodger-blue-600 inview-item p-8 rounded border-2 border-dodger-blue-800/35">
+                            <div class="absolute inset-0 border border-wood-smoke-900 outer-glow"></div>
                             <div class="font-bold fluid-text-4xl lg:text-5xl">{{ item.stat }} <span class="inline-flex -ml-1 lg:-ml-3">{{ item.caret }}</span></div>
                             <div class="text-sm text-gray-200 md:text-base">{{ item.entry }}</div>
                         </div>

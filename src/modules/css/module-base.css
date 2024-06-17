@@ -1,0 +1,23 @@
+@layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    .admin-bar {
+        .site-header {
+            top: 32px;
+        }
+    }
+
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+    
+    .font-manrope {
+        font-family: "Manrope", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+}

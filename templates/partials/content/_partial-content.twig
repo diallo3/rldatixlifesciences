@@ -1,4 +1,6 @@
 {% for content in pageContent %}
+    <script>console.log({{ content | json_encode | raw }})</script>
+    
     <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start">
 
         {% set featuredContent = content.acf_fc_layout == 'content_section'  %}
@@ -11,6 +13,7 @@
         {% set featuredPosts = content.acf_fc_layout == 'featured_posts' %}
         {% set featuredTeams = content.acf_fc_layout == 'team_section' %}
         {% set callToAction = content.acf_fc_layout == 'call_to_action' %}
+        {% set featuredTestimonials = content.acf_fc_layout == 'featured_testimonials' %}
 
 
         {% if featuredContent %}
@@ -116,6 +119,16 @@
         
         {% elseif featuredTeams %}
             {% include "/templates/partials/content/_partial-content-team-section.twig" %}
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+        {% elseif featuredTestimonials %}
+            
+            {% set testimonials = content.testimonials[0] %}
+
+            <script>console.log({{testimonials | json_encode | raw }})</script>
+            {% include "/templates/partials/content/_partial-content-featured-testimonials.twig" %}
             {# divider #}
             <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}
