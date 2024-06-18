@@ -1,10 +1,10 @@
 {% macro imageObject(options=[]) %}
     {% set options = {
-        src: src ? src,
+        src: src | towebp,
         fit: fit | default('object-cover !w-full !h-full'),
         alt: alt ? alt : 'Image alt text',
     } | merge(options)  %}
 
     {# Image #}
-    <img src="{{ options.src }}" class="{{ options.fit }}" alt="{{ options.alt }}">
+    <img src="{{ options.src }}" class="{{ options.fit }}" alt="{{ options.alt }}" loading="lazy">
 {% endmacro %}

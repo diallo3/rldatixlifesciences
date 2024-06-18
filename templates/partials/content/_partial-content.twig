@@ -1,5 +1,5 @@
 {% for content in pageContent %}
-    <script>console.log({{ content | json_encode | raw }})</script>
+    <!-- <script>console.log({{ content | json_encode | raw }})</script> -->
     
     <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start">
 
@@ -124,11 +124,20 @@
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}
             </div>
         {% elseif featuredTestimonials %}
-            
-            {% set testimonials = content.testimonials[0] %}
 
-            <script>console.log({{testimonials | json_encode | raw }})</script>
+        
+            {% set testimonials = content.testimonials[0] %}
+            {% set testimonialListType = testimonials.list_type %}
+
+            {% if testimonialListType == true %}
+                {% set title = testimonials.title %}
+                {% set testimonial_posts = get_posts(testimonials.testimonials) %}
+            {% else %}
+                {% set title = testimonials.title %}
+            {% endif %}
+
             {% include "/templates/partials/content/_partial-content-featured-testimonials.twig" %}
+
             {# divider #}
             <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}

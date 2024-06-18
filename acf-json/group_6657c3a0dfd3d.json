@@ -20,7 +20,7 @@
             "acfe_flexible_stylised_button": 1,
             "acfe_flexible_layouts_templates": 0,
             "acfe_flexible_layouts_placeholder": 0,
-            "acfe_flexible_layouts_thumbnails": 0,
+            "acfe_flexible_layouts_thumbnails": 1,
             "acfe_flexible_layouts_settings": 0,
             "acfe_flexible_layouts_locations": 0,
             "acfe_flexible_async": [],
@@ -918,5 +918,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1718587183
+    "modified": 1718733947
 }
