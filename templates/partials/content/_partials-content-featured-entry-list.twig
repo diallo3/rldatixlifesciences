@@ -8,10 +8,13 @@
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-button.twig" as buttons %}
+        
+        {% include "/templates/components/dividers/_component-glow-horizon.twig" %}
+        
         <div class="grid items-center grid-cols-1 gap-4 space-y-8 lg:grid lg:grid-cols-2 section-featured-list lg:space-y-0">
 
             <div class="space-y-6 section-st__header lg:max-w-md inview-item section-featured-list__entry">
-                <span class="text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
+                {# <span class="hidden text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span> #}
                 
                 {# title #}
                 <div class="section-featured-list__title">

@@ -4,6 +4,8 @@
     maxWidth: 'max-w-screen-xl' 
 } %}
     {% block section_content %}
+         {% include "/templates/components/dividers/_component-glow-horizon.twig" %}
+        
         <dl class="grid grid-cols-1 gap-16 lg:grid lg:grid-cols-3 feature-icon inview-container">
             {% for item in features %}
             <div class="inview-item feature-icon__content">

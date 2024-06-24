@@ -35,6 +35,24 @@
     </a>
 {% endmacro %}
 
+{% macro btnSwiper(options=[]) %}
+    {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+    {% set options = {
+        icon: icon,
+        text: text,
+        class: class,
+        type: type,
+        size: size,
+    }  | merge(options)  %}
+    
+    <div class="hidden transition duration-150 ease-linear border border-transparent rounded cursor-pointer xl:flex xl:items-center xl:justify-center {{ options.size }} text-dodger-blue-800 hover:text-white hover:border-dodger-blue-700 swiper-button__{{ options.type }}">
+        {{ icons.icon('arrow-right',  options.icon ) }}
+        <span class="sr-only">{{ options.text }}</span>
+    </div>
+
+{% endmacro %}
+
 
 
 

@@ -26,49 +26,51 @@ const heroContent = () => {
 
 const brandsInView = () => {
 
-    const brandHeader = document.querySelector('.section-brands__entry');
-    
+    const brandHeader = document.querySelector('.section-brands');
+    const brandAccent = brandHeader.querySelector('.section-brands__accent');
+    const brandTitle = brandHeader.querySelector('.section-brands__title');
+    const brandGlow = brandHeader.querySelector('.section-brands__glow');
+    const brandItems = brandHeader.querySelectorAll('.section-brands__item');
 
-    inView(brandHeader, ({ target }) => {
-        const items = target.querySelectorAll('.section-brands__item');
-
-        const brandsSequence = [
-            [items, { opacity: ['0', '1'], transform: ['scale(0)',  'scale(1)']}, { delay: stagger(0.25), duration: 0.5, easing: [0.17, 0.55, 0.55, 1] }]
-        ]
-
-        timeline(brandsSequence);
-    });
-
-}
-
-const keyListInview = () => {
-    const target = document.querySelector('.feature-with-key-list__content');
-    const listContainer = document.querySelector('.feature-with-key-list__items');
-    const listItems = listContainer.querySelectorAll('.feature-with-key-list__item');
-    const listCTA = target.querySelector('.feature-with-key-list__cta');
-
-    target.style.height = `${ target.clientWidth }px`;
-
-    const keyListSequence = [
-        [ listContainer, { 
-            transform: ["none", `translateX(-${ target.scrollWidth }px)`] 
+    const brandsSequence = [
+        [brandAccent, { opacity: ['0', '1']}, { duration: 1.5, easing: [0.17, 0.55, 0.55, 1] }],
+        [brandTitle, 
+            { 
+                opacity: ['0', '1'], y: ['1.5rem', '0'], 
+                transform: ['scale(0.85)', 'scale(1.15)', 'scale(1)']
+            },
+            { 
+                duration: 2.5, 
+                easing: [0.17, 0.55, 0.55, 1],
+            },
+            { at: '+1.1'}
+        ],
+        [brandGlow, 
+            { 
+            opacity: ['0', '1']}, 
+            { duration: 4, easing: [0.17, 0.55, 0.55, 1] }, 
+            { at: '-0.5'}
+        ],
+        [brandItems, { 
+            opacity: ['0', '1'], 
+            transform: ['scale(0.5)', 'scale(1.25)', 'scale(1)']
         },
         { 
-            duration: 5, easing: [0.17, 0.55, 0.55, 1],
-        }],
-        [listCTA, { y: ['0rem', '-20rem']}, { at: "-0.15" }]
+            delay: stagger(0.85), 
+            duration: 2.5, 
+            easing: [0.17, 0.55, 0.55, 1]
+        },
+        { at: '>' }]
     ]
 
     scroll(
-        timeline(keyListSequence, {
-            duration: 5,
-            easing: [0.17, 0.55, 0.55, 1]
-        }),
+        timeline(brandsSequence),
         { 
-            target: target,
-         }
-         
+            target: brandHeader,
+            offset: ["0 0.6", "-30px -30px"],
+        }
     );
+
 }
 
 const generalInView = () => {
@@ -125,4 +127,4 @@ const dividerInView = () => {
     });
 }
 
-export { navHeader, heroContent,  generalInView, brandsInView, ctaInView, dividerInView, keyListInview };
+export { navHeader, heroContent,  generalInView, brandsInView, ctaInView, dividerInView };

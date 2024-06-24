@@ -51,10 +51,10 @@ const initializeTestimonialSwiper = () => {
         if (swiperElement) {
             testimonialSwiper = new Swiper(swiperElement, {
                 modules: [Autoplay, Navigation],  // Ensure the Autoplay module is included properly
-                // autoplay: {
-                //     delay: 5000,
-                //     disableOnInteraction: true,
-                // },
+                autoplay: {
+                    delay: 6000,
+                    disableOnInteraction: true,
+                },
                 navigation: {
                     nextEl: '.swiper-button__next',
                     prevEl: '.swiper-button__prev',

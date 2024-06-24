@@ -1,10 +1,10 @@
 {% import "/templates/components/ui/_macro-icon.twig" as icons %}
 
 <div id="{{ id }}" class="relative lg:flex lg:gap-8 card-testimonial">
-	<div class="flex-shrink-0 mt-2 size-10 md:size-16 xl:size-28 text-flamingo-500 card-testimonial__icon">
+	<div class="flex-shrink-0 mt-2 size-10 md:size-16 xl:size-28 text-flamingo-600 card-testimonial__icon">
 		{{ icons.icon('quote-left', 'w-full h-auto') }}
 	</div>
-	<blockquote class="flex-grow font-semibold prose prose-lg prose-p:first-of-type:mt-0 lg:fluid-text-lg prose-invert prose-no-quotes card-testimonial__content">
+	<blockquote class="flex-grow font-semibold prose prose-lg prose-p:first-of-type:mt-0 lg:fluid-text-base prose-invert prose-no-quotes card-testimonial__content">
 		<div class="card-testimonial__entry">
             {{ entry }}
         </div>

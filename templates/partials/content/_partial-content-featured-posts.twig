@@ -23,15 +23,7 @@
 
                 
                 <div class="hidden lg:block featured_posts__cta inview-item">
-                    {% if featured.link.title %}
-                        {{ buttons.btnLink({
-                            text: featured.link.title,
-                            link: featured.link.url,
-                            type: 'primary',
-                            icon: 'arrow-right',
-                            size: 'sm'
-                        }) }}
-                    {% endif %}
+                    &nbsp;
                 </div>
 
                 {# <a href="{{ post.link }}" class="text-sm text-dodger-blue-500">View all</a> #}
@@ -49,14 +41,14 @@
                 {% endfor %}
             </ul>
 
-            <div class="lg:hidden featured_posts__cta">
+            <div class="py-8 text-center featured_posts__cta">
                     {% if featured.link.title %}
                         {{ buttons.btnLink({
                             text: featured.link.title,
                             link: featured.link.url,
                             type: 'primary',
                             icon: 'arrow-right',
-                            size: 'sm'
+                            size: 'md'
                         }) }}
                     {% endif %}
             </div>

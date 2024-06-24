@@ -1,5 +1,6 @@
 {% embed "/templates/components/containers/sections/_embed-section-full.twig" %}
     {% block section_content %}
+        {% import "/templates/components/ui/_macro-button.twig" as buttons %}
         {% import "/templates/components/ui/_macro-badge.twig" as badges %}
         {% import "/templates/components/ui/_macro-heading.twig" as headings %}
         {% import "/templates/components/ui/_macro-icon.twig" as icons %}
@@ -8,9 +9,12 @@
         <div class="flex items-center justify-between mx-auto max-w-7xl testimonials">
 
             {# prev #}
-            <div class="hidden transition duration-150 ease-linear rounded cursor-pointer xl:flex lxl:items-center xl:justify-center size-20 text-dodger-blue-800 hover:text-white hover:bg-wood-smoke-800/80 swiper-button__prev">
-                {{ icons.icon('arrow-right', 'size-10 rotate-180') }}
-            </div>
+            {{ buttons.btnSwiper({
+                icon: 'size-10 rotate-180',
+                text: 'Previous',
+                type: 'prev',
+                size: 'size-20',
+            }) }}
 
             <div class="relative max-w-md mx-auto space-y-8 sm:max-w-lg lg:max-w-4xl testimonials__items">
                 
@@ -30,19 +34,40 @@
                                     {% set position = testimonial.meta('position') %}
                                     {% set company = testimonial.meta('company') %}
                                     
-                                    {% include "/templates/components/cards/_component-card-testimonial.twig" %}
+                                    {% include "components/cards/_component-card-testimonial.twig" %}
                                 </article>
                             </div>
                         {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center gap-8 py-4 swiper-buttons__footer lg:hidden">
+                        {# prev #}
+                        {{ buttons.btnSwiper({
+                            icon: 'size-6 rotate-180',
+                            text: 'Previous',
+                            type: 'prev',
+                            size: 'size-12',
+                        }) }}
+
+                        {# next #}
+                        {{ buttons.btnSwiper({
+                            icon: 'size-6',
+                            text: 'Next',
+                            type: 'next',
+                            size: 'size-12',
+                        }) }}
                     </div>
                 </div>
                 
             </div>
 
             {# next #}
-            <div class="hidden transition duration-150 ease-linear rounded cursor-pointer xl:flex lxl:items-center xl:justify-center size-20 text-dodger-blue-800 hover:text-white hover:bg-wood-smoke-800/80 swiper-button__next">
-                {{ icons.icon('arrow-right', 'size-10') }}
-            </div>
+            {{ buttons.btnSwiper({
+                icon: 'size-10',
+                text: 'Next',
+                type: 'next',
+                size: 'size-20',
+            }) }}
         </div>
     {% endblock %}
 {% endembed %}

@@ -27,13 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
     generalInView();
     initializeAlpine();
     initializeHeadroom(); 
-    brandsInView();
     ctaInView();
     initializeStackedCards();
     dividerInView();
     initializeExcellentSwiper();
     initializeTestimonialSwiper();
 
-
+    if (document.querySelector('.section-brands') ) {
+         brandsInView();
+    }
     
 });

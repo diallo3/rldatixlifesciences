@@ -7,6 +7,8 @@
     
     {% block section_content %}
 
+         {% include "/templates/components/dividers/_component-glow-horizon.twig" %}
+
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-button.twig" as buttons %}
@@ -18,7 +20,7 @@
                     {# {{ badges.accentBadge({
                         title: stats.accent,
                     })}} #}
-                    <span class="text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
+                    <span class="hidden text-flamingo-600">{{ icons.icon('brand-glyph', 'size-6') }}</span>
                     
                     {{ headings.headingTwo({
                         title: stats.title,

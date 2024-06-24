@@ -41,22 +41,33 @@
     ] %}
 
     <!-- Brands -->
-    <section class="relative px-16 section-brands lg:px-8 scroll-start">
+    <section class="relative px-16 overflow-hidden section-brands lg:px-8 scroll-start">
+        
        {# <div class="absolute inset-x-0 inset-y-0 border border-white bg-gradient-to-b from-wood-smoke-950 to-wood-smoke-950/0"></div> #}
        
-        <div class="absolute top-0  inset-x-24 -bottom-[60%]">
-            <div class="opacity-70">
-               {{ images.imageObject({
-                    src: theme.link ~ '/public/img/img-glow-blue.png',
-                    alt: 'icon',
-                    class: 'w-full h-full ',
-                })}}
-           </div>
+        <div class="absolute inset-0 w-full max-w-screen-xl overflow-hidden -translate-x-1/2 opacity-10 section-brands__glow top-11 left-1/2">
+            <div class="relative h-full opacity-40">
+                <div class="absolute inset-x-0 text-blue-700/90 -top-[85%]">
+                   <svg viewbox="0 0 1024 1024" class="[mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+                        <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
+                        <defs>
+                            <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+                                <stop stop-color="currentColor"/>
+                                <stop offset="1" stop-color="currentColor"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <div class="absolute opacity-15 text-wood-smoke-950 -inset-24 mix-blend-multiply">
+                    {{ icons.icon('pattern-hexagon', 'size-full') }}
+                </div>
+            </div>
         </div>
         
-        <div class="absolute opacity-15 text-wood-smoke-950 -inset-36 mix-blend-multiply">
-            {{ icons.icon('pattern-hexagon', 'size-full') }}
-        </div>
+        
+
+        
         <div class="relative mx-auto space-y-8 lg:max-w-7xl page-content__item">
 
             {# divider #}
@@ -67,7 +78,7 @@
             <div class="pt-12 pb-8 section-brands__entry sm:px-20 lg:pb-16">
                 <div class="pt-12 space-y-6 text-center md:space-y-10 lg:space-y-12 section-brands__header inview-container">
                 
-                    <div class="section-brands__item">
+                    <div class="section-brands__accent">
                         {{ headings.headingThree({
                             title: 'Brands Coming Together',
                             font: 'font-montserrat',
@@ -75,12 +86,12 @@
                         })}}
                     </div>
                     <!-- Brands Logo -->
-                    <div class="max-w-xs mx-auto lg:max-w-md section-brands__logo section-brands__item brand__rldatix ">
+                    <div class="max-w-xs mx-auto lg:max-w-md section-brands__logo section-brands__title brand__rldatix ">
                         {{ icons.icon('brand', 'w-full') }}
                     </div>
                 </div>
-                <div class="flex flex-col items-center gap-3 px-12 mx-auto mt-8 text-center lg:max-w-7xl sm:px-10 md:flex-row md:w-full section-brands__content md:px-0">
-                    <div class="relative hidden px-12 lg:block text-dodger-blue-900/60">
+                <div class="flex flex-col items-center gap-1 px-12 mx-auto mt-8 text-center lg:max-w-screen-xl sm:px-10 md:flex-row md:w-full section-brands__content md:px-0">
+                    <div class="relative hidden px-8 lg:block text-dodger-blue-900/60">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
 
@@ -98,7 +109,7 @@
                     {% endfor %}
                 
                 
-                    <div class="relative hidden px-12 lg:block text-dodger-blue-950/60">
+                    <div class="relative hidden px-8 lg:block text-dodger-blue-950/60">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
                 </div>

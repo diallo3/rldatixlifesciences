@@ -34,13 +34,13 @@
                     {% set social = member.meta('linked_in') %}
                     {% set bio = member.meta('bio') %}
 
-                    <script>console.log({{ member.meta('profile_image') | json_encode | raw }})</script>
+                    
                     <li 
                         x-data="{ modalIsOpen: false }"
                         id="{{ loop.index}}-member" class="inview-item team-section__member">
-                        <figure class="aspect-[3/2] rounded-lg overflow-hidden">
+                        <figure class="aspect-[3/2] rounded-lg overflow-hidden border bg-wood-smoke-950 border-2 border-wood-smoke-800 ">
                            {{ images.imageObject({
-                                src: profile.url,
+                                src: profile.url ?? theme.link ~ '/public/icons/icon-temp-image.svg',
                                 alt: profile.alt,
                                 class: 'w-full h-full',
                             })}}
