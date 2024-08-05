@@ -26,32 +26,28 @@
             {% set prose = 'prose xl:prose-lg prose-blockquote:border-blue-300 prose-headings:tracking-tight  prose-headings:font-bold max-w-none prose-invert' %}
             
             <!-- Single Content -->
-            <div class="grid gap-4 lg:grid-cols-4 lg:gap-8 ">
-                    <section class="space-y-4 article-content lg:col-span-3 xl:pr-20">
+            <section class="space-y-8 article-content">
                     
-                        <!-- post thumbnail -->
-                        {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
-                        
-                        <div class="pt-8 pb-12 article-body lg:pt-12 prose-h2:scroll-mt-32 prose-table:border prose-table:rounded prose-th:px-4 prose-th:py-3 prose-th:text-sm prose-th:bg-gray-100/70 prose-td:font-medium prose-td:px-4 prose-td:text-sm odd:prose-tr:bg-gray-50">
-                            <div class="{{ prose }}">{{post.content}}</div>
-                        </div>
-                    </section>
-
-                    {# sidebar #}
-                    <aside class="article-aside">
-                        <div class="lg:sticky top-32">
-                            <template x-if="headings.length">
-                                <div class="pb-4 mb-4 article-aside__item ">
-                                    {% include "/templates/pages/single/partials/_partial-single-navigation.twig" %}
-                                </div>
-                            </template>                    
-                            
-                        </div>
-                    </aside>
-                </div>
+                <!-- post thumbnail -->
+                {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
+                
+                {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
+                    {% block prose_content %}
+                        {{post.content}}
+                    {% endblock %}
+                {% endembed %}
+                    
+        
+            </section>
             
         {% endblock %}
         
     {% endembed %}
+
+    {% include "partials/_partial-call-to-action.twig" with {
+        title: callToAction.title ? callToAction.title : options.general_call_to_action.title ,
+        entry: callToAction.entry ? callToAction.entry : options.general_call_to_action.entry,
+        link: callToAction.link ? callToAction.link : options.general_call_to_action.link,
+    } %}
     
 {% endblock %}

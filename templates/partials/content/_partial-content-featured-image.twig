@@ -11,13 +11,9 @@
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-button.twig" as btn %}
         <div class="absolute -top-12 {{ loop.index is even ? '-left-32 ' : '-right-32 ' }} rounded-full size-[65rem]">
+
             {# effect #}
             <div class="absolute inset-0 text-blue-700/25">
-                {# {{ images.imageObject({
-                    src: src ?: theme.link ~ '/public/img/img-glow-blue.png',
-                    alt: 'icon',
-                    class: 'w-full h-full',
-                })}} #}
                 <svg viewbox="0 0 1024 1024" class="[mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
                     <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
                     <defs>
@@ -28,29 +24,31 @@
                     </defs>
                 </svg>
             </div>
-            <div class="absolute opacity-25 text-wood-smoke-950 -inset-48 mix-blend-multiply">
-                {{ icons.icon('pattern-hexagon', 'size-full') }}
+            <div class="absolute overflow-hidden opacity-25 text-wood-smoke-950 -inset-36 mix-blend-multiply">
+                {{ icons.icon('pattern-hexagon', 'size-[115%]') }}
             </div>
         </div>
 
-        <div class="flex flex-col gap-12 xl:justify-stretch lg:px-8 relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
+        <div class="flex flex-col gap-12 xl:justify-stretch lg:px-8 relative xl:items-center xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
 
             {# featured #}
             <div class="relative flex-none hidden group xl:w-1/2 inview-item xl:block ">
-                <div class="relative">
-                    <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/70 blur-lg lg:block"></div>
-                    <figure class="relative overflow-hidden border rounded-md border-dodger-blue-900">
-                        {{ images.imageObject({
-                            src: image.url ? image.url : theme.link ~ '/public/icons/icon-temp-image.svg',
-                            alt: image.alt,
-                            class: 'w-full h-full',
-                        })}}
+                <div class="relative h-full">
+                    {# <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/70 blur-lg lg:block"></div> #}
+                    <figure class="relative h-full p-1 overflow-hidden hexagon-container bg-blue-950/50">
+                        <div class="hexagon-container__img">
+                            {{ images.imageObject({
+                                src: image.url ? image.url | towebp : theme.link ~ '/public/icons/icon-temp-image.svg',
+                                alt: image.alt,
+                                class: 'w-full h-full',
+                            })}}
+                        </div>
                     </figure>
                 </div>
             </div>
 
             {# content #}
-            <div class="space-y-10 xl:w-1/2 inview-item">
+            <div class="relative space-y-10 xl:w-1/2 inview-item">
                 
                 <div class="space-y-4 xl:max-w-2xl solution-hero__content">
                     <!-- Badge -->
@@ -96,7 +94,7 @@
                         </div>
                         {# call to action #}
                         {% if link %}
-                            <div class="solution-hero__cta inview-item">
+                            <div class="z-[999] solution-hero__cta inview-item relative">
                                 {{ btn.btnLink({
                                     text: link.title,
                                     size: 'lg',

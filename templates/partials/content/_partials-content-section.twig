@@ -27,11 +27,11 @@
                             
                             {% if accent %}
                                 {# accent #}
-                                {# <div class="inline-flex scontent-section__accent">
+                                <div class="inline-flex scontent-section__accent">
                                     {{ badges.accentBadge({
                                         title: accent,
                                     })}}
-                                </div> #}
+                                </div>
                             {% endif %}
                             
                             {# title #}
@@ -42,7 +42,7 @@
                                 })}}
                             </div>
                             {# entry #}
-                            <div class="mt-6 prose inview-item prose-base prose-invert content-section__entry max-w-none">
+                            <div class="mt-6 prose prose-a:text-dodger-blue-500 prose-a:decoration-gray-500 prose-a:decoration-dashed prose-a:underline-offset-4 inview-item prose-base prose-invert content-section__entry max-w-none">
                                 {{ entry }}
                             </div>
                         </div>

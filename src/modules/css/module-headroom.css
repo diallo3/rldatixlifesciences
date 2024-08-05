@@ -3,6 +3,7 @@
     transition: transform 200ms linear;
 }
 .headroom--pinned {
+    @apply bg-gradient-to-b from-wood-smoke-950 from-30% via-wood-smoke-950/60 via-70% to-wood-smoke-950/0;
     transform: translateY(0%);
 }
 .headroom--unpinned {

@@ -1,0 +1,21 @@
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
+    id: 'section-content-prose',
+    class: '',
+    maxWidth: 'max-w-screen-2xl' 
+} %}
+    {% block section_content %}
+        <div id="page-content__{{ post.slug }}" class="page-content__item scroll-start lg:px-16">
+            
+            {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
+                {% block prose_content %}
+                    {{ pageContentBasic }}
+                {% endblock %}
+            {% endembed %}
+
+            {# divider #}
+            <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

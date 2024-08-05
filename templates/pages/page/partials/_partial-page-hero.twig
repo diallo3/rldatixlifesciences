@@ -1,11 +1,3 @@
-{% set heroType = post.meta('hero_type') %}
+{% include "pages/page/partials/_partial-hero-full.twig" %}
 
-{% if heroType %}
 
-    {% include "pages/page/partials/_partial-hero-simple.twig" %}
-
-{% else %}
-    
-    {% include "pages/page/partials/_partial-hero-full.twig" %}
-
-{% endif %}

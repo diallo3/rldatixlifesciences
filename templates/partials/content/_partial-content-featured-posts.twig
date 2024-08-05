@@ -1,13 +1,18 @@
-{% set featured = content.featured_posts[0] %}
 
+
+<div>
 {% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-card-with-image',
     maxWidth: 'max-w-screen-2xl' 
 } %}
     {% block section_content %}
+
+    {% set featured = content.featured_posts[0] %}
+    
     {% import "/templates/components/ui/_macro-heading.twig" as headings %}
     {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+
         <div class="px-0 space-y-8 featured_posts inview-container lg:px-12">
             <div class="flex items-center lg:justify-between featured_posts">
                 <div class="space-y-4 featured_posts__content inview-item">
@@ -29,8 +34,15 @@
                 {# <a href="{{ post.link }}" class="text-sm text-dodger-blue-500">View all</a> #}
             </div>
             <ul class="grid grid-cols-1 gap-4 space-y-8 lg:grid-cols-3 lg:gap-8 lg:space-y-0 inview-container featured_posts__items">
-            
-                {% for post in featured_posts %}
+
+                {% for key, post in get_posts({
+                    'posts_per_page': 3,
+                    'post_type': 'post',
+                    'post_status': 'publish',
+                    'post__not_in': [post.id],
+                    'category__in': [featured.post_category]
+                }) %}
+
                     {% set title = post.title %}
                     {% set entry = post.excerpt %}
                     {% set image = post.featured_image %}
@@ -41,17 +53,18 @@
                 {% endfor %}
             </ul>
 
-            <div class="py-8 text-center featured_posts__cta">
-                    {% if featured.link.title %}
-                        {{ buttons.btnLink({
-                            text: featured.link.title,
-                            link: featured.link.url,
-                            type: 'primary',
-                            icon: 'arrow-right',
-                            size: 'md'
-                        }) }}
-                    {% endif %}
-            </div>
+            {# <div class="py-8 text-center featured_posts__cta">
+                {% if featured.link.title %}
+                    {{ buttons.btnLink({
+                        text: featured.link.title,
+                        link: featured.link.url,
+                        type: 'primary',
+                        icon: 'arrow-right',
+                        size: 'md'
+                    }) }}
+                {% endif %}
+            </div> #}
         </div>
     {% endblock %}
 {% endembed %}
+</div>

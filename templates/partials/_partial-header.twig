@@ -47,17 +47,34 @@
 		<div
 			class="flex items-center site-header__cta">
 			<!-- Actions -->
-			<div class="items-center justify-center hidden gap-2 lg:flex"> 
+			<menu class="items-center justify-center hidden gap-2 lg:flex site-header-ctas"> 
                 {% for item in menu.header_buttons.get_items %}
-                    {{ btns.btnLink({
-                        text: item.title,
-                        link: item.link,
-                        type: 'primary',
-                        icon: 'arrow-right',
-                    }) }}
+                    {% set type = item.meta('button_style').value  %}
+                    <li 
+                        x-data="{ 
+                            open: false 
+                        }"
+                        @mouseenter="open = true"
+                        @mouseleave="open = false"
+                        class="relative site-header-ctas__item">
+
+                            {{ btns.btnLink({
+                                text: item.title,
+                                link: item.link,
+                                type: type,
+                                icon: type == 'simple' ? null : 'arrow-right',    
+                            }) }}
+
+                            {# item children#}
+                            {% if item.children  %}
+                                {% include "components/menu-list/partials/_partial-menu-childern.twig" with {
+                                    top: 'top-full',
+                                } %}
+                            {% endif %}
+                    </li>
                 {% endfor %}
                 
-			</div>
+			</menu>
 			<!-- END Actions -->
 
 			<!-- Open Mobile Navigation  -->

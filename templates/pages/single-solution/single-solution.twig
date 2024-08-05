@@ -12,8 +12,11 @@
 {% set heroEntry = hero.entry %}
 {% set heroCTAs  = hero.call_to_actions %}
 {% set heroImage = hero.image %}
+{% set heroAccent = hero.accent %}
 
-{% set pageContent = post.meta('page_content') %}
+{% set pageType = post.meta('page_type') %}
+{% set pageContentBasic = post.meta('page_content_basic') %}
+{% set pageContentBuilder = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
 
@@ -25,10 +28,8 @@
             <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider page-content__item">
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}
             </div>
-
-            <div class="relative page-content__entry">  
-                {% include "partials/content/_partial-content.twig" %}
-            </div>
+            
+            {% include "/templates/partials/content/_partial-content.twig" %}
         {% endblock %}
     {% endembed %}
 

@@ -1,10 +1,11 @@
 {% extends "layouts/base.twig" %}
 
-{% set pageContent = post.meta('page_content') %}
+{% set pageType = post.meta('page_type') %}
+{% set pageContentBasic = post.meta('page_content_basic') %}
+{% set pageContentBuilder = post.meta('page_content') %}
 {% block content %}
 
 <article class="page-content snap-y">
-
 
     {% import "/templates/components/ui/_macro-image-object.twig" as images %}
     {% import "/templates/components/ui/_macro-badge.twig" as badges %}
@@ -120,7 +121,7 @@
 
     {# page content #}
     <div class="relative page-content__entry">  
-        {% include "partials/content/_partial-content.twig" %}
+        {% include "partials/content/_partial-content-builder.twig" %}
     </div>
 
     {% include "partials/_partial-call-to-action.twig" with {

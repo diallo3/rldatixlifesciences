@@ -12,7 +12,7 @@
     {% set typeClass = {
         'primary': 'bg-wood-smoke-950/80 hover:text-flamingo-500/70 hover:border-flamingo-500/70 border-2 border-dodger-blue-600  text-dodger-blue-600 rounded-full space-x-4 ring-0',
         'secondary': 'bg-blue-100 border-blue-200 text-blue-800 hover:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-25 active:border-blue-200 active:shadow-none',
-        'simple': 'bg-white border-gray-200 text-gray-800 hover:border-gray-300 hover:shadow-sm',
+        'simple': 'bg-transparent text-gray-800 hover:text-dodger-blue-500 rounded-full',
     }[options.type] %}
 
     {% set sizeClass = {
@@ -23,11 +23,11 @@
     }[options.size] %}
 
     {# Generate button HTML #}
-    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out cursor-pointer group">
+    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out cursor-pointer group relative z-[999]">
 
         <span class="text-white">{{ options.text }}</span>
         {# Include an optional SVG icon #}
-        {% if options.icon is not null %}
+        {% if options.icon %}
             <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full">
                 {{ icons.icon(options.icon, 'w-4 h-4 text-wood-smoke-950') }}
             </span>
@@ -46,7 +46,7 @@
         size: size,
     }  | merge(options)  %}
     
-    <div class="hidden transition duration-150 ease-linear border border-transparent rounded cursor-pointer xl:flex xl:items-center xl:justify-center {{ options.size }} text-dodger-blue-800 hover:text-white hover:border-dodger-blue-700 swiper-button__{{ options.type }}">
+    <div class="transition duration-150 ease-linear border border-transparent rounded cursor-pointer flex items-center justify-center {{ options.size }} text-dodger-blue-800 hover:text-white hover:border-dodger-blue-700 swiper-button__{{ options.type }}">
         {{ icons.icon('arrow-right',  options.icon ) }}
         <span class="sr-only">{{ options.text }}</span>
     </div>

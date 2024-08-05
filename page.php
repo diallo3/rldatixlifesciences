@@ -51,23 +51,23 @@ if (have_rows('page_content')) {
                 ]);
             } elseif ($type == 'category') {
                 $category = $featured_posts['post_category'];
-                // var_dump($category);
-                $category = $featured_posts['post_category'];
-                $context['featured_posts'] =Timber::get_posts([
+
+                $category_args = [
                     'post_type' => 'post',
                     'posts_per_page' => 3,
-                    'category__in' => $category
-                ]);
+                    'category__in' => array($category)
+                ];
+                $context['featured_posts'] = Timber::get_posts($category_args);
+                wp_reset_postdata();
             } else {
                 $context['featured_posts'] = Timber::get_posts([
                     'post_type' => 'post',
                     'posts_per_page' => 3
                 ]);
             }
-           
         }
-        
     }
+    
 }
 
 $timber_post     = Timber::get_post();

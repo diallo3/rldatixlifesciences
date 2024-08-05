@@ -1,0 +1,107 @@
+
+{% for content in pageContentBuilder %}
+    <div id="page-content__item-{{ loop.index }}" class="page-content__item scroll-start">
+
+        {% set featuredContent = content.acf_fc_layout == 'content_section'  %}
+        {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
+        {% set featureWithImage = content.acf_fc_layout == 'feature_with_image' %}
+        {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
+        {% set featuredStats = content.acf_fc_layout == 'featured_stats' %}
+        {% set featuredKeyList = content.acf_fc_layout == 'featured_key_list' %}
+        {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
+        {% set featuredPosts = content.acf_fc_layout == 'featured_posts' %}
+        {% set featuredTeams = content.acf_fc_layout == 'team_section' %}
+        {% set callToAction = content.acf_fc_layout == 'call_to_action' %}
+        {% set featuredTestimonials = content.acf_fc_layout == 'featured_testimonials' %}
+
+
+        {% if featuredContent %}
+            {% include "/templates/partials/content/_partials-content-section.twig" %}
+
+        {% elseif callToAction %}
+            {% include "/templates/partials/content/_partial-content-call-to-action.twig" %}
+
+        {% elseif featuredPosts %}
+            {% include "/templates/partials/content/_partial-content-featured-posts.twig" %}   
+
+        {% elseif featureContentIcons %}
+            {# feature with icons #}
+            {% set features = content.features_content_with_icons[0].features %}
+            {% set icon = item.icon %}
+            {% set title = item.title %}
+            {% set entry = item.entry %}
+            {% include "/templates/partials/content/_partial-content-feature-icons.twig" %}
+            
+        {% elseif featureWithImage %}
+            {% set featureGroupContent = content.feature_with_image[0] %}
+            {% set accent = featureGroupContent.accent %}
+            {% set title = featureGroupContent.title %}
+            {% set subTitle = featureGroupContent.sub_title %}
+            {% set entry = featureGroupContent.entry %}
+            {% set link = featureGroupContent.link %}
+            {% set image = featureGroupContent.image %}
+
+            {% include "/templates/partials/content/_partial-content-featured-image.twig" %}
+
+        {% elseif cardImage %}
+            {% set cards = content.card_with_image[0].cards %}
+            {% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
+                id: 'section-content-' ~ loop.index,
+                class: 'feature-card-with-image',
+                maxWidth: 'max-w-screen-2xl'
+            } %}
+                {% block section_content %}
+                    <ul class="stack-cards js-stack-cards">
+                        {% for card in cards %}
+                            {% set title = card.title %}
+                            {% set entry = card.entry %}
+                            {% set image = card.image %}
+                            {% set link = card.link %}
+                            <li class="pb-20 stack-cards__item js-stack-cards__item inview-item">
+                                {% include "/templates/components/cards/_component-card-featured-image.twig" %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endblock %}
+            {% endembed %}
+
+        {% elseif featuredStats %}
+            {# featured stats #}
+            {% set stats = content.featured_stats[0] %}
+            {% include "partials/content/_partial-content-featured-stats.twig" %}
+
+        {% elseif featuredKeyList %}
+            {# featured key list #}
+            {% set keyList = content.featured_stats[0] %}
+            {% include "/templates/partials/content/_partials-content-featured-key-list.twig" %}
+            
+        {% elseif featuredList %}
+            {# featured entry list #}
+            {% set list = content.featured_entry_list[0] %}
+            {% include "/templates/partials/content/_partials-content-featured-entry-list.twig" %}
+            
+        {% elseif featuredTeams %}
+            {% include "/templates/partials/content/_partial-content-team-section.twig" %}
+            
+        {% elseif featuredTestimonials %}
+
+            {% set testimonials = content.testimonials[0] %}
+            {% set testimonialListType = testimonials.list_type %}
+
+            {% if testimonialListType == true %}
+                {% set title = testimonials.title %}
+                {% set testimonial_posts = get_posts(testimonials.testimonials) %}
+            {% else %}
+                {% set title = testimonials.title %}
+            {% endif %}
+
+            {% include "/templates/partials/content/_partial-content-featured-testimonials.twig" %}
+
+        {% endif %}
+        {# divider #}
+        <div class="max-w-screen-xl mx-auto text-dodger-blue-800/50 section-divider">
+            {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+        </div>
+            
+    </div>
+{% endfor %}

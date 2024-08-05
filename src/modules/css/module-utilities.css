@@ -14,3 +14,13 @@
         @apply drop-shadow-[0_0_8px_rgba(143,224,255,1)];
     }
 }
+
+.hexagon-container {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+}
+
+.hexagon-container__img {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+}

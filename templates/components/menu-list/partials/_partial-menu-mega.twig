@@ -1,0 +1,16 @@
+<menu class="relative flex gap-8 px-4">
+    {% for item in item.children %}
+        <li class="{{ item.classes.join('') }} relative space-y-2 flex flex-col grow text-sm font-montserrat w-full">
+            <a href="{{ item.link }}" class="block pt-4 pb-2 text-white uppercase transition duration-150 ease-in-out border-b border-dashed border-dodger-blue-600/60 whitespace-nowrap hover:text-dodger-blue-500 hover:border-white">{{ item.title }}</a>
+            <ul class="flex-none pb-4 min-w-52 text-dodger-blue-600">
+                {% for child in item.children %}
+                    <li class="flex items-center space-x-1 group/item">
+                        <div class="w-0 h-[2px] bg-dodger-blue-500 transition-all duration-200 ease-in-out group-hover/item:w-2"></div>
+                        <a href="{{ child.link }}" class="block py-2 antialiased text-gray-100 group-hover/item:text-white">{{ child.title }}</a>
+                    </li>
+                {% endfor %}
+                
+            </ul>
+        </li>
+    {% endfor %}
+</menu>

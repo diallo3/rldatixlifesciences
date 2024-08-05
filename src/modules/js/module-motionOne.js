@@ -7,7 +7,7 @@ const navHeader = () => {
 
     const navSequence = [
         // [navHeader, {opacity: ['0', '1'], y: ['1rem', '0']}, { duration: 0.5  }],
-        [navItems, {opacity: ['0', '1'], y: ['-0.85rem', '0']}, { delay: stagger(0.1), duration: 0.5 }],
+        [navItems, {opacity: ['0', '1'], y: ['-0.85rem', '0']}, { delay: stagger(0.05), duration: 0.2 }],
         [navSections, {opacity: ['0', '1']}, { delay: stagger(0.1), duration: 0.5 }, { at: '-0.85'}]
     ]
     
@@ -111,19 +111,22 @@ const dividerInView = () => {
 
     dividers.forEach( (divider) => {
         const icon = divider.querySelector('.divider-icon');
+        if( icon ) {
+            const blue = icon.style.color = '#1962b4';
+            const red = icon.style.color = '#f4511e';
 
-        const blue = icon.style.color = '#1962b4';
-        const red = icon.style.color = '#f4511e';
-
-        const dividerSequence = [
-            [icon, { color: [blue, blue, red, red, blue]  }, { duration: 0.1 }]
-        ]
-
-        scroll(timeline(dividerSequence),
-            {
-            target: icon,
-            offset: [ "end", "start"],
-        });
+            const dividerSequence = [
+                [icon, { color: [blue, blue, red, red, blue]  }, { duration: 0.1 }]
+            ]
+        
+       
+            scroll(timeline(dividerSequence),
+                {
+                    target: icon,
+                    offset: [ "end", "start"],
+                });
+        }
+        
     });
 }
 

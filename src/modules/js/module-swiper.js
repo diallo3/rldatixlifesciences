@@ -61,9 +61,9 @@ const initializeTestimonialSwiper = () => {
                 },
                 loop: true,
                 slidesPerView: 1,
-                spaceBetween: 30,
+                spaceBetween: 0,
             });
-            console.log('Swiper initialized');
+           
         }
     };
 

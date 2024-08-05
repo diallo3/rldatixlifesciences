@@ -2,18 +2,20 @@
 {% import "components/ui/_macro-icon.twig" as icons %}
 {% import "components/ui/_macro-badge.twig" as badges %}
 
-<header class="max-w-4xl pb-8 space-y-4">
+<header class="pt-24 pb-8 space-y-4 ">
     <!-- post title -->
     <hgroup class="space-y-2 article-header">
         {% if accent %}
             {{ badges.containedBadge({ 
                 title: accent }) }}
         {% endif %}
-
+        
+        <div class="text-balance">
         {{ headings.headingOne({
             'title': post.title,
             'case': "captilize",
         }) }}
+        </div>
     </hgroup>
 
     <!-- post meta -->

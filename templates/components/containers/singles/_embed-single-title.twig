@@ -10,7 +10,7 @@
         x-data="visibleNavHighlighter('.article-body h2')" 
         x-on:scroll.window.throttle.50ms="onScroll()"
         id="{{ post.slug }}"  
-        class="mt-12 pb-12 mx-auto max-w-screen-xl relative single-{{ post.slug }}">
+        class="mt-12 pb-12 mx-auto max-w-5xl relative single-{{ post.slug }}">
         
         {% include "pages/single/partials/_partial-single-hero.twig" %}
         

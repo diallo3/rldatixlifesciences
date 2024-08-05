@@ -3,7 +3,7 @@
     <menu id="mobileMenu" class="pb-4 text-white mobile-menu">
         {% for item in menu.header_nav.get_items %}
             {% if item.children %}
-                 <li 
+                <li 
                     x-data="{ expanded: false,}" 
                     role="region" 
                     :class="{ 'bg-dodger-blue-900/20': expanded }"

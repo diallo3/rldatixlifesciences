@@ -12,7 +12,10 @@
 {% set heroSimpleTitle = heroSimple.title %}
 {% set heroSimpleEntry = heroSimple.entry %}
 
-{% set pageContent = post.meta('page_content') %}
+
+{% set pageType = post.meta('page_type') %}
+{% set pageContentBasic = post.meta('page_content_basic') %}
+{% set pageContentBuilder = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
 {% block content %}
@@ -25,10 +28,8 @@
                 {% include "/templates/components/dividers/_component-divider-icon.twig" %}
             </div>
 
-            <div class="relative page-content__entry">  
-                {% include "partials/content/_partial-content.twig" %}
-            </div>
-            {% endblock %}
+            {% include "/templates/partials/content/_partial-content.twig" %}
+         {% endblock %}
     {% endembed %}   
 
     {% include "partials/_partial-call-to-action.twig" with {

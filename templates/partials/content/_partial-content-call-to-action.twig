@@ -17,8 +17,8 @@
         {% set title = callToAction.title %}
         {% set entry = callToAction.entry %}
 
-        <div class="relative overflow-hidden border-b border-wood-smoke-800 isolate inview-container">
-            <div class="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div class="relative overflow-hidden isolate inview-container">
+            <div class="px-6 pt-24 sm:px-6 sm:pt-32 lg:px-8">
                 <div class="max-w-2xl mx-auto text-center">
                     
                     <div class="space-y-4">
@@ -51,16 +51,9 @@
                     </div>
                 </div>
             </div>
-            <svg viewbox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
-                <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
-                <defs>
-                    <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
-                        <stop stop-color="#0113d2"/>
-                        <stop offset="1" stop-color="#0113d2"/>
-                    </radialGradient>
-                </defs>
-            </svg>
         </div>
+
+        {% include "/templates/components/dividers/_component-glow-horizon.twig" %}
 
 
     {% endblock %}
