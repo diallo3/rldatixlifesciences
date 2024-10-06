@@ -7,15 +7,17 @@ if (import.meta.hot) {
 }
 
 // import JS files if applicable
-import { initializeAlpine } from './modules/module-alpine';
-import { initializeHeadroom } from './modules/module-headroom';
-// import { initializeClientSwiper, destroyClientSwiper } from './modules/module-swiper';
-import { navHeader, heroContent, generalInView, brandsInView, ctaInview } from './modules/module-motionOne';
+import { initializeAlpine } from './modules/js/module-alpine';
+import { initializeHeadroom } from './modules/js/module-headroom';
+import { initializeExcellentSwiper, initializeTestimonialSwiper } from './modules/js/module-swiper';
+import { navHeader, generalInView, brandsInView, ctaInView, dividerInView } from './modules/js/module-motionOne';
 
-import { initializeStackedCards } from './modules/module-codyhouse';
+import { initializeStackedCards } from './modules/js/module-codyhouse';
 
 // import SCSS files if applicable
 import '../src/app.css';
+import 'lazysizes';
+import "lazysizes/plugins/unveilhooks/ls.unveilhooks";
 
 // glob import all css or scss files
 // import.meta.glob('../templates/**/*.css', { eager: true });
@@ -24,28 +26,17 @@ import '../src/app.css';
 document.addEventListener('DOMContentLoaded', () => {
     // component initialization
     navHeader();
-    heroContent();
     generalInView();
     initializeAlpine();
     initializeHeadroom(); 
-    brandsInView();
-    ctaInview();
+    ctaInView();
     initializeStackedCards();
+    dividerInView();
+    initializeExcellentSwiper();
+    initializeTestimonialSwiper();
 
-    // function checkAndManageSwiper() {
-    //     const logosSwiper = document.querySelector('.logos-swiper');
-    //     if( logosSwiper ) {
-    //         console.log('initializeClientSwiper');
-    //         initializeClientSwiper();
-    //     } else {
-    //         destroyClientSwiper();
-    //         console.log('destroyClientSwiper');
-    //     }
-    // }
+    if (document.querySelector('.section-brands') ) {
+         brandsInView();
+    }
     
-    // checkAndManageSwiper();
-
-    // window.addEventListener('hashchange', () => {
-    //     checkAndManageSwiper();
-    // });
 });

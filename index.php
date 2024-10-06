@@ -16,10 +16,16 @@
 
 use Timber\Timber;
 
+$blog_page_id = get_option('page_for_posts');
+
 $context          = Timber::context();
 $context['posts'] = Timber::get_posts();
 $context['foo']   = 'bar';
-$templates        = ['pages/index/index.twig'];
+
+$context['title'] = get_the_title( get_option('page_for_posts', true));
+$context['hero_home'] = get_field('hero', $blog_page_id );
+
+$templates = ['pages/index/index.twig'];
 if (is_home()) {
 	// array_unshift($templates, 'pages/front-page/front-page.twig', 'pages/home/home.twig', 'pages/page/page.twig');
 }

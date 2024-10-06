@@ -1,36 +1,104 @@
-{% embed "components/containers/sections/_component-section-full.twig" with {
+{% embed "components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-key-list',
-    maxWidth: 'max-w-screen-xl' 
+    maxWidth: 'max-w-none'
 } %}
     {% block section_content %}
-
-        <div class="absolute -top-72 -left-20 rounded-full size-[70rem] bg-gradient-to-t from-black-rock-900/80 to-transparent blur-3xl opacity-30"></div>
-        
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-heading.twig" as headings %}
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-button.twig" as buttons %}
+        {% import "/templates/components/ui/_macro-image-object.twig" as images %}
 
-        <div class="space-y-4 lg:text-center section-services__header">
-            {{ badges.accentBadge({
-                title: keyList.accent,
-            })}}
-            
-            {{ headings.headingThree({
-                title: keyList.title,
-                size: 'fluid-text-4xl',
-            })}}
-        </div>
-        <div class="max-w-3xl mx-auto mt-16 lg:max-w-7xl inview-container">
-            <dl class="grid grid-cols-2 gap-4 lg:grid lg:grid-cols-4">
-                {% for list in keyList.list %}
-                <dd class="flex items-start space-x-4 lg:space-x-8 inview-item">
-                    <div class="p-2 border border-dodger-blue-600 text-dodger-blue-600">{{ icons.icon('brand-glyph', 'size-4 ') }}</div>
-                    <span class="inline-flex text-lg font-semibold">{{ list.item }}</span>
-                </dd>
-                {% endfor %}
-            </dl>
+        {# content #}
+        <div class="relative">
+            <div id="keyListContent" class="relative mx-auto max-w-screen-2xl feature-with-key-list__content">
+
+                {#  container #}
+                <div class="mx-auto space-y-12 feature-with-key-list__header">
+
+                    <div class="feature-with-key-list__entry">
+                        <div class="absolute flex items-center h-full inset-y-16 -inset-x-20">
+                            <div class="relative flex items-center justify-center hidden w-full opacity-75">
+                                {{ images.imageObject({
+                                    src: theme.link ~ '/public/img/img-glow-blue.png',
+                                    alt: 'icon',
+                                    class: 'w-full h-full'
+                                })}}
+                            </div>
+
+                            <div class="absolute hidden opacity-25 text-wood-smoke-950 -inset-72 mix-blend-multiply">
+                                <svg class="size-full" viewBox="0 0 968 631" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M605.609 526.961H725.75L788 419.14L727.956 315.14L785.402 215.64L905.75 215.64L968 107.82L905.75 5.44207e-06L781.25 0L721.598 103.32L605.402 103.32L545.75 5.44207e-06L421.25 0L361.598 103.32L241.25 103.32L179 211.14L239.044 315.14L181.391 415H62.25L0 522.82L62.25 630.64H186.75L246.609 526.961H361.391L421.25 630.64H545.75L605.609 526.961ZM598.707 107.725L541.391 207L425.609 207L368.293 107.725L425.869 8L541.131 8.00001L598.707 107.725ZM541.501 215.64L425.499 215.64L368.238 314.82L425.869 414.64H541.131L598.762 314.82L541.501 215.64ZM188.689 418.359L246.772 518.961H361.131L418.762 419.14L361.131 319.32H245.869L188.689 418.359ZM66.8688 423H181.228L239.311 523.602L182.131 622.64H66.8688L9.23761 522.82L66.8688 423ZM418.707 211.236L361.021 111.32L245.869 111.32L188.238 211.14L245.869 310.961H361.131L418.707 211.236ZM785.979 207.64L728.293 107.725L785.869 8L901.131 8.00001L958.762 107.82L901.131 207.64L785.979 207.64ZM721.021 111.32L605.979 111.32L548.293 211.236L605.869 310.961H721.131L778.707 211.236L721.021 111.32ZM721.131 319.32L778.762 419.14L721.131 518.961H605.869L548.238 419.14L605.869 319.32H721.131ZM541.131 423L598.762 522.82L541.131 622.64H425.869L368.238 522.82L425.869 423H541.131Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+
+                        </div>
+                    
+                        <div class="relative max-w-sm mx-auto space-y-12 md:max-w-6xl inview-container">
+                            {# title #}
+                            <div class="text-center feature-with-key-list__title inview-item">
+                                {{ headings.headingThree({
+                                    title: keyList.title,
+                                    size: 'fluid-text-4xl',
+                                })}}
+                            </div>
+                            {# entry #}
+                            <div class="max-w-3xl mx-auto mt-16 lg:max-w-7xl">
+                                <dl class="flex flex-wrap items-center lg:justify-center">
+                                    {% for list in keyList.list %}
+                                    <dd class="flex items-center pb-2 space-x-4 lg:pb-4 inview-item md:w-1/2 lg:w-1/4">
+                                        <div class="relative w-104 text-dodger-blue-600">
+                                            
+                                            <svg class="size-10 outer-glow shape-hexagon" viewBox="0 0 293 336" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g filter="url(#filter0_d_364_93)">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M146.554 15.7735L15.1084 91.6637V243.444L146.554 319.334L278 243.444V91.6637L146.554 15.7735ZM283 88.777L146.554 10L10.1084 88.777V246.331L146.554 325.108L283 246.331V88.777Z" fill="currentColor"/>
+                                                </g>
+                                                <defs>
+                                                    <filter id="filter0_d_364_93" x="0.108398" y="0" width="292.892" height="335.108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                    <feOffset/>
+                                                    <feGaussianBlur stdDeviation="5"/>
+                                                    <feComposite in2="hardAlpha" operator="out"/>
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0.00608826 0 0 0 0 0.344018 0 0 0 0 1 0 0 0 0.25 0"/>
+                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_364_93"/>
+                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_364_93" result="shape"/>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                            <div class="absolute m-auto rounded-full inset-4 size-1 bg-dodger-blue-800"></div>
+                                        </div>
+                                        <span class="inline-flex flex-grow-0 text-lg font-semibold">{{ list.item }}</span>
+                                    </dd>
+                                    {% endfor %}
+                                </dl>
+                            </div>
+                            {# cta #}
+                            <div class="relative flex justify-center feature-with-key-list__cta">
+
+                                <div class="max-w-4xl mx-auto space-y-8 text-center feature-with-key-list__cta-entry">
+                                    {# <div class="prose prose-invert prose-p:fluid-text-base">
+                                        {{ keyList.entry}}
+                                    </div> #}
+                                
+                                    <div class="text-center inview-item">
+                                        {{ buttons.btnLink({
+                                            text: keyList.link.title,
+                                            link: keyList.link.url,
+                                            size: 'lg',
+                                            icon: 'arrow-right',
+                                        })}}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     {% endblock %}
 {% endembed %}

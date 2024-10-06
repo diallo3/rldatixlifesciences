@@ -50,9 +50,16 @@ class StarterTimber extends Site {
        
         
          // Fetch the posts using Timber
+         $testimonials = array(
+             'post_type' => 'testimonial',
+             'posts_per_page' => -1,
+             'orderby' => 'rand',
+             'order' => 'DESC'
+         );
 
 
 		$context['menu'] = $menu;
+        $context['testimonial_posts'] = Timber::get_posts( $testimonials );
 		$context['site']  = $this;
         $context['options'] = get_fields('option');
 		return $context;

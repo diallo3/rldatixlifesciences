@@ -1,0 +1,46 @@
+@layer utilities {
+    /* SWUG Define a transition duration during page visits */
+    html.is-changing .transition-fade {
+        transition: opacity 0.25s;
+        opacity: 1;
+    }
+
+    /* Define the styles for the unloaded pages */
+    html.is-animating .transition-fade {
+        opacity: 0;
+    }
+
+    .outer-glow {
+        @apply drop-shadow-[0_0_8px_rgba(143,224,255,1)];
+    }
+}
+
+.hexagon-container {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+}
+
+.hexagon-container__img {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+}
+
+.page-terms-of-use .fr-fil {
+    filter: invert(1);
+}
+
+.multi-line-link {
+    text-decoration: none;
+    display: inline;
+    padding-bottom: 3px;
+    transition: all 0.35s linear;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0px 2px;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    background-opacity: 0.5;
+
+	&:hover {
+		background-size: 100% 2px;
+	}
+}

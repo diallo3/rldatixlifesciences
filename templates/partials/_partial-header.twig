@@ -10,14 +10,15 @@
     x-init="window.pageYOffset >= 10 ? scrolledFromTop = true : scrolledFromTop = false"
     @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
     id="siteHeader" 
-    :class="{ 'bg-wood-smoke-950/70 backdrop-blur-xl' : scrolledFromTop}"
-    class="fixed inset-x-0 top-0 z-50 flex items-center flex-none px-8 py-8 transition-all duration-500 ease-in-out lg:py-0 site-header js-header">
+    :class="{ 'top' : scrolledFromTop }"
+    class="fixed inset-x-0 top-0 z-50 flex items-center flex-none px-8 py-8 transition-all duration-500 ease-in-out lg:py-0 site-header js-header ">
+    {# <div class="absolute inset-0 bg-gradient-to-b from-wood-smoke-950 via-wood-smoke-950/50 to-wood-smoke-950/0"></div> #}
 	<!-- Main Header Content -->
-	<div  class="container flex items-center justify-between mx-auto text-center">
+	<div  class="container relative flex items-center justify-between mx-auto text-center">
 		<!-- Left Section -->
 		<div class="flex items-center site-header__logo">
 			<!-- Logo -->
-			<a href="{{ site.link }}" class="inline-flex space-x-2">
+			<a href="{{ site.link }}" class="inline-flex space-x-2 cursor-pointer">
 				{# {{ icons.icon('temp-logo', 'w-8 h-8 text-blue-600 group-hover:text-blue-500') }} #}
                 <span class="text-flamingo-500">
                     {{ icons.icon('brand-glyph', 'w-8 h-auto') }}
@@ -46,22 +47,39 @@
 		<div
 			class="flex items-center site-header__cta">
 			<!-- Actions -->
-			<div class="items-center justify-center hidden gap-2 lg:flex"> 
+			<menu class="items-center justify-center hidden gap-2 lg:flex site-header-ctas"> 
                 {% for item in menu.header_buttons.get_items %}
-                    {{ btns.btnLink({
-                        text: item.title,
-                        link: item.link,
-                        type: 'primary',
-                        icon: 'arrow-right',
-                    }) }}
+                    {% set type = item.meta('button_style').value  %}
+                    <li 
+                        x-data="{ 
+                            open: false 
+                        }"
+                        @mouseenter="open = true"
+                        @mouseleave="open = false"
+                        class="relative site-header-ctas__item">
+
+                            {{ btns.btnLink({
+                                text: item.title,
+                                link: item.link,
+                                type: type,
+                                icon: type == 'simple' ? null : 'arrow-right',    
+                            }) }}
+
+                            {# item children#}
+                            {% if item.children  %}
+                                {% include "components/menu-list/partials/_partial-menu-childern.twig" with {
+                                    top: 'top-[125%]',
+                                } %}
+                            {% endif %}
+                    </li>
                 {% endfor %}
                 
-			</div>
+			</menu>
 			<!-- END Actions -->
 
 			<!-- Open Mobile Navigation  -->
 			<div class="ml-3 lg:hidden">
-				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2.5 leading-5 border rounded border-wood-smoke-600/60 hover:bg-black-rose-900 hover:border-wood-smoke-600" aria-controls="tkMobileNav">
+				<button x-on:click="mobileNavOpen = true" type="button" class="inline-flex items-center justify-center px-3 py-2.5 leading-5 rounded" aria-controls="tkMobileNav">
 					<svg class="inline-block w-5 h-5 hi-mini hi-bars-3" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
 					</svg>

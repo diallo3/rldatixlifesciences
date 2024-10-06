@@ -15,6 +15,12 @@
 {% set pageContent = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
+{% set generalTitle = title ?? options.general_call_to_action.title %}
+{% set generalEntry = entry ?? options.general_call_to_action.entry %}
+{% set generalLink = link ?? options.general_call_to_action.link %}
+{% set generalFormTitle = formTitle ? formTitle : options.general_call_to_action.hubspot_form_title %}
+{% set generalFormID = form ? form : options.general_call_to_action.hubspot_form_id %}
+
 {% block content %}
 
     {% embed "/templates/components/containers/pages/_embed-page-title.twig" %}
@@ -26,8 +32,8 @@
             {% import "components/ui/_macro-button.twig" as buttons %}
 
             {% set address = options.address %}
-            <div class="container relative px-4 mx-auto lg:px-8 xl:max-w-7xl">
-                <div class="absolute top-96 left-20 rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-30"></div>
+            <div class="container relative px-4 pb-20 mx-auto lg:px-8 xl:max-w-7xl">
+                
                 <div
                     class="flex flex-col gap-16 lg:flex-row lg:items-center">
                     <!-- Heading with Company Info -->
@@ -41,7 +47,7 @@
                             size: 'fluid-text-3xl',
                         })}}
 
-                        <div class="pb-8 space-y-6 border-b contact-block__summary border-black-rock-900">
+                        <div class="pb-8 space-y-6 border-b contact-block__summary border-dodger-blue-900">
                             {{ headings.headingTwo({
                                 title: 'Speak to one of our experts today.',
                                 size: 'fluid-text-3xl',
@@ -64,7 +70,6 @@
                                 </div>
                                 <div class="mt-6">
                                     {% for item in options.phone %}
-                                        <script>console.log({{ item | json_encode | raw }})</script>
                                          <div class="flex space-x-4">
                                             <abbr title="Phone" class="no-underline">{{ item.type }}:</abbr> <a href="tel:{{ item.phone_number.number }}" class="font-semibold text-dodger-blue-500">{{ item.phone_number.national }}</a>
                                         </div>
@@ -77,16 +82,18 @@
                     <!-- END Heading with Company Info -->
 
                     <!-- Contact Form -->
-                    <div class="flex flex-col px-8 py-6 overflow-hidden rounded-lg shadow-sm bg-black-rock-950 dark:bg-gray-800 dark:text-gray-100 lg:mx-auto lg:w-2/3">
-                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-                        <script>
-                        hbspt.forms.create({
-                            region: "na1",
-                            portalId: "6118984",
-                            formId: "b94b3a22-ceba-4a62-9684-27a3484e6d81",
-                            css:""
-                        });
-                        </script>
+                    <div class="flex flex-col mx-auto lg:pl-8 lg:w-2/3 ">
+                        <div class="px-8 py-6 overflow-hidden border-2 rounded-lg shadow-sm lg:py-8 border-dodger-blue-950/60 bg-wood-smoke-950/80 ">
+                            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                            <script>
+                            hbspt.forms.create({
+                                region: "na1",
+                                portalId: "6118984",
+                                formId: "b94b3a22-ceba-4a62-9684-27a3484e6d81",
+                                css:""
+                            });
+                            </script>
+                        </div>
                     </div>
                     <!-- END Contact Form -->
                 </div>

@@ -1,0 +1,28 @@
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+<div id="{{ id }}" class="relative lg:flex lg:gap-8 card-testimonial">
+	<div class="flex-shrink-0 mt-2 size-10 md:size-16 xl:size-28 text-flamingo-600 card-testimonial__icon">
+		{{ icons.icon('quote-left', 'w-full h-auto') }}
+	</div>
+
+    <div class="space-y-4 card-testimonial__content">
+        <blockquote class="font-semibold prose prose-sbase lg:prose-lg lg:flex-grow prose-p:first-of-type:mt-0 lg:fluid-text-base prose-invert prose-no-quotes ">
+            <div class="card-testimonial__entry">
+                {{ entry }}
+            </div>
+            <footer class+"flex flex-col card-testimonial__cite">
+                <cite class="block text-lg not-italic font-bold author text-dodger-blue-500">{{ name }}</cite>
+                <cite class="flex flex-col mt-2 space-y-2 text-sm not-italic text-gray-200 company">
+                    <span class="block uppercase">{{ position }}</span>
+                    <span class="block text-gray-400">{{ company }}</span>
+                </cite>
+            </footer>
+        </blockquote>
+
+        <div class="py-2 space-x-2 card-testimonial__products">
+            {% for product in products %}
+                <a href="{{ product.link }}" class="inline-flex px-4 py-1 text-sm transition-colors duration-200 ease-linear border rounded-full text-dodger-blue-500 border-dodger-blue-900/80 hover:text-white">{{ product.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -3,14 +3,18 @@
 {% import "components/ui/_macro-image-object.twig" as images %}
 {% import "components/ui/_macro-icon.twig" as icons %}
 {% import "components/ui/_macro-badge.twig" as badges %}
-<figure class="article-content__featured aspect-[16/9] overflow-hidden rounded-md">
-    {{ images.imageObject({
-        'src': post.thumbnail,
-        'alt': post.title,
-        'fit': 'object-fit !w-full !h-auto'
-    }) }}
 
-</figure>
+<div class="relative">
+    <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
+    <figure class="article-content__featured aspect-[16/9] overflow-hidden relative border border-dodger-blue-800/60 rounded-md">
+        
+        {{ images.imageObject({
+            'src': post.thumbnail.src ?: theme.link ~ '/public/icons/icon-temp-image.svg',
+            'alt': post.title,
+        }) }}
+
+    </figure>
+</div>
 {% if post.thumbnail.caption %}
     <figcaption class="mt-4 text-sm italic text-wood-smoke-500 max-w-prose">
         {{ post.thumbnail.caption }}

@@ -1,0 +1,78 @@
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" %}
+    {% block section_content %}
+        {% import "/templates/components/ui/_macro-button.twig" as buttons %}
+        {% import "/templates/components/ui/_macro-badge.twig" as badges %}
+        {% import "/templates/components/ui/_macro-heading.twig" as headings %}
+        {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+        {% import "/templates/components/ui/_macro-image-object.twig" as images %}
+
+        <div class="flex items-center justify-between mx-auto max-w-7xl testimonials">
+
+            {# prev #}
+            <div class="hidden lg:inline-flex">
+                {{ buttons.btnSwiper({
+                    icon: 'size-10 rotate-180',
+                    text: 'Previous',
+                    type: 'prev',
+                    size: 'size-20',
+                }) }}
+            </div>
+
+            <div class="relative max-w-xs mx-auto space-y-8 md:max-w-md sm:max-w-lg lg:max-w-4xl testimonials__items">
+                
+                <div class="max-w-xl mx-auto">
+                    {{ badges.accentBadge({
+                        title: title,
+                    })}}
+                </div>
+                
+                <div class="overflow-hidden testimonial-swiper swiper-container">
+                    <div class=" swiper-wrapper">
+                        {% for testimonial in testimonial_posts %}
+                            <div class="swiper-slide">
+                                <article class="lg:pl-4">
+                                    {% set entry = testimonial.meta('quote') %}
+                                    {% set name = testimonial.meta('name') %}
+                                    {% set position = testimonial.meta('position') %}
+                                    {% set company = testimonial.meta('company') %}
+                                    {% set products =  get_posts(testimonial.meta('product_name')) %}
+                                    
+                                    {% include "components/cards/_component-card-testimonial.twig" %}
+                                </article>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                
+            </div>
+
+            {# next #}
+            <div class="hidden lg:inline-flex">
+                {{ buttons.btnSwiper({
+                    icon: 'size-10',
+                    text: 'Next',
+                    type: 'next',
+                    size: 'size-20',
+                }) }}
+            </div>
+        </div>
+        <div class="flex items-center justify-center gap-8 swiper-buttons__footer lg:hidden">
+                        {# prev #}
+                        {{ buttons.btnSwiper({
+                            icon: 'size-6 rotate-180',
+                            text: 'Previous',
+                            type: 'prev',
+                            size: 'size-16',
+                        }) }}
+
+                        {# next #}
+                        {{ buttons.btnSwiper({
+                            icon: 'size-6',
+                            text: 'Next',
+                            type: 'next',
+                            size: 'size-16',
+                        }) }}
+                    </div>
+    {% endblock %}
+{% endembed %}

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 const { values } = require('tailwindcss-fluid-type/src/config/defaults');
@@ -12,7 +13,8 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
+            sans: [" 'Manrope', 'sans-serif' ", ...defaultTheme.fontFamily.sans],
+            serif: [" 'Montserrat', 'sans-serif' ", ...defaultTheme.fontFamily.sans],
         },
         extend: {
             colors: {
@@ -25,8 +27,8 @@ module.exports = {
                     '500': '#2131d6',
                     '600': '#131db6',
                     '700': '#101694',
-                    '800': '#12187a',
-                    '900': '#141766',
+                    '800': '#0C152D',
+                    '900': '#090F21',
                     '950': '#02020a',
                 },
                 'black-rock': {
@@ -82,6 +84,14 @@ module.exports = {
                     '950': '#003020',
                 }, 
                 
+            },
+            typography: {
+                'no-quotes': {
+                  css: {
+                    'blockquote p:first-of-type::before': { content: 'none' },
+                    'blockquote p:last-of-type::after': { content: 'none' },
+                    },
+                },
             },
         },
     },

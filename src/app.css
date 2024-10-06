@@ -1,103 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.admin-bar {
-    .site-header {
-        top: 32px;
-    }
-}
+@import "tailwindcss/base";
+@import "modules/css/module-base.css";
 
-/* Headroom */
-.headroom {
-    will-change: transform;
-    transition: transform 200ms linear;
-}
-.headroom--pinned {
-    transform: translateY(0%);
-}
-.headroom--unpinned {
-    transform: translateY(-100%);
-}
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+@import "modules/css/module-utilities.css";
+
+@import "modules/css/module-swiper.css";
+@import "modules/css/module-headroom.css";
+@import "modules/css/module-hubspot.css";
+@import "modules/css/module-codyhouse.css";
 
 
 
-/* SWUG Define a transition duration during page visits */
-html.is-changing .transition-fade {
-    transition: opacity 0.25s;
-    opacity: 1;
-}
-
-/* Define the styles for the unloaded pages */
-html.is-animating .transition-fade {
-    opacity: 0;
-}
-
-.swiper-slide {
-    opacity: 0.45;
-    &.swiper-slide-active {
-        opacity: 1;
-    }
-}
-
-.stack-cards {
-    --stack-cards-gap: 0.75rem;
-    --stack-cards-item-ratio: 3/2
-  }
-  @media (min-width: 64rem) {
-    .stack-cards {
-      --stack-cards-gap: 1.125rem;
-    }
-  }
-  
-  .stack-cards__item {
-    @apply top-8 lg:top-20;
-    position: relative;
-    position: -webkit-sticky;
-    position: sticky;
-    /* 
-    height: 0;
-    padding-bottom: calc(100%/(var(--stack-cards-item-ratio)));
-     
-    padding-bottom: 56.25%;*/
-    transform-origin: center top;
-  }
 
 
-  .hbspt-form {
-    .hs-form-field {
-        input[type=text], input[type=email], input[type=tel], input[type=url], input[type=number], input[type=date], input[type=tel], input[type=range], input[type=hidden], input[type=password], input[type=search], select, textarea {
-            @apply block w-full bg-wood-smoke-900/50 !rounded-md !border-wood-smoke-950 !px-4 !py-3 text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 mb-4;
-        }
-        input[type=checkbox], input[type=radio] {
-            @apply block !text-gray-100 !font-medium !text-sm !leading-5 !size-4 bg-wood-smoke-700 border-wood-smoke-700 rounded-sm mt-1;
-        }
-        label:not(.hs-error-msg) {
-            @apply !text-sm !font-medium !text-dodger-blue-100/80 mb-2 !flex items-start space-x-2;
-        }
-        
-    }
-    label p {
-        @apply block !text-sm !font-medium !text-dodger-blue-100/80;
-    }
-    
-    .hs-submit {
-        @apply py-4;
-    }
-    .hs-button {
-        @apply block w-auto bg-flamingo-600 !rounded-md !px-4 !py-3 text-white shadow-sm cursor-pointer hover:bg-dodger-blue-600 transition-colors duration-200 ease-in-out;
-        display: block;
-        margin-bottom: 1rem;
-    }
-    .hs-error-msgs {
-        @apply block !text-red-600 !font-medium !text-sm !leading-5 mb-2;
-    }
 
-    .legal-consent-container .hs-form-booleancheckbox-display>span {
-        @apply !ml-4;
-    }
-  }
- 
+
+
 
 

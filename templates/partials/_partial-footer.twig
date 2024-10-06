@@ -5,12 +5,12 @@
 	<div class="pt-16 pb-8 mx-auto max-w-screen-2xl sm:pt-24 lg:pt-32">
 		<div class="flex flex-col items-center w-full">
 			<div class="space-y-8 text-center">
-				<nav class="flex items-center justify-center hidden space-x-2 text-gray-500 footer-nav lg:block">
+				<nav class="items-center justify-center hidden space-x-2 text-gray-500 lg:flex footer-nav lg:block">
                     {% if menu.footer_nav.get_items %}
-                    <menu class="flex items-center space-x-4 text-sm footer-nav__menu">
+                    <menu class="flex items-center space-x-4 text-xs footer-nav__menu">
                        {% for item in menu.footer_nav.get_items %}
                         <li class="{{ item.classes|join(' ') }} footer-nav__item">
-                            <a href="{{ item.link }}" class="font-semibold text-black-rock-200/80">{{ item.name }}</a>
+                            <a href="{{ item.link }}" class="font-semibold text-white transition duration-200 hover:text-dodger-blue-600" target="{{ item.target }}" title="{{ item.title ?: item.name }}">{{ item.name }}</a>
                         </li>
                         {% endfor %}        
                    </menu>
@@ -19,7 +19,7 @@
 
                 <!-- Social Media Icons -->
                 <div class="hidden main-footer__social lg:block">
-                    {% include "/templates/components/footer/_component-footer-social.twig" %}
+                    {% include "components/footer/_component-footer-social.twig" %}
                 </div>
 
                 {#  #}

@@ -3,11 +3,11 @@
     "title": "General Hero",
     "fields": [
         {
-            "key": "field_6656048e60923",
-            "label": "(Column 2\/12)",
-            "name": "",
+            "key": "field_667c879c3e2da",
+            "label": "Hero Fields",
+            "name": "hero_fields",
             "aria-label": "",
-            "type": "acfe_column",
+            "type": "checkbox",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,108 +16,26 @@
                 "class": "",
                 "id": ""
             },
-            "columns": "2\/12",
-            "endpoint": 0,
-            "border": "",
-            "acfe_field_group_condition": 0,
-            "border_endpoint": [
-                "endpoint"
-            ]
-        },
-        {
-            "key": "field_659bdd2728517",
-            "label": "Add Accent",
-            "name": "add_accent",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
+            "choices": {
+                "title": "Title",
+                "act": "Accent",
+                "sub": "Subtitle",
+                "entry": "Entry",
+                "cta": "CTAs",
+                "img": "Image"
             },
-            "message": "",
-            "default_value": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1,
-            "style": "small",
-            "acfe_field_group_condition": 0
-        },
-        {
-            "key": "field_665604aa60924",
-            "label": "(Column 10\/12)",
-            "name": "",
-            "aria-label": "",
-            "type": "acfe_column",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "columns": "10\/12",
-            "endpoint": 0,
-            "border": "",
-            "acfe_field_group_condition": 0,
-            "border_endpoint": [
-                "endpoint"
-            ]
-        },
-        {
-            "key": "field_659bdd4d28518",
-            "label": "Accent",
-            "name": "accent",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_659bdd2728517",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
+            "default_value": [
+                "title"
             ],
-            "wrapper": {
-                "width": "85",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "Title Accent",
-            "prepend": "",
-            "append": "",
-            "acfe_field_group_condition": 0
-        },
-        {
-            "key": "field_665604b760925",
-            "label": "(Column Endpoint)",
-            "name": "",
-            "aria-label": "",
-            "type": "acfe_column",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "endpoint": 1,
-            "border_endpoint": [
-                "endpoint"
-            ],
+            "return_format": "value",
+            "min": "",
+            "max": "",
+            "allow_custom": 0,
+            "layout": "horizontal",
+            "toggle": 1,
             "acfe_field_group_condition": 0,
-            "columns": "6\/12",
-            "border": ""
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
         },
         {
             "key": "field_658b340e0bc6e",
@@ -141,14 +59,22 @@
             ]
         },
         {
-            "key": "field_658b32a38d95c",
-            "label": "Title",
-            "name": "title",
+            "key": "field_659bdd4d28518",
+            "label": "Accent",
+            "name": "accent",
             "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "act"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -156,19 +82,28 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "",
+            "placeholder": "Title Accent",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "acfe_field_group_condition": 0
         },
         {
-            "key": "field_66549b17e6989",
-            "label": "Sub Title",
-            "name": "sub_title",
+            "key": "field_658b32a38d95c",
+            "label": "Title",
+            "name": "title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "title"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -182,14 +117,22 @@
             "acfe_field_group_condition": 0
         },
         {
-            "key": "field_6659c605bf838",
-            "label": "Entry Title",
-            "name": "entry_title",
+            "key": "field_66549b17e6989",
+            "label": "Subtitle",
+            "name": "sub_title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "sub"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -197,7 +140,7 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "Entry Title",
+            "placeholder": "",
             "prepend": "",
             "append": "",
             "acfe_field_group_condition": 0
@@ -210,7 +153,15 @@
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "entry"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -246,7 +197,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "cta"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -259,6 +218,7 @@
             "max": 2,
             "collapsed": "",
             "button_label": "Add CTA",
+            "acfe_field_group_condition": 0,
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -302,38 +262,6 @@
             ]
         },
         {
-            "key": "field_6590d1032cc97",
-            "label": "Image Type",
-            "name": "image_type",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "gallery": "Gallery"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": "",
-            "prepend": "",
-            "append": "",
-            "min": "",
-            "max": ""
-        },
-        {
             "key": "field_658b34c50bc71",
             "label": "Image",
             "name": "image",
@@ -344,9 +272,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_6590d1032cc97",
+                        "field": "field_667c879c3e2da",
                         "operator": "==",
-                        "value": "image"
+                        "value": "img"
                     }
                 ]
             ],
@@ -356,44 +284,8 @@
                 "id": ""
             },
             "uploader": "",
-            "return_format": "array",
             "acfe_thumbnail": 1,
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium",
-            "library": "all"
-        },
-        {
-            "key": "field_6590d15c2cc98",
-            "label": "Image Gallery",
-            "name": "image_gallery",
-            "aria-label": "",
-            "type": "gallery",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6590d1032cc97",
-                        "operator": "==",
-                        "value": "gallery"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
             "return_format": "array",
-            "library": "all",
-            "min": "",
-            "max": 3,
             "min_width": "",
             "min_height": "",
             "min_size": "",
@@ -401,8 +293,9 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
-            "insert": "append",
-            "preview_size": "medium"
+            "preview_size": "large",
+            "acfe_field_group_condition": 0,
+            "library": "all"
         }
     ],
     "location": [],
@@ -421,7 +314,12 @@
     ],
     "acfe_form": 0,
     "acfe_display_title": "Hero",
-    "acfe_meta": "",
+    "acfe_meta": {
+        "acfcloneindex": {
+            "acfe_meta_key": "",
+            "acfe_meta_value": ""
+        }
+    },
     "acfe_note": "",
     "is_acf_component": 1,
     "acf_component_defaults": {
@@ -434,5 +332,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717159455
+    "modified": 1723209226
 }

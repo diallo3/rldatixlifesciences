@@ -2,7 +2,7 @@ import Alpine from 'alpinejs';
 import persist from '@alpinejs/persist';
 import focus from '@alpinejs/focus';
 import collapse from '@alpinejs/collapse';
-import moduleAlpineNavHighlighter from '/src/modules/module-alpine-navHighlighter.js';
+import moduleAlpineNavHighlighter from '/src/modules/js/module-alpine-navHighlighter.js';
 
 Alpine.plugin(
         [

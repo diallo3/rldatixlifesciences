@@ -1,6 +1,8 @@
-{% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-image',
+    maxWidth: 'max-w-screen-2xl',
+    paddingBlock: 'py-12 xl:py-20',
 } %}
     {% block section_content %}
         {% import "components/ui/_macro-heading.twig" as headings %}
@@ -8,32 +10,58 @@
         {% import "components/ui/_macro-icon.twig" as icons %}
         {% import "components/ui/_macro-badge.twig" as badges %}
         {% import "components/ui/_macro-button.twig" as btn %}
-        <div class="absolute -top-72 {{ loop.index is even ? 'left-20 ' : 'right-20 ' }} rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-20"></div>
-        <div class="flex flex-col gap-12  xl:items-center relative xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
+        <div class="absolute -top-12 {{ loop.index is even ? '-left-32 ' : '-right-32 ' }} rounded-full size-[65rem]">
 
-            <div class="relative flex-none hidden group lg:w-1/2 inview-item xl:block">
-                <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
-                <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-4 aspect-h-3">
-                    {{ images.imageObject({
-                        src: image.url,
-                        alt: image.alt,
-                        class: 'w-full h-full',
-                    })}}
-                </figure>
+            {# effect #}
+            <div class="absolute inset-0 text-blue-700/25">
+                <svg viewbox="0 0 1024 1024" class="[mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+                    <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
+                    <defs>
+                        <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+                            <stop stop-color="currentColor"/>
+                            <stop offset="1" stop-color="currentColor"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="absolute overflow-hidden opacity-25 text-wood-smoke-950 -inset-36 mix-blend-multiply">
+                {{ icons.icon('pattern-hexagon', 'size-[115%]') }}
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-12 xl:justify-stretch lg:px-8 relative xl:items-center xl:gap-16 {{ loop.index is even ? 'xl:flex-row-reverse' : 'xl:flex-row' }}">
+
+            {# featured #}
+            <div class="relative flex-none hidden group xl:w-1/2 inview-item xl:block ">
+                <div class="relative h-full">
+                    {# <div class="absolute rounded-md -inset-2 bg-wood-smoke-900/70 blur-lg lg:block"></div> #}
+                    <figure class="relative h-full p-1 overflow-hidden hexagon-container bg-blue-950/50">
+                        <div class="hexagon-container__img">
+                            {{ images.imageObject({
+                                src: image.url ? image.url | towebp : theme.link ~ '/public/icons/icon-temp-image.svg',
+                                alt: image.alt,
+                                class: 'w-full h-full',
+                            })}}
+                        </div>
+                    </figure>
+                </div>
             </div>
 
-            <div class="space-y-10 xl:w-1/2 inview-item">
-                <!-- content -->
+            {# content #}
+            <div class="relative space-y-10 xl:w-1/2 inview-item">
+                
                 <div class="space-y-4 xl:max-w-2xl solution-hero__content">
-                        <!-- Badge -->
-                    <div class="inline-flex solution-hero__accent">
-                        {{ badges.accentBadge({
-                            title: accent,
-                        })}}
-                    </div>
+                    <!-- Badge -->
+                    {% if accent %}
+                        <div class="inline-flex solution-hero__accent">
+                            {{ badges.accentBadge({
+                                title: accent,
+                            })}}
+                        </div>
+                    {% endif %}
                     
                     <!-- Heading -->
-                    <hgroup class="space-y-2 solution-hero__headings">
+                    <hgroup class="space-y-2 solution-hero__headings text-pretty">
                         {{ headings.headingTwo({
                             title: title,
                             size: 'fluid-text-3xl',
@@ -45,23 +73,36 @@
                         })}}
                     </hgroup>
 
-                    {# small image #}
+                    {# mobile image #}
                     <div class="relative flex-none group inview-item xl:hidden">
                         <div class="absolute rounded-md -inset-2 bg-wood-smoke-800/70 blur-xl lg:block"></div>
                         <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-16 aspect-h-9">
                             {{ images.imageObject({
-                                src: image.url,
+                                src: image.url ? image.url : src,
                                 alt: image.alt,
-                                class: 'w-full h-full',
+                                class: 'w-full h-auto',
                             })}}
                         </figure>
                     </div>
 
-                     <!-- Entry -->
-                    <div class="pt-8 solution-hero__entry inview-item lg:pt-0">
-                        <div class="prose prose-lg sm:prose-xl xl:prose-base prose-invert max-w-none prose-ul:list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
-                            {{ entry }}
+                    <div class="space-y-8">
+                        {# content entry #}
+                        <div class="pt-8 solution-hero__entry inview-item lg:pt-0 text-balance">
+                            <div class="prose prose-lg sm:prose-lg prose-invert max-w-none prose-ul:list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
+                                {{ entry }}
+                            </div>
                         </div>
+                        {# call to action #}
+                        {% if link %}
+                            <div class="z-[999] solution-hero__cta inview-item relative">
+                                {{ btn.btnLink({
+                                    text: link.title,
+                                    size: 'lg',
+                                    icon: 'arrow-right',
+                                    link: link.url,
+                                })}}
+                            </div>
+                        {% endif %}
                     </div>
                     
                    

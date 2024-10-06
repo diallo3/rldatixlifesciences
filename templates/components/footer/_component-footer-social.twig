@@ -3,7 +3,7 @@
  {% if menu.footer_social.get_items %}
     <div class="flex items-center justify-center mx-auto space-x-6 lg:space-x-8">
         {% for item in menu.footer_social.get_items %}
-            <a href="{{ item.link }}" class="text-gray-500 transition duration-150 ease-linear hover:text-gray-400" target="{{ item.target }}">
+            <a href="{{ item.link }}" class="text-gray-300 transition duration-150 ease-linear hover:text-dodger-blue-500" target="{{ item.target }}">
                 <span class="sr-only">{{ item.name }}</span>
                 {{ icons.icon(item.name | lower, 'w-5 h-5') }}
             </a>

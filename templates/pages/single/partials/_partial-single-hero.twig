@@ -2,26 +2,49 @@
 {% import "components/ui/_macro-icon.twig" as icons %}
 {% import "components/ui/_macro-badge.twig" as badges %}
 
-<header class="max-w-4xl pb-8 space-y-4">
+<header class="pt-24 pb-8 space-y-4 ">
     <!-- post title -->
     <hgroup class="space-y-2 article-header">
         {% if accent %}
             {{ badges.containedBadge({ 
                 title: accent }) }}
         {% endif %}
-
+        
+        <div class="text-balance">
         {{ headings.headingOne({
             'title': post.title,
             'case': "captilize",
         }) }}
+        </div>
     </hgroup>
 
     <!-- post meta -->
     <div class="flex items-center space-x-2 artice-content__meta">
-        <div class="flex items-center space-x-1">
-            <time datetime="{{ post.date|date("F j, Y") }}" class="text-sm font-medium text-gray-300">{{ post.date|date("F j, Y") }}</time>
-        </div>
+
+        {% if accent == 'Events' %}
+            <div class="flex items-center py-3 space-x-2 text-sm font-semibold event-date">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
+                </svg>
+
+                <div class="event-date__start">
+                    <span class="inline-flex px-2 border rounded border-dodger-blue-800 text-dodger-blue-600">{{ post.meta('start_date')|date("F j, Y") }}</span>
+                </div>
+                <div>-</div>
+                <div class="event-date__end">
+                    <span class="inline-flex px-2 border rounded border-dodger-blue-800 text-dodger-blue-600">{{ post.meta('end_date')|date("F j, Y") }}</span>
+                </div>
+            </div>
+           
+           
+
         
-        <span class="text-sm font-semibold text-dodger-blue-700">by {{ post.author.display_name }}</span>
+        {% else %}
+            <div class="flex items-center space-x-1">
+                <time datetime="{{ post.date|date("F j, Y") }}" class="text-sm font-medium text-gray-300">{{ post.date|date("F j, Y") }}</time>
+            </div>
+            
+            <span class="text-sm font-semibold text-dodger-blue-700">by {{ post.author.display_name }}</span>
+        {% endif %}
     </div>
 </header>

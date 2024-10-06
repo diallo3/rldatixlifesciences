@@ -1,0 +1,11 @@
+<article id="{{ post.type ~ '~' ~ post.id }}" class="{{ post.type ~ '-' ~ post.slug }} article-solution">
+    {% include "pages/single-solution/partials/_partial-solution-hero.twig" %}
+
+    <div class="max-w-4xl mx-auto xl:max-w-none page-content">
+        <div class="max-w-4xl mx-auto xl:max-w-none page-content">
+            {% block solution_content %}
+                <p>Solution Content</p>
+            {% endblock %}
+        </div>
+    </div>
+</article>

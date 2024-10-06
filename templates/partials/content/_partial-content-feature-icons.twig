@@ -1,10 +1,12 @@
-{% embed "/templates/components/containers/sections/_component-section-full.twig" with {
+{% embed "/templates/components/containers/sections/_embed-section-full.twig" with {
     id: 'section-content-' ~ loop.index,
     class: 'feature-with-icons',
     maxWidth: 'max-w-screen-xl' 
 } %}
     {% block section_content %}
-        <dl class="grid grid-cols-1 gap-16 lg:grid lg:grid-cols-3 feature-icon">
+         {% include "/templates/components/dividers/_component-glow-horizon.twig" %}
+        
+        <dl class="grid grid-cols-1 gap-16 lg:grid lg:grid-cols-3 feature-icon inview-container">
             {% for item in features %}
             <div class="inview-item feature-icon__content">
                 <dt class="flex items-center space-x-8 lg:items-start lg:flex-col lg:space-x-0 feature-icon__title">

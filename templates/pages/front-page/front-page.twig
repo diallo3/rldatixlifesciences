@@ -1,11 +1,13 @@
 {% extends "layouts/base.twig" %}
 
+{% set pageType = post.meta('page_type') %}
+{% set pageContentBasic = post.meta('page_content_basic') %}
+{% set pageContentBuilder = post.meta('page_content') %}
 
-{% set pageContent = post.meta('page_content') %}
+
 {% block content %}
 
-<article>
-
+<article class="page-content snap-y">
 
     {% import "/templates/components/ui/_macro-image-object.twig" as images %}
     {% import "/templates/components/ui/_macro-badge.twig" as badges %}
@@ -16,202 +18,113 @@
     <!-- Hero -->
     {% set hero = post.meta('page_hero')[0] %}
 
-    {% include "pages/page/partials/_partial-page-hero.twig"  with {
+    {% include "/templates/pages/page/partials/_partial-hero-full-background.twig"  with {
         heroAccent: hero.accent,
         heroTitle: hero.title,
         heroSubTitle: hero.sub_title,
         heroImage: hero.image,
+        heroCTAs: hero.call_to_actions,
     
     } %}
     <!-- End Hero -->
 
-    <!-- Brands -->
-    <section class="relative px-20 pb-24 pt_12 lg:pt-32 lg:pb-56 section-brands lg:px-8">
-            <div class="absolute top-44 lg:top-0 left-1/2 -translate-x-1/2 rounded-full size-[50rem] bg-gradient-to-t from-black-rock-900 to-transparent blur-3xl opacity-30"></div>
-            <div class="relative mx-auto space-y-8 lg:max-w-5xl">
+    {% set companyBrands = [
+        {
+            name: 'iContracts',
+            icon: 'brand-icontracts'
+        },
+        {
+            name: 'Porzio',
+            icon: 'brand-porzio'
+        },
+        {
+            name: '',
+            icon: 'brand-icoach'
+        },
+    ] %}
 
-                <div class="space-y-6 text-center section-brands__header inview-container">
-                    <div class="inview-item">
-                        {{ badges.accentBadge({
-                            title: 'Saas Solution',
+    <!-- Brands -->
+    <section class="relative px-16 overflow-hidden section-brands lg:px-8 scroll-start">
+        
+       {# <div class="absolute inset-x-0 inset-y-0 border border-white bg-gradient-to-b from-wood-smoke-950 to-wood-smoke-950/0"></div> #}
+       
+        <div class="absolute inset-0 w-full max-w-screen-xl overflow-hidden -translate-x-1/2 opacity-10 section-brands__glow top-11 left-1/2">
+            <div class="relative h-full opacity-40">
+                <div class="absolute inset-x-0 text-blue-700/90 -top-[85%]">
+                   <svg viewbox="0 0 1024 1024" class="[mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+                        <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.7"/>
+                        <defs>
+                            <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+                                <stop stop-color="currentColor"/>
+                                <stop offset="1" stop-color="currentColor"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <div class="absolute opacity-15 text-wood-smoke-950 -inset-24 mix-blend-multiply">
+                    {{ icons.icon('pattern-hexagon', 'size-full') }}
+                </div>
+            </div>
+        </div>
+        
+        
+
+        
+        <div class="relative mx-auto space-y-8 lg:max-w-7xl page-content__item">
+
+            {# divider #}
+            <div class="mb-20 -mx-12 section-divider lg:mx-auto">
+                {% include "/templates/components/dividers/_component-divider-icon.twig" %}
+            </div>
+
+            <div class="pt-12 pb-8 section-brands__entry sm:px-20 lg:pb-16">
+                <div class="pt-12 space-y-6 text-center md:space-y-10 lg:space-y-12 section-brands__header inview-container">
+                
+                    <div class="section-brands__accent">
+                        {{ headings.headingThree({
+                            title: 'Premium Brands Coming Together',
+                            font: 'font-montserrat',
+                            size: 'fluid-text-sm  uppercase',
                         })}}
                     </div>
-                    
-                    <div class="inview-item">
-                    {{ headings.headingThree({
-                        title: 'Brands Coming Together',
-                        size: 'fluid-text-3xl',
-                    })}}
+                    <!-- Brands Logo -->
+                    <div class="max-w-xs mx-auto lg:max-w-md section-brands__logo section-brands__title brand__rldatix ">
+                        {{ icons.icon('brand', 'w-full') }}
                     </div>
                 </div>
-
-                <div class="flex flex-col gap-1 px-20 text-center lg:flex-row lg:items-center lg:w-full section-brands__content lg:px-0">
-                    <div class="relative hidden lg:block text-black-rock-950">
+                <div class="flex flex-col items-center gap-1 px-12 mx-auto mt-8 text-center lg:max-w-screen-xl sm:px-10 md:flex-row md:w-full section-brands__content md:px-0">
+                    <div class="relative hidden px-8 lg:block text-dodger-blue-900/60">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
-                    <div class="relative flex justify-center align-middle size-full text-black-rock-800 section-brands__item brand__icoach">
-                        {{ icons.icon('hexagon', 'absolute inset-0') }}
-                        <figure class="absolute inset-0 flex items-center justify-center">
-                            <img src="{{ theme.link }}/public/img/img-logo-icoach.png" class="w-full max-w-44" alt="">
-                        </figure>
-                    </div>
-                    <div class="relative text-4xl font-bold text-dodger-blue-800">+</div>
-                    <div class="relative flex justify-center align-middle size-full text-black-rock-800 section-brands__item brand__porzio">
-                        {{ icons.icon('hexagon', 'absolute inset-0') }}
-                        <figure class="absolute inset-0 flex items-center justify-center">
-                            <img src="{{ theme.link }}/public/img/img-logo-porzio.png" class="w-full max-w-44" alt="">
-                        </figure>
-                    </div>
-                    <div class="relative text-4xl font-bold text-dodger-blue-800">+</div>
-                    <div class="relative flex justify-center align-middle size-full text-black-rock-800 section-brands__item brand__icontracts">
-                        {{ icons.icon('hexagon', 'absolute inset-0') }}
-                        <figure class="absolute inset-0 flex items-center justify-center">
-                            <img src="{{ theme.link }}/public/img/img-logo-icontracts.png" class="w-full max-w-44" alt="">
-                        </figure>
-                    </div>
-                   <div class="relative hidden lg:block text-black-rock-950">
+
+                    {% for item in companyBrands %}
+                        <div class="relative flex justify-center align-middle size-full max-w-80 text-dodger-blue-800/60 section-brands__item brand__icoach">
+                            <div class="absolute rounded-full opacity-70 inset-6 bg-gradient-to-t from-wood-smoke-950 to-transparent blur-xl"></div>
+                            <div class="z-10 ">
+                                {{ icons.icon('hexagon', 'size-full outer-glow') }}
+                            </div>
+                            <figure class="absolute inset-0 flex items-center justify-center px-8 py-4 lg:px-16" >
+                                <figcaption class="sr-only">{{ item.name }}</figcaption>
+                                {{ icons.icon(item.icon, 'w-full max-w-40') }}
+                            </figure>
+                        </div>
+                    {% endfor %}
+                
+                
+                    <div class="relative hidden px-8 lg:block text-dodger-blue-950/60">
                         {{ icons.icon('brand-glyph', 'w-12') }}
                     </div>
                 </div>
-
-                <!-- Brands Logo -->
-                <div class="w-64 mx-auto section-brands__logo section-brands__item brand__rldatix">
-                    {{ icons.icon('brand', 'w-full') }}
-                </div>
-            </div>
-    </section>
-
-
-    {% set logos = {
-            title: 'Our Partners',
-            items: [
-                {
-                    title: 'amagen',
-                    link: '#',
-                    image: 'img-logo-amgen.png'
-                },
-                {
-                    title: 'astrazeneca',
-                    link: '#',
-                    image: 'img-logo-astrazeneca.png'
-                },
-                {
-                    title: 'exelixis',
-                    link: '#',
-                    image: 'img-logo-exelixis.png'
-                },
-                {
-                    title: 'genetech',
-                    link: '#',
-                    image: 'img-logo-genetech.png'
-                },
-                {
-                    title: 'genetech',
-                    link: '#',
-                    image: 'img-logo-bausch-and-lomb.png'
-                },
-                {
-                    title: 'amagen',
-                    link: '#',
-                    image: 'img-logo-amgen.png'
-                },
-                {
-                    title: 'astrazeneca',
-                    link: '#',
-                    image: 'img-logo-astrazeneca.png'
-                },
-                {
-                    title: 'exelixis',
-                    link: '#',
-                    image: 'img-logo-exelixis.png'
-                },
-                {
-                    title: 'genetech',
-                    link: '#',
-                    image: 'img-logo-genetech.png'
-                },
-                {
-                    title: 'genetech',
-                    link: '#',
-                    image: 'img-logo-bausch-and-lomb.png'
-                },
-            ]
-        }
-    %}
-
-    <section class="hidden px-4 lg:px-8 py-44">
-        <div class="mx-auto max-w-7xl">
-            <div class="swiper logos-swiper">
-            <div class="swiper-wrapper">
-                {% for item in logos.items %}
-                    <div class="flex items-center justify-center px-2 h-36 swiper-slide">
-                        <img src="{{theme.link}}/public/img/{{ item.image }}" alt="{{ item.name }}" class="w-full">
-                    </div>
-                {% endfor %}
-            </div>
             </div>
         </div>
     </section>
 
-    {% for content in pageContent %}
-        {% set featureContentIcons = content.acf_fc_layout == 'features_content_with_icons' %}
-        {% set cardImage = content.acf_fc_layout == 'card_with_image' %}
-        {% set featuredStats = content.acf_fc_layout == 'featured_stats' %}
-        {% set featuredKeyList = content.acf_fc_layout == 'featured_key_list' %}
-        {% set featuredList = content.acf_fc_layout == 'featured_entry_list' %}
 
-        {% if featureContentIcons %}
-            {# feature with icons #}
-            {% set features = content.features_content_with_icons[0].features %}
-
-            {% set icon = item.icon %}
-            {% set title = item.title %}
-            {% set entry = item.entry %}
-
-            {% include "/templates/partials/content/_partial-content-feature-icons.twig" %}
-
-        {% elseif cardImage %}
-
-            {% set cards = content.card_with_image[0].cards %}
-
-            {% embed "/templates/components/containers/sections/_component-section-full.twig" with {
-                id: 'section-content-' ~ loop.index,
-                class: 'feature-card-with-image',
-                maxWidth: 'max-w-screen-xl' 
-            } %}
-                {% block section_content %}
-                    <ul class="stack-cards js-stack-cards">
-                        {% for card in cards %}
-                            {% set title = card.title %}
-                            {% set entry = card.entry %}
-                            {% set image = card.image %}
-                            {% set link = card.link %}
-                            <li class="pb-20 stack-cards__item js-stack-cards__item inview-item">
-                                {% include "/templates/components/cards/_component-card-featured-image.twig" %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endblock %}
-            {% endembed %}
-
-        {% elseif featuredStats %}
-            {# featured stats #}
-            {% set stats = content.featured_stats[0] %}
-            {% include "partials/content/_partial-content-featured-stats.twig" %}
-
-        {% elseif featuredKeyList %}
-            {# featured key list #}
-            {% set keyList = content.featured_stats[0] %}
-            {% include "/templates/partials/content/_partials-content-featured-key-list.twig" %}
-
-        {% elseif featuredList %}
-            {# featured entry list #}
-            {% set list = content.featured_entry_list[0] %}
-            {% include "/templates/partials/content/_partials-content-featured-entry-list.twig" %}
-        {% endif %}
-            
-        
-    {% endfor %}
+    {# page content #}
+    <div class="relative page-content__entry">  
+        {% include "partials/content/_partial-content-builder.twig" %}
+    </div>
 
     {% include "partials/_partial-call-to-action.twig" with {
         title: callToAction.title,

@@ -1,9 +1,12 @@
 {% extends "layouts/base.twig" %}
 
+{% set hero = post.meta('page_hero')[0] %}
+
 {% block content %}
     {% embed "components/containers/archive/_embed-archive-title.twig" with {
-        title: post_type_title ?? title,
-        subtitle: description,
+        title: hero.title ?? title,
+        heroSubTitle : hero.sub_title ?? subTitle,
+        heroEntry: hero.entry,
     } %}
         {% block archive_content %}
             {% if fn('is_home') and terms %}
@@ -15,13 +18,29 @@
                     {% endfor %}
                 </menu>
             {% endif %}
-            <div class="grid grid-cols-1 gap-8 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 article-posts">
-                {% for post in posts %}
-                    <div id="article-{{ post.id }}" class="artice-posts__item inview-content__item">
-                        {% include "/components/cards/_component-card-post.twig" %}
+
+
+            {% embed "/templates/components/containers/sections/_embed-section-full.twig" %}
+                {% block section_content %}
+                    <div class="grid grid-cols-1 gap-8 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 article-posts">
+                        {% for post in posts %}
+                            <div id="article-{{ post.id }}" class="artice-posts__item inview-item">
+                                {% include "/components/cards/_component-card-post.twig" %}
+                            </div>
+                        {% endfor %} 
                     </div>
-                {% endfor %} 
-            </div>
+                {% endblock %}
+            {% endembed %}
+
+            
+            
         {% endblock %}
     {% endembed %}
+
+    {# cta #}
+    {% include "partials/_partial-call-to-action.twig" with {
+        title: callToAction.title ? callToAction.title : options.general_call_to_action.title ,
+        entry: callToAction.entry ? callToAction.entry : options.general_call_to_action.entry,
+        link: callToAction.link ? callToAction.link : options.general_call_to_action.link,
+    } %}
 {% endblock %}

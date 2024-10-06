@@ -1,0 +1,7 @@
+<div class="relative page-content__entry">  
+    {% if pageType and pageContentBuilder|length %}
+        {% include "partials/content/_partial-content-builder.twig" %}
+    {% else %}
+        {% include "partials/content/_partial-content-basic.twig" %}
+    {% endif %}
+</div>

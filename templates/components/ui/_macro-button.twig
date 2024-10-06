@@ -3,35 +3,54 @@
     
     {% set options = {
         text: 'Button Text',
-        type: 'primary',
+        type: typeClass | default('primary'),
         size: 'md',
         icon: null,
         link: null,
     }  | merge(options)  %}
 
     {% set typeClass = {
-        'primary': 'bg-wood-smoke-950 hover:text-flamingo-500/70 hover:border-flamingo-500/70 border-2 border-dodger-blue-600  text-dodger-blue-600 rounded-full space-x-4 ring-0',
+        'primary': 'bg-wood-smoke-950/80 hover:text-flamingo-500/70 hover:border-flamingo-500/70 border-2 border-dodger-blue-600  text-dodger-blue-600 rounded-full space-x-4 ring-0',
         'secondary': 'bg-blue-100 border-blue-200 text-blue-800 hover:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-25 active:border-blue-200 active:shadow-none',
-        'simple': 'bg-white border-gray-200 text-gray-800 hover:border-gray-300 hover:shadow-sm',
+        'simple': 'bg-transparent text-white rounded-full',
     }[options.type] %}
 
     {% set sizeClass = {
         'sm': 'py-1.5 px-3.5 text-sm',
         'md': 'py-2.5 px-5 text-sm',
         'lg': 'py-3 px-6 text-base',
+        'xl': 'py-4 px-8 text-lg',
     }[options.size] %}
 
     {# Generate button HTML #}
-    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out">
+    <a href="{{ options.link }}" class="{{ typeClass }} {{ sizeClass }} inline-flex items-center justify-center leading-5 font-semibold tracking-widest transition-all duration-200 ease-in-out cursor-pointer group relative z-[999]">
 
-        <span class="text-white">{{ options.text }}</span>
+        <span class="{{ options.type is same as 'simple' ? 'text-white group-hover:text-dodger-blue-500' : 'text-white' }}">{{ options.text }}</span>
         {# Include an optional SVG icon #}
-        {% if options.icon is not null %}
-            <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full hover:left-4">
+        {% if options.icon %}
+            <span class="relative inline-flex items-center justify-center w-5 h-5 bg-current rounded-full">
                 {{ icons.icon(options.icon, 'w-4 h-4 text-wood-smoke-950') }}
             </span>
         {% endif %}
     </a>
+{% endmacro %}
+
+{% macro btnSwiper(options=[]) %}
+    {% import "/templates/components/ui/_macro-icon.twig" as icons %}
+
+    {% set options = {
+        icon: icon,
+        text: text,
+        class: class,
+        type: type,
+        size: size,
+    }  | merge(options)  %}
+    
+    <div class="transition duration-150 ease-linear border border-transparent rounded cursor-pointer flex items-center justify-center {{ options.size }} text-dodger-blue-800 hover:text-white hover:border-dodger-blue-700 swiper-button__{{ options.type }}">
+        {{ icons.icon('arrow-right',  options.icon ) }}
+        <span class="sr-only">{{ options.text }}</span>
+    </div>
+
 {% endmacro %}
 
 

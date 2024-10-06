@@ -1,6 +1,11 @@
 {% set level = level + 0 %}
+{% import "components/ui/_macro-icon.twig" as icons %}
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
 
-<menu class="menu-list flex items-center space-x-4 lg:space-x-8 {{ name }}" data-level="{{ level }}">
+<menu class="menu-list flex items-center space-x-4 lg:space-x-8 relative {{ name }}" data-level="{{ level }}">
     
 	{% for item in items %}
 		<li 
@@ -10,7 +15,7 @@
             @mouseenter="open = true"
             @mouseleave="open = false"
             :class="scrolledFromTop ? ' py-8' : 'py-16'"
-            class="font-semibold {{ item.classes|join(', ') }} {{ item.current ? 'text-white' : '' }} menu-list-item py-8 group relative text-black-rock-100/80 transition-all duration-500 ease-in-out hover:text-white"
+            class="font-semibold {{ item.classes|join(' ') }} {{ 'menu-' ~ item.slug }} {{ item.current ? 'text-white' : '' }} menu-list-item py-8 group cursor-pointer relative text-white transition-all duration-500 ease-in-out"
         >
             <div class="absolute inset-x-0 top-0 h-0.5 {{ item.current ? 'bg-dodger-blue-800' : '' }} "></div>
 			{% if item.link == '#' %}
@@ -19,7 +24,7 @@
 				</button>
 			{% else %}
 				<a href="{{ item.link }}" 
-                    class=" flex items-center space-x-1.5 text-sm transition duration-150 ease-linear menu-link hover:text-white" 
+                    class=" flex items-center space-x-1.5 text-sm transition duration-150 ease-linear menu-link hover:text-dodger-blue-500" 
                     target="{{ item.target }}"
                     :aria-expanded="open"
                 >
@@ -27,51 +32,11 @@
                 </a>
 			{% endif %}
 
-            
-                {% if item.children  %}
-                <div 
-                    class="origin-top-right absolute top-[80%] left-1/2 -translate-x-1/2 min-w-[240px] bg-black-rock-950 border border-black-rock-800/30 px-10 py-4 text- text-left rounded shadow-xl [&[x-cloak]]:hidden z-50"
-                    x-show="open"
-                    x-transition:enter="transition ease-out duration-200 transform"
-                    x-transition:enter-start="opacity-0 -translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    x-transition:leave="transition ease-out duration-200"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
-                    x-cloak
-                    @focusout="await $nextTick();!$el.contains($focus.focused()) && (open = false)"
-                   data-level="{{ level + 1 }}"
-                >
-                    {% if item.meta('mega_menu_item') %}
-                        <menu class="flex gap-12 px-4 py-2">
-                            {% for item in item.children %}
-                                <li class="{{ item.classes.join('') }} relative min-w-36 space-y-2  text-sm">
-                                    <a href="{{ item.link }}" class="block py-0.5 text-gray-100 transition duration-150 ease-in-out whitespace-nowrap  hover:text-dodger-blue-600 uppercase">{{ item.title }}</a>
-                                    <ul class="flex-none">
-                                        {% for child in item.children %}
-                                            <li><a href="{{ child.link }}" class="block py-1.5 font-light text-black-rock-100/80 hover:text-white">{{ child.title }}</a></li>
-                                        {% endfor %}
-                                        
-                                    </ul>
-                                </li>
-                            {% endfor %}
+            {# item children#}
+            {% if item.children  %}
+                {% include "components/menu-list/partials/_partial-menu-childern.twig" %}
+            {% endif %}
 
-                        </menu>
-                     {% else %}
-                    <menu class="">
-                        {% for item in item.children %}
-                            <li class="{{ item.classes.join('') }} text-sm">
-                                <a href="{{ item.link }}" class="menu-link">{{ item.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </menu>
-                {% endif %}  
-                </div>
-                {% endif %}
-            
-
-            
-			
 		</li>
 	{% endfor %}
 </menu>

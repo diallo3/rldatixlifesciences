@@ -1,0 +1,115 @@
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-icon.twig" as icons %}
+{% import "/templates/components/ui/_macro-image-object.twig" as images %}
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+        
+<div class="card-member">
+    <figure class="aspect-[3/2] rounded-lg overflow-hidden bg-wood-smoke-950 border-2 border-wood-smoke-800 ">
+        {{ images.imageObject({
+            src: profile.url ?: theme.link ~ '/public/icons/icon-temp-image.svg',
+            alt: profile.alt,
+            class: 'w-full h-full',
+        })}}
+    </figure>
+
+    {# name and title #}
+    <div class="flex justify-between px-1 py-2">
+        <div class="flex-grow">
+            {{ headings.headingThree({
+                title: title,
+                size: 'fluid-text-base',
+            }) }}
+            <p class="text-base leading-7 text-dodger-blue-500">{{ position }}</p>
+        </div>
+
+        {% if social %}
+            <div class="flex-shrink">
+                <a href="{{ social }}" class="block py-1 text-dodger-blue-900 hover:text-white" target="_blank">
+                    <span class="sr-only">LinkedIn for {{ title }}</span>
+                    {{ icons.icon('linkedin', 'size-5') }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div class="flex justify-between px-1 py-2">
+        <button @click="modalIsOpen = true" type="button" class="relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:translate-y-1 after:opacity-0 hover:after:translate-y-0 hover:after:opacity-100 after:transition after:ease-in-out after:duration-20 hover:text-dodger-blue-500" aria-label="{{ title }}">Full Bio</button>
+    </div>
+    <template x-teleport="body">
+        <div 
+            x-cloak 
+            x-show="modalIsOpen" 
+            x-transition.opacity.duration.200ms 
+            x-trap.inert.noscroll="modalIsOpen" 
+            @keydown.esc.window="modalIsOpen = false" 
+            @click.self="modalIsOpen = false" 
+            class="fixed inset-0 z-30 flex items-end justify-center p-4 pb-8 bg-black/70 backdrop-blur-sm sm:items-center lg:p-8" 
+            role="dialog" aria-modal="true" 
+            aria-labelledby="defaultModalTitle"
+        >
+                <!-- Modal Dialog -->  
+                <div 
+                    x-show="modalIsOpen" 
+                    x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" 
+                    x-transition:enter-start="opacity-0 scale-50" 
+                    x-transition:enter-end="opacity-100 scale-100" 
+                    class="relative flex flex-col gap-4 overflow-hidden border bg-wood-smoke-950 max-w-7xl rounded-xl border-wood-smoke-900/60 min-h-96 member-dialog">      
+                    
+                    <div class="absolute inset-x-0 bottom-0">
+                        <svg width="1063" height="241" viewBox="0 0 1063 241" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="1063" height="241" fill="url(#paint0_radial_204_17543)"></rect>
+                        <defs>
+                        <radialGradient id="paint0_radial_204_17543" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(531.5 241) rotate(-90) scale(172.685 564.997)">
+                        <stop stop-color="#0D1453"></stop>
+                        <stop offset="1" stop-color="#050822" stop-opacity="0"></stop>
+                        </radialGradient>
+                        </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Dialog Header -->
+                    <div class="absolute top-0 right-0 text-white">
+                        <button @click="modalIsOpen = false" aria-label="close modal" class="p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="1.4" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Dialog Body -->
+                    <div class="px-8 py-12 lg:px-16 member-dialog__content"> 
+                        <div class="grid grid-cols-2 gap-8 lg:items-center">
+                            <div class="member-dialog__entry">
+                                <div class="space-y-8">
+                                    <div class="space-y-3 member-dialog__title">
+                                        {{ headings.headingThree({
+                                            title: title,
+                                            size: 'fluid-text-2xl',
+                                        }) }}
+                                        <p class="text-base leading-7 text-dodger-blue-500">{{ position }}</p>
+                                    </div>
+
+                                    <div class="prose entry prose-invert member-dialog__bio">
+                                        {{ bio }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative member-dialog__featured">
+                                <div class="absolute rounded-md -inset-2 bg-wood-smoke-600/30 blur-lg lg:block"></div>
+                                <figure class="aspect-[1/1] rounded-lg overflow-hidden relative">
+                                    {{ images.imageObject({
+                                        src: profile.url ?: theme.link ~ '/public/icons/icon-temp-image.svg',
+                                        alt: member.image.alt,
+                                        class: 'w-full h-full',
+                                    })}}
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+        </div>
+    </template>
+</div>

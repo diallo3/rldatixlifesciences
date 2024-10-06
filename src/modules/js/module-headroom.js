@@ -6,7 +6,7 @@ export function initializeHeadroom() {
     if (header) {
         const headroom = new Headroom(header , {
             tolerance: 10,
-            offset : 205,
+            offset : 50,
         });
         headroom.init();
     }

@@ -2,16 +2,22 @@
 {% import "components/ui/_macro-button.twig" as buttons %}
 {% import "components/ui/_macro-heading.twig" as headings %}
 
-<div id="page{{ post.id }}" class="px-6 content-wrapper lg:px-8 inview-container page-{{ post.slug }}">
+<div id="page{{ post.id }}" class="content-wrapper inview-container page-{{ post.slug }}">
     <article
         x-data="visibleNavHighlighter('.article-body h2')"
         x-on:scroll.window.throttle.50ms="onScroll()"
-        id="{{ post.slug }}"  class="page-{{ post.slug }}">
+        id="{{ post.slug }}"  class="page-{{ post.slug }} page-content">
         {% block page_hero %}
-            {% include "pages/page/partials/_partial-page-hero.twig" %}
+            {% include "pages/page/partials/_partial-hero-full-background.twig" with {
+                heroAccent: hero.accent,
+                heroTitle: hero.title,
+                heroSubTitle: hero.sub_title,
+                heroImage: hero.image,
+                heroCTAs: hero.call_to_actions,
+            } %}
         {% endblock %}
 
-        <section class="pb-32 page-body article-body inview-content">
+        <section class="page-body article-body inview-content">
             {% block page_content %}
                 <p>Page Content</p>
             {% endblock %}
