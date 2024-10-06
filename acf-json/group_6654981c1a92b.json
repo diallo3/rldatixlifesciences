@@ -59,6 +59,13 @@
                 "operator": "==",
                 "value": "solution"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "all"
+            }
         ]
     ],
     "menu_order": 0,
@@ -95,5 +102,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1719439457
+    "modified": 1723205105
 }

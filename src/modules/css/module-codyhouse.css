@@ -19,14 +19,14 @@ Usage: codyhouse.co/license
 }
   
 .stack-cards__item {
-    @apply top-8 lg:top-20;
+    @apply top-8 lg:top-24;
     position: relative;
     position: -webkit-sticky;
     position: sticky;
-    /* 
-    height: 0;
+    
+    /* height: 0;
     padding-bottom: calc(100%/(var(--stack-cards-item-ratio)));
      
-    padding-bottom: 56.25%;*/
+    padding-bottom: 56.25%; */
     transform-origin: center top;
 }

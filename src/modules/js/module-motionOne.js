@@ -7,11 +7,11 @@ const navHeader = () => {
 
     const navSequence = [
         // [navHeader, {opacity: ['0', '1'], y: ['1rem', '0']}, { duration: 0.5  }],
-        [navItems, {opacity: ['0', '1'], y: ['-0.85rem', '0']}, { delay: stagger(0.05), duration: 0.2 }],
+        [navItems, {opacity: ['0', '1'], y: ['-0.5rem', '0']}, { delay: stagger(0.05), duration: 0.2 }],
         [navSections, {opacity: ['0', '1']}, { delay: stagger(0.1), duration: 0.5 }, { at: '-0.85'}]
     ]
     
-    timeline(navSequence);
+    // timeline(navSequence);
 }
 
 const heroContent = () => {

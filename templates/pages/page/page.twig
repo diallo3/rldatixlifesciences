@@ -18,6 +18,10 @@
 {% set pageContentBuilder = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
 
+{% block head %}
+    <link rel="preload" as="image" href="{{ post.thumbnail.src|towebp }}" type="image/webp">
+{% endblock %}
+
 {% block content %}
 
     {% embed "/templates/components/containers/pages/_embed-page-title.twig"  %}

@@ -24,7 +24,9 @@
                 "cta": "CTAs",
                 "img": "Image"
             },
-            "default_value": [],
+            "default_value": [
+                "title"
+            ],
             "return_format": "value",
             "min": "",
             "max": "",
@@ -93,7 +95,15 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_667c879c3e2da",
+                        "operator": "==",
+                        "value": "title"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -103,7 +113,8 @@
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "acfe_field_group_condition": 0
         },
         {
             "key": "field_66549b17e6989",
@@ -321,5 +332,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1719438964
+    "modified": 1723209226
 }

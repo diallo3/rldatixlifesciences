@@ -2,5 +2,7 @@
     {% set backgroundImg = theme.link ~ '/public/img/img-bck-header-default.jpg' %}
     {% set src = src ? src : backgroundImg | towebp %}
 
-    {{ 'style="background-image: url(' ~ src ~ ')"' }}
+    {# {{ 'style="background-image: url(' ~ src ~ ')"' }} #}
+
+    {{ 'data-bg="' ~ src ~ '"' }}
 {% endmacro %}

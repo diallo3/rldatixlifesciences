@@ -9,7 +9,6 @@
         heroEntry: hero.entry,
     } %}
         {% block archive_content %}
-        <script>console.log({{ post.meta('page_hero')[0] | json_encode | raw }})</script>
             {% if fn('is_home') and terms %}
                 <menu class="flex items-center gap-2 pb-4">
                     {% for item in menu.resources_nav.get_items %}

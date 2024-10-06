@@ -16,6 +16,8 @@ import { initializeStackedCards } from './modules/js/module-codyhouse';
 
 // import SCSS files if applicable
 import '../src/app.css';
+import 'lazysizes';
+import "lazysizes/plugins/unveilhooks/ls.unveilhooks";
 
 // glob import all css or scss files
 // import.meta.glob('../templates/**/*.css', { eager: true });

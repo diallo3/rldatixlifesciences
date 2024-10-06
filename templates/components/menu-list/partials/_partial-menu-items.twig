@@ -2,7 +2,7 @@
     {% for item in item.children %}
         <li class="{{ item.classes.join('') }} flex items-center text-sm space-x-2 group/item min-w-20">
             <div class="w-0 h-[2px] bg-dodger-blue-500 transition-all duration-200 ease-in-out group-hover/item:w-2"></div>
-            <a href="{{ item.link }}" class="block text-white menu-link">{{ item.title }}</a>
+            <a href="{{ item.link }}" class="block text-white whitespace-nowrap menu-link" target="{{ item.target }}">{{ item.title }}</a>
         </li>
     {% endfor %}
 </menu>

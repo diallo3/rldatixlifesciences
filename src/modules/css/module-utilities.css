@@ -24,3 +24,23 @@
     aspect-ratio: 1/cos(30deg);
     clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
 }
+
+.page-terms-of-use .fr-fil {
+    filter: invert(1);
+}
+
+.multi-line-link {
+    text-decoration: none;
+    display: inline;
+    padding-bottom: 3px;
+    transition: all 0.35s linear;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0px 2px;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    background-opacity: 0.5;
+
+	&:hover {
+		background-size: 100% 2px;
+	}
+}

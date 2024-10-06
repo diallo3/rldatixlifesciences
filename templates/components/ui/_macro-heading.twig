@@ -10,7 +10,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case ~ ' ' ~ options.font ~ ' ' ~ options.weight  %}
 
-    <h1 class="{{ headingOptions }}">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} drop-shadow">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading One #}
@@ -27,7 +27,7 @@
 
     {% set headingOptions = options.color ~ ' ' ~ options.size ~ ' ' ~ options.case ~ ' ' ~ options.font ~ ' ' ~ options.weight %}
 
-    <h1 class="{{ headingOptions }} font-bold">{{ options.title }}</h1>
+    <h1 class="{{ headingOptions }} font-bold drop-shadow">{{ options.title }}</h1>
 {% endmacro %}
 
 {# Heading Two #}

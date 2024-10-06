@@ -2,7 +2,7 @@
 {% import "components/ui/_macro-button.twig" as buttons %}
 {% import "components/ui/_macro-heading.twig" as headings %}
 
-<div id="page{{ post.id }}" class="px-6 content-wrapper lg:px-8 inview-container page-{{ post.slug }}">
+<div id="page{{ post.id }}" class="content-wrapper inview-container page-{{ post.slug }}">
     <article
         x-data="visibleNavHighlighter('.article-body h2')"
         x-on:scroll.window.throttle.50ms="onScroll()"

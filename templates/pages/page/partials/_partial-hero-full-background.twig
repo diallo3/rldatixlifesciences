@@ -6,16 +6,17 @@
 {% import "/templates/components/ui/_macro-image-background.twig" as backgrounds %}
 
 {% set front = fn('is_front_page') %}
-{% set backgroundImg = theme.link ~ '/public/img/img-bck-header-default.jpg'  %}
+{% set backgroundImg = hero.image ? get_image(hero.image).src|towebp : theme.link ~ '/public/img/img-bck-header-default.jpg'  %}
+
 
 <header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden">
     <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
-	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero__background" {{ backgrounds.backgroundHeaderImage(hero.image.url, theme)}}>
+	<div class="px-12 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-16 hero__background lazyload" {{ backgrounds.backgroundHeaderImage(post.thumbnail.src | towebp, theme)}}>
         <div class="absolute inset-0 bg-wood-smoke-950/70 xl:hidden"></div>
         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
         <div class="relative mx-auto lg:pt-20 max-w-screen-2xl lg:px-12 xl:px-24">
             <div class="hero-content">
-                    <div class="max-w-lg space-y-6 lg:max-w-5xl lg:space-y-12 lg:pr-8 xl:pr-20">
+                    <div class="max-w-xl space-y-6 lg:max-w-4xl lg:space-y-12 lg:pr-8 xl:pr-20">
                         <div class="space-y-4">
                             {# accent #}
                             {% if heroAccent or post.title and not front %}
@@ -28,7 +29,7 @@
                             {# headings #}
                             <hgroup class="mx-auto max-w-7xl hero__headings">
                                 {% if heroTitle %}
-                                    <span class="inline-block hero-content__item">
+                                    <span class="inline-block hero-content__item text-pretty">
                                         {{ headings.displayHeadingOne({
                                             title: heroTitle,
                                             case: front ? 'uppercase' : 'normal-case',
@@ -39,10 +40,11 @@
                             </hgroup>
                         </div>
 
+                        {% if heroSubTitle or hero.entry or heroCTAs %}
                         {# entry #}
-                        <div class="pb-24 hero__entry lg:max-w-2xl">
+                        <div class="pb-24 hero__entry lg:max-w-3xl">
                             {% if heroSubTitle %}
-                                <div class="hero-content__item">
+                                <div class="hero-content__item text-balance">
                                     {{ headings.headingThree({
                                         title: heroSubTitle,
                                         size: front ? 'fluid-text-sm lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
@@ -50,8 +52,8 @@
                                 </div>
                             {% endif %}
 
-                            <div class="mt-4">
-                                <div class="relative mx-auto prose max-w-none prose-invert prose-a:text-dodger-blue-500 font-semibold prose-a:decoration-gray-500 prose-a:decoration-dashed prose-a:underline-offset-4 {{ front ? 'prose-sm lg:prose-xl' : 'prose-sm lg:prose-lg' }} hero__entry-content">
+                            <div class="mt-4 text-balance">
+                                <div class="relative prose max-w-none xl:max-w-2xl prose-invert prose-p:drop-shadow-sm prose-a:text-dodger-blue-500 font-semibold prose-a:decoration-gray-500 prose-a:decoration-dashed prose-a:underline-offset-4 {{ front ? 'prose-sm lg:prose-xl' : 'prose-sm lg:prose-lg' }} hero__entry-content">
                                     {{ hero.entry }}
                                 </div>
                                 
@@ -72,6 +74,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                     
                 </div>

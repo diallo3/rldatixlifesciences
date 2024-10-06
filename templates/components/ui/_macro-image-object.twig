@@ -6,5 +6,5 @@
     } | merge(options)  %}
 
     {# Image #}
-    <img src="{{ options.src }}" class="{{ options.fit }}" alt="{{ options.alt }}" loading="lazy">
+    <img data-src="{{ options.src }}" class="{{ options.fit }} lazyload" alt="{{ options.alt }}" loading="lazy">
 {% endmacro %}

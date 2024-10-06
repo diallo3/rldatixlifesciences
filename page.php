@@ -62,7 +62,9 @@ if (have_rows('page_content')) {
             } else {
                 $context['featured_posts'] = Timber::get_posts([
                     'post_type' => 'post',
-                    'posts_per_page' => 3
+                    'posts_per_page' => 4,
+                    'orderby' => 'date',
+                    'order' => 'DESC'
                 ]);
             }
         }

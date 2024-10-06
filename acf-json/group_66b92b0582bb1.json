@@ -1,0 +1,138 @@
+{
+    "key": "group_66b92b0582bb1",
+    "title": "Event Fields",
+    "fields": [
+        {
+            "key": "field_66b92b4b5d9dc",
+            "label": "(Column 6\/12)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "columns": "6\/12",
+            "endpoint": 0,
+            "border": "",
+            "acfe_field_group_condition": 0,
+            "border_endpoint": [
+                "endpoint"
+            ]
+        },
+        {
+            "key": "field_66b92b055d9da",
+            "label": "Start Date",
+            "name": "start_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "F j, Y",
+            "return_format": "F j, Y",
+            "first_day": 1,
+            "placeholder": "",
+            "min_date": "",
+            "max_date": "",
+            "no_weekends": 0,
+            "acfe_field_group_condition": 0
+        },
+        {
+            "key": "field_66b92b5a5d9dd",
+            "label": "(Column 6\/12)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "columns": "6\/12",
+            "endpoint": 0,
+            "border": "",
+            "acfe_field_group_condition": 0,
+            "border_endpoint": [
+                "endpoint"
+            ]
+        },
+        {
+            "key": "field_66b92b3c5d9db",
+            "label": "End Date",
+            "name": "end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d\/m\/Y",
+            "return_format": "F j, Y",
+            "first_day": 1,
+            "placeholder": "",
+            "min_date": "",
+            "max_date": "",
+            "no_weekends": 0,
+            "acfe_field_group_condition": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            },
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:events"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_display_title": "",
+    "acfe_meta": "",
+    "acfe_note": "",
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1723412073
+}

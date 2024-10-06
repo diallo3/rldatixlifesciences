@@ -9,6 +9,11 @@
     {% block section_content %}
 
     {% set featured = content.featured_posts[0] %}
+    {% set type_of_posts = content.featured_posts[0].type_of_posts %}
+
+    {% set recent_posts = type_of_posts is same as 'recent' %}
+    {% set recommended = type_of_posts is same as 'recommended' %}
+    {% set category = type_of_posts is same as 'category' %}
     
     {% import "/templates/components/ui/_macro-heading.twig" as headings %}
     {% import "/templates/components/ui/_macro-button.twig" as buttons %}
@@ -35,22 +40,91 @@
             </div>
             <ul class="grid grid-cols-1 gap-4 space-y-8 lg:grid-cols-3 lg:gap-8 lg:space-y-0 inview-container featured_posts__items">
 
-                {% for key, post in get_posts({
-                    'posts_per_page': 3,
-                    'post_type': 'post',
-                    'post_status': 'publish',
-                    'post__not_in': [post.id],
-                    'category__in': [featured.post_category]
-                }) %}
+                {% if recommended  %}
+                    {% for post in get_posts(featured.recommended) %}
+                        {% set title = post.title %}
+                        {% set entry = post.excerpt %}
+                        {% set image = post.featured_image %}
+                        {% set link = post.link %}
+                        
+                        <li class="inview-item featured_posts__item">
+                            {% include "/templates/components/cards/_component-card-post.twig" %}
+                        </li>
+                    {% endfor %}
 
-                    {% set title = post.title %}
-                    {% set entry = post.excerpt %}
-                    {% set image = post.featured_image %}
-                    {% set link = post.link %}
-                    <li class="inview-item featured_posts__item">
-                        {% include "/templates/components/cards/_component-card-post.twig" %}
-                    </li>
-                {% endfor %}
+                {% elseif category %}
+                    {# events #}
+                    {% if featured.post_category == 17 %}
+                        {% set current_date = "now"|date("Y-m-d") %}
+
+                        {% for key, post in get_posts({
+                            'posts_per_page': 3,
+                            'post_type': 'post',
+                            'category__in': featured.post_category,
+                            'post_status': 'publish',
+                            'orderby': 'date',
+                            'order': 'DESC',
+                            'meta_query': [
+                                {
+                                    'key': 'start_date',
+                                    'value': current_date,
+                                    compare: '<',  
+                                    'type': 'DATE'
+                                }
+                            ]
+                        }) %}
+                            
+                            {% set title = post.title %}
+                            {% set entry = post.excerpt %}
+                            {% set image = post.featured_image %}
+                            {% set link = post.link %}
+                            <li class="inview-item featured_posts__item">
+                                {% include "/templates/components/cards/_component-card-post.twig" %}
+                            </li>
+                        {% endfor %}
+
+                    {% else %}
+                        {% for key, post in get_posts({
+                            'posts_per_page': 3,
+                            'post_type': 'post',
+                            'category__in': featured.post_category,
+                            'post_status': 'publish',
+                            'orderby': 'date',
+                            'order': 'DESC',
+                        }) %}
+                            {% set title = post.title %}
+                            {% set entry = post.excerpt %}
+                            {% set image = post.featured_image %}
+                            {% set link = post.link %}
+
+                            <li class="inview-item featured_posts__item">
+                                {% include "/templates/components/cards/_component-card-post.twig" %}
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+
+                {% else %}
+                    
+
+                    {% for key, post in get_posts({
+                        'posts_per_page': 6,
+                        'post_type': 'post',
+                        'post_status': 'publish',
+                        'orderby': 'date',
+                        'order': 'DESC',
+                    }) %}
+
+                        {% set title = post.title %}
+                        {% set entry = post.excerpt %}
+                        {% set image = post.featured_image %}
+                        {% set link = post.link %}
+                        <li class="inview-item featured_posts__item">
+                            {% include "/templates/components/cards/_component-card-post.twig" %}
+                        </li>
+                    {% endfor %}
+
+                {% endif %}
             </ul>
 
             {# <div class="py-8 text-center featured_posts__cta">

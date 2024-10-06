@@ -34,8 +34,6 @@
                     {% set social = member.meta('linked_in') %}
                     {% set bio = member.meta('bio') %}
 
-                    <script>console.log({{ profile | json_encode | raw }})</script>
-
                     <li 
                         x-data="{ modalIsOpen: false }"
                         id="{{ loop.index}}-member" class="inview-item team-section__member">
