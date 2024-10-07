@@ -22,6 +22,17 @@
 		
 		{{function('wp_head')}}
 
+        {% set tracking = options.tracking %}
+        {% if tracking %}
+            {% for tracking_code in tracking.tracking_codes %}
+                {% set in_header = tracking_code.in_header %}
+                {% if in_header == true %}
+                    <!-- {{ tracking_code.name }} -->
+                    {{ tracking_code.script | raw }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
 		{% if post.meta('css') %}
 			<style>{{ post.meta('css') }}</style>
 		{% endif %}
@@ -72,6 +83,16 @@
         
 
 		{{ function('wp_footer') }}
+
+        {% if tracking %}
+            {% for tracking_code in tracking.tracking_codes %}
+                {% set in_header = tracking_code.in_header %}
+                {% if in_header == false %}
+                    <!-- {{ tracking_code.name }} -->
+                    {{ tracking_code.script | raw }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
 		{% if post.meta('js') %}
 			<script>{{ post.meta('js') }}</script>
