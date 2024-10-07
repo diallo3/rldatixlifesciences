@@ -11,6 +11,7 @@
 
 {% set post_category = post.categories[0].name %}
 {% set accent = post_term ?? post_category %}
+{% set paragraphs = post.content|split('</p>') %}
 
 
 {% block content %}
@@ -22,19 +23,44 @@
             
             {% import "components/ui/_macro-image-object.twig" as images %}
             {% import "components/ui/_macro-heading.twig" as headings %}
+            {% import "components/ui/_macro-badge.twig" as badges %}
+            {% import "components/ui/_macro-icon.twig" as icons %}
             {% set prose = 'prose xl:prose-lg prose-blockquote:border-blue-300 prose-headings:tracking-tight  prose-headings:font-bold max-w-none prose-invert' %}
             
             <!-- Single Content -->
             <section class="space-y-8 article-content">
                     
-                <!-- post thumbnail -->
-                {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
                 
                 {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
                     {% block prose_content %}
-                        {{post.content}}
+                        {# {{post.content}} #}
+                        {% for key, paragraph in paragraphs %}
+                            {{ paragraph|raw }}</p>
+
+                            {% if key == 0 and post.thumbnail %}
+                                <!-- post thumbnail -->
+                                {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
+                            {% endif %}
+                        {% endfor %}
                     {% endblock %}
                 {% endembed %}
+
+                <hr class="border border-black-rock-900/40" />
+                
+                {# get post tags #}
+                {% set tags = post.tags %}
+                {% if tags %}
+                    <div class="flex flex-wrap items-center justify-center gap-4 py-4">
+                        {% for tag in tags %}
+                            <a href="{{ tag.link }}" class="inline-flex *:hover:text-dodger-blue-200 transition">
+                                {{ badges.containedBadge({
+                                    title: tag.name,
+                                    color: 'dodger-blue',
+                                }) }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                     
         
             </section>

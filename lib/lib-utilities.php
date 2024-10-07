@@ -71,3 +71,31 @@ function my_post_type_args($args, $post_type){
     return $args;
     
 }
+
+// AJAX handler for search results
+function ajax_search() {
+    // Load Timber for Twig templating
+    $context = Timber::context();
+    
+    // Get the search query from the request
+    $search_query = sanitize_text_field( $_GET['s'] );
+    
+    // Setup a custom WP_Query
+    $args = array(
+        's' => $search_query,
+        'post_type' => 'post',
+        'posts_per_page' => 10
+    );
+    
+    $context['posts'] = Timber::get_posts( $args );
+    
+    // Render the search results Twig template
+    Timber::render( '/templates/components/containers/archive/partials/_partials-search-results.twig', $context );
+    
+    // End AJAX request
+    wp_die();
+}
+
+// Register AJAX action for logged-in and guest users
+add_action( 'wp_ajax_nopriv_ajax_search', 'ajax_search' );
+add_action( 'wp_ajax_ajax_search', 'ajax_search' );

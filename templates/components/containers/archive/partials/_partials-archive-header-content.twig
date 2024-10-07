@@ -1,0 +1,65 @@
+{% import "/templates/components/ui/_macro-badge.twig" as badges %}
+{% import "/templates/components/ui/_macro-button.twig" as buttons %}
+{% import "/templates/components/ui/_macro-heading.twig" as headings %}
+
+<div class="max-w-lg pb-24 space-y-6 lg:max-w-5xl lg:space-y-12 lg:pr-8 xl:pr-20">
+    <div class="space-y-4">
+        {# accent #}
+        {% if heroAccent or post.title and not front %}
+            <div class="hero__accent hero-content__item">
+                {{ badges.accentBadge({
+                    title: heroAccent ?: post.title,
+                })}}
+            </div>
+        {% endif %}
+        {# headings #}
+        
+        <hgroup class="mx-auto space-y-8 max-w-7xl hero__headings">
+            
+                <div class="inline-block hero-content__item">
+                    {{ headings.displayHeadingOne({
+                        title: title ? title,
+                        case: front ? 'uppercase' : 'normal-case',
+                        size: front ? 'fluid-text-6xl lg:fluid-text-7xl' : 'fluid-text-3xl lg:fluid-text-5xl',
+                    })}}
+                </div>
+
+                {% if heroSubTitle %}
+                    <div class="hero-content__item">
+                        {{ headings.headingThree({
+                            title: 'Longer Page Subtitle Description',
+                            size: front ? 'fluid-text-sm lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
+                        })}}
+                    </div>
+                {% endif %}
+            
+        </hgroup>
+    </div>
+    
+
+    {# entry #}
+    <div class="hero__entry lg:max-w-2xl">
+        
+        {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
+            {% block prose_content %}
+                {{ description }}
+            {% endblock %}
+        {% endembed %}
+    </div>
+
+    {# cts #}
+    {% if ctas %}
+    <div class="hero__ctas">
+        <div class="max-w-sm hero__entry-cta">
+            {% for cta in ctas %}
+                {{ buttons.btnLink({
+                    text: cta.link.title,
+                    link: cta.link.url,
+                    type: loop.index == 1 ? 'primary' : 'simple',
+                    icon: loop.index == 1 ? 'arrow-right' : null,
+                })}}
+            {% endfor %}
+        </div>
+    {% endif %}
+    </div>
+</div>

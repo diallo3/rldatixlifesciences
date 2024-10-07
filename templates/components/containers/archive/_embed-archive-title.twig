@@ -16,6 +16,7 @@
 {% set ctas = page_hero.call_to_actions %}
 {% set subtitle = page_hero.subtitle  %}
 {% set ctas = page_hero.call_to_actions %}
+{% set is_home = fn('is_home') %}
 
 <div class="page-content">
     {# archive hero #}
@@ -23,75 +24,53 @@
         id="{{ term ? term|lower : post.type_archive }}-hero" 
         class="relative archive-hero post-{{ post.type }} inview-hero">
 
-        <header id="{{ term ? term|lower : post.id }}-hero" class="relative z-10 overflow-hidden">
+        <header id="{{ term ? term|lower : post.id }}-hero" class="relative z-10 overflow-x-clip">
             <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
             <div class="lg:min-h-[50vh] px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero__background lazyload" {{ backgrounds.backgroundHeaderImage(bck_img, theme)}}>
                 <div class="absolute inset-0 bg-wood-smoke-950/70 xl:hidden"></div>
                 <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
 
-                
+                {# header #}
                 <div class="relative px-6 mx-auto lg:pt-20 max-w-screen-2xl lg:px-12">
-                    <div class="pb-24 hero-content ">
-                        <div class="max-w-lg space-y-6 lg:max-w-5xl lg:space-y-12 lg:pr-8 xl:pr-20">
+                    <div class=" hero-content">
+                        {% if is_home %}
                             <div class="space-y-4">
                                 {# accent #}
-                                {% if heqroAccent or post.title and not front %}
+                                {% if heroAccent or post.title and not front %}
                                     <div class="hero__accent hero-content__item">
                                         {{ badges.accentBadge({
                                             title: heroAccent ?: post.title,
                                         })}}
                                     </div>
                                 {% endif %}
-                                {# headings #}
-                                <hgroup class="mx-auto space-y-8 max-w-7xl hero__headings">
-                                    
-                                        <div class="inline-block hero-content__item">
-                                            {{ headings.displayHeadingOne({
-                                                title: title ? title,
-                                                case: front ? 'uppercase' : 'normal-case',
-                                                size: front ? 'fluid-text-6xl lg:fluid-text-7xl' : 'fluid-text-3xl lg:fluid-text-5xl',
-                                            })}}
-                                        </div>
 
-                                        {% if heroSubTitle %}
-                                            <div class="hero-content__item">
-                                                {{ headings.headingThree({
-                                                    title: 'Longer Page Subtitle Description',
-                                                    size: front ? 'fluid-text-sm lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
-                                                })}}
-                                            </div>
-                                        {% endif %}
-                                    
-                                </hgroup>
-                            </div>
-
-                            {# entry #}
-                            <div class="hero__entry lg:max-w-2xl">
-                                
-                                {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
-                                    {% block prose_content %}
-                                        {{ description }}
-                                    {% endblock %}
-                                {% endembed %}
-                            </div>
-
-                            {# cts #}
-                            {% if ctas %}
-                            <div class="hero__ctas">
-                                <div class="max-w-sm hero__entry-cta">
-                                    {% for cta in ctas %}
-                                        {{ buttons.btnLink({
-                                            text: cta.link.title,
-                                            link: cta.link.url,
-                                            type: loop.index == 1 ? 'primary' : 'simple',
-                                            icon: loop.index == 1 ? 'arrow-right' : null,
+                                <hgroup class="space-y-8 max-w-7xl hero__headings">
+                                    <div class="inline-block hero-content__item">
+                                        {{ headings.displayHeadingOne({
+                                            title: title ? title,
+                                            case: front ? 'uppercase' : 'normal-case',
+                                            size: 'fluid-text-xl lg:fluid-text-3xl',
                                         })}}
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
+                                    </div>
+                                </hgroup>
+                        
+                                {% include "/templates/components/containers/archive/partials/_partials-search-form-results.twig" %}
                             </div>
-                        </div>
-                        </div>
+
+                            {# cateories #}
+                            <ul class="flex items-center space-x-4 categories-menu">
+                                {% for category in categories %}
+                                    <li class="menu-item">
+                                        <a href="{{ site.link ~ '/category/' ~ category.slug ~ '/' }}" class="inline-flex text-sm font-semibold text-dodger-blue-500 border-dodger-blue-700 px-4 py-1.5 border rounded">
+                                            {{ category.name }} <span class="ml-2 text-white">{{ category.count }}</span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% include "/templates/components/containers/archive/partials/_partials-archive-header-content.twig" %}
+                        {% endif %}
+                    </div>  
                 </div>
                 
             </div>

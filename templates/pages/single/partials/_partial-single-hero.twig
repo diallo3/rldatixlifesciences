@@ -35,10 +35,7 @@
                     <span class="inline-flex px-2 border rounded border-dodger-blue-800 text-dodger-blue-600">{{ post.meta('end_date')|date("F j, Y") }}</span>
                 </div>
             </div>
-           
-           
 
-        
         {% else %}
             <div class="flex items-center space-x-1">
                 <time datetime="{{ post.date|date("F j, Y") }}" class="text-sm font-medium text-gray-300">{{ post.date|date("F j, Y") }}</time>

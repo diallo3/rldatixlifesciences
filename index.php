@@ -24,6 +24,12 @@ $context['foo']   = 'bar';
 
 $context['title'] = get_the_title( get_option('page_for_posts', true));
 $context['hero_home'] = get_field('hero', $blog_page_id );
+$context['categories'] = get_terms([
+    'taxonomy' => 'category',
+    'hide_empty' => true,
+    'orderby' => 'name',
+    'order' => 'ASC'
+]);
 
 $templates = ['pages/index/index.twig'];
 if (is_home()) {

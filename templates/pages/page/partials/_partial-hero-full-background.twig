@@ -6,6 +6,7 @@
 {% import "/templates/components/ui/_macro-image-background.twig" as backgrounds %}
 
 {% set front = fn('is_front_page') %}
+{% set is_home = fn('is_home') %}
 {% set backgroundImg = hero.image ? get_image(hero.image).src|towebp : theme.link ~ '/public/img/img-bck-header-default.jpg'  %}
 
 

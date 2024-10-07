@@ -1,6 +1,8 @@
 {% extends "layouts/base.twig" %}
 
 {% set hero = post.meta('page_hero')[0] %}
+{# get all categories #}
+
 
 {% block content %}
     {% embed "components/containers/archive/_embed-archive-title.twig" with {
@@ -9,17 +11,7 @@
         heroEntry: hero.entry,
     } %}
         {% block archive_content %}
-            {% if fn('is_home') and terms %}
-                <menu class="flex items-center gap-2 pb-4">
-                    {% for item in menu.resources_nav.get_items %}
-                        <li class="resource-{{ index }}">
-                            <a href="{{ item.link }}" class="inline-flex px-2 py-1 text-sm font-semibold text-gray-500 transition-colors duration-100 ease-linear border rounded bg-gray-50 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200" title="{{ item.title }}">{{ item.title }}</a>
-                        </li>
-                    {% endfor %}
-                </menu>
-            {% endif %}
-
-
+            
             {% embed "/templates/components/containers/sections/_embed-section-full.twig" %}
                 {% block section_content %}
                     <div class="grid grid-cols-1 gap-8 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 article-posts">
