@@ -105,6 +105,9 @@ module.exports = {
                 prefix: "fluid-",
               },
         }),
+        function({ addVariant }) {
+            addVariant('autofill', '&:-webkit-autofill');
+        },
         plugin(function ({ addUtilities }) {
             const utilFormSwitch = {
                 ".form-switch": {

@@ -35,7 +35,7 @@ export function initializeAlpine() {
 
             performSearch() {
                 if (this.query.length > 2) { // Only search for queries with more than 2 characters
-                    fetch(`/?rest_route=/wp/v2/posts&search=${encodeURIComponent(this.query)}`)
+                    fetch(`/?rest_route=/wp/v2/posts&search=${encodeURIComponent(this.query)}&categories=1`)
                         .then(response => response.json())
                         .then(data => {
                             this.results = data; // Populate the results array with fetched data

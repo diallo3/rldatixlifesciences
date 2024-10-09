@@ -10,11 +10,15 @@
 
 
 {% set post_category = post.categories[0].name %}
-{% set accent = post_term ?? post_category %}
+{% set post_tag = post.tags[0].name %}
+{% set accent = post_tag ?? post_category %}
 {% set paragraphs = post.content|split('</p>') %}
 
 
+
+
 {% block content %}
+    <script>console.log({{ post.tags | json_encode | raw }})</script>
     {% embed "/templates/components/containers/singles/_embed-single-title.twig" with {
         title: post.title
     } %}

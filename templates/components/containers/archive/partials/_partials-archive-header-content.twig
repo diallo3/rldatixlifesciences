@@ -2,21 +2,19 @@
 {% import "/templates/components/ui/_macro-button.twig" as buttons %}
 {% import "/templates/components/ui/_macro-heading.twig" as headings %}
 
-<div class="max-w-lg pb-24 space-y-6 lg:max-w-5xl lg:space-y-12 lg:pr-8 xl:pr-20">
+<div class="max-w-lg space-y-6 lg:max-w-5xl lg:space-y-12 lg:pr-8 xl:pr-20 {{ description ? 'pb-24' : '' }}">
     <div class="space-y-4">
         {# accent #}
-        {% if heroAccent or post.title and not front %}
-            <div class="hero__accent hero-content__item">
-                {{ badges.accentBadge({
-                    title: heroAccent ?: post.title,
-                })}}
-            </div>
-        {% endif %}
+        <div class="hero__accent hero-content__item">
+            {{ badges.accentBadge({
+                title: heroAccent ? post.title : 'Category',
+            })}}
+        </div>
+
         {# headings #}
-        
         <hgroup class="mx-auto space-y-8 max-w-7xl hero__headings">
             
-                <div class="inline-block hero-content__item">
+                <div class="inline-block *:capitalize hero-content__item">
                     {{ headings.displayHeadingOne({
                         title: title ? title,
                         case: front ? 'uppercase' : 'normal-case',
@@ -38,14 +36,16 @@
     
 
     {# entry #}
-    <div class="hero__entry lg:max-w-2xl">
-        
-        {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
-            {% block prose_content %}
-                {{ description }}
-            {% endblock %}
-        {% endembed %}
-    </div>
+    {% if description %}
+        <div class="hero__entry lg:max-w-2xl">
+            
+            {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
+                {% block prose_content %}
+                    {{ description }}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    {% endif %}
 
     {# cts #}
     {% if ctas %}

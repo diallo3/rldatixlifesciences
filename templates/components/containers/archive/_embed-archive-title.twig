@@ -26,7 +26,7 @@
 
         <header id="{{ term ? term|lower : post.id }}-hero" class="relative z-10 overflow-x-clip">
             <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
-            <div class="lg:min-h-[50vh] px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero__background lazyload" {{ backgrounds.backgroundHeaderImage(bck_img, theme)}}>
+            <div class=" px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero__background {{ description ? 'lg:min-h-[50vh]' : 'lg:min-h-[30vh]' }} lazyload" {{ backgrounds.backgroundHeaderImage(bck_img, theme)}}>
                 <div class="absolute inset-0 bg-wood-smoke-950/70 xl:hidden"></div>
                 <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
 
@@ -58,11 +58,13 @@
                             </div>
 
                             {# cateories #}
-                            <ul class="flex items-center space-x-4 categories-menu">
+                            <ul class="flex-wrap items-center justify-center hidden gap-2 md:flex categories-menu">
                                 {% for category in categories %}
                                     <li class="menu-item">
-                                        <a href="{{ site.link ~ '/category/' ~ category.slug ~ '/' }}" class="inline-flex text-sm font-semibold text-dodger-blue-500 border-dodger-blue-700 px-4 py-1.5 border rounded">
-                                            {{ category.name }} <span class="ml-2 text-white">{{ category.count }}</span>
+                                        <a 
+                                            href="{{ site.link ~ '/tag/' ~ category.slug ~ '/' }}" 
+                                            class="inline-flex capitalize whitespace-nowrap text-sm font-medium text-dodger-blue-500 bg-black border-dodger-blue-700 px-3.5 py-0.5 border rounded-full hover:text-white">
+                                            {{ category.name }} <span class="ml-2 text-white sr-only">{{ category.count }}</span>
                                         </a>
                                     </li>
                                 {% endfor %}

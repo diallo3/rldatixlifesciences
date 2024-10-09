@@ -2,11 +2,11 @@
     <div 
         x-data="search()"
         class="z-10 py-8">
-        <div class="relative px-8 py-6 isolate group">
+        <div class="relative px-4 py-3 md:px-8 md:py-6 isolate group">
             <form class="w-full">
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 md:gap-4">
                     <div class="text-dodger-blue-700 group-focus-within:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-12">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
 
@@ -16,15 +16,20 @@
                         placeholder="Search..."
                         @input.debounce.500ms="performSearch()"
                         x-model="query"
-                        class="w-full bg-transparent border-none outline-none !ring-0 fluid-text-xl placeholder:text-dodger-blue-600 group-focus-within:placeholder:text-dodger-blue-800/40">
+                        class="w-full !bg-transparent border-none outline-none !ring-0 fluid-text-xl placeholder:text-dodger-blue-600 group-focus-within:placeholder:text-dodger-blue-800/40 autofill:bg-wood-smoke-950 autofill:text-white">
                 </div>
             </form>
             <!-- SearchBox Dropdown -->
 
-            <div id="results_list " class="absolute inset-x-0 top-0 w-full border-4 rounded-lg min-h-24 border-wood-smoke-800 bg-wood-smoke-950/90 group-focus-within:bg-wood-smoke-950 group-focus-within:border-dodger-blue-800 -z-10">
-                <ul x-show="results.length"  class="max-h-[500px] p-2 pt-24 overflow-y-auto overflow-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800">
+            <div id="results_list " class="absolute inset-x-0 top-0 w-full pt-16 border-4 rounded-lg md:pt-20 lg:pt-24 md:min-h-20 lg:min-h-24 border-wood-smoke-800 bg-wood-smoke-950 group-focus-within:bg-wood-smoke-950 group-focus-within:border-dodger-blue-800 -z-10">
+                <ul x-show="results.length"  class="max-h-[400px] p-2  overflow-y-auto overflow-hidden [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-wood-smoke-950 [&::-webkit-scrollbar-thumb]:bg-dodger-blue-800-300">
                     <template x-for="result in results" :key="result.id">
-                        <li x-text="result.title.rendered"></li>
+                        <li class="px-8 py-4 lg:px-20 hover:bg-black-rock-950/80 isolate">
+                            <a x-bind:href="result.link" class="block space-y-2 duration-150 ease-linear ">
+                                <span class="block text-xl font-semibold lg:text-2xl text-dodger-blue-500 transiton-all" x-text="result.title.rendered"></span>
+                                <span class="block max-w-4xl text-sm/7 line-clamp-2" x-html="result.excerpt.rendered"></span>
+                            </a>
+                        </li>
                     </template>
 
                 </ul>

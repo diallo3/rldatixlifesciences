@@ -72,6 +72,34 @@ function my_post_type_args($args, $post_type){
     
 }
 
+
+
+function include_categories_by_name($query) {
+    // Check if this is the main query on the front-end
+    if (($query->is_main_query() && !is_admin()) || ($query->is_main_query() && $query->is_search() && !is_admin())) {
+        // List of category names to include
+        $included_category_names = array('articles'); // Replace with your category slugs
+
+        // Convert category names to IDs
+        $included_categories = array();
+        foreach ($included_category_names as $category_name) {
+            $category = get_term_by('slug', $category_name, 'category');
+            if ($category) {
+                $included_categories[] = $category->term_id;
+            }
+        }
+
+        // Modify the query to include only these categories
+        if (!empty($included_categories)) {
+            $query->set('category__in', $included_categories);
+        }
+    }
+}
+
+add_action('pre_get_posts', 'include_categories_by_name');
+
+
+
 // AJAX handler for search results
 function ajax_search() {
     // Load Timber for Twig templating
@@ -79,12 +107,23 @@ function ajax_search() {
     
     // Get the search query from the request
     $search_query = sanitize_text_field( $_GET['s'] );
+
+    $included_category_names = array('articles'); // Replace with your category slugs
+    $included_categories = array();
+    foreach ($included_category_names as $category_name) {
+        $category = get_term_by('slug', $category_name, 'category');
+        if ($category) {
+            $included_categories[] = $category->term_id;
+        }
+    }
     
     // Setup a custom WP_Query
     $args = array(
         's' => $search_query,
         'post_type' => 'post',
-        'posts_per_page' => 10
+        'post_status' => 'publish',
+        'category__in' => $included_categories,
+        'posts_per_page' => -1,
     );
     
     $context['posts'] = Timber::get_posts( $args );
