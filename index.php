@@ -17,6 +17,7 @@
 use Timber\Timber;
 
 $blog_page_id = get_option('page_for_posts');
+$category_id = get_cat_ID('articles');
 
 $context          = Timber::context();
 $context['posts'] = Timber::get_posts();
@@ -24,12 +25,7 @@ $context['foo']   = 'bar';
 
 $context['title'] = get_the_title( get_option('page_for_posts', true));
 $context['hero_home'] = get_field('hero', $blog_page_id );
-$context['categories'] = get_terms([
-    'taxonomy' => 'post_tag',
-    'hide_empty' => true,
-    'orderby' => 'name',
-    'order' => 'ASC'
-]);
+$context['categories'] = get_tags_by_category($category_id);
 
 $templates = ['pages/index/index.twig'];
 if (is_home()) {

@@ -98,6 +98,22 @@ function include_categories_by_name($query) {
 
 add_action('pre_get_posts', 'include_categories_by_name');
 
+function get_tags_by_category($category_id) {
+    // Get all posts in the category
+    $args = array(
+        'category' => $category_id,
+        'posts_per_page' => -1, // Get all posts
+    );
+
+    $posts = get_posts($args);
+    $post_ids = wp_list_pluck($posts, 'ID'); // Extract post IDs
+
+    // Get all tags associated with the posts
+    $tags = wp_get_object_terms($post_ids, 'post_tag', array('fields' => 'all'));
+
+    return $tags;
+}
+
 
 
 // AJAX handler for search results
