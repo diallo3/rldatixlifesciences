@@ -75,11 +75,12 @@ function my_post_type_args($args, $post_type){
 
 
 function include_categories_by_name($query) {
-    // Check if this is the main query on the front-end
-    if (($query->is_main_query() && !is_admin()) || ($query->is_main_query() && $query->is_search() && !is_admin())) {
+    // Check if this is the main query on the front-end and it's an archive or the main posts page
+    if ($query->is_main_query() && !is_admin() && (is_home() )) {
+        
         // List of category names to include
         $included_category_names = array('articles'); // Replace with your category slugs
-
+        
         // Convert category names to IDs
         $included_categories = array();
         foreach ($included_category_names as $category_name) {

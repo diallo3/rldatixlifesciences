@@ -6,30 +6,31 @@
 {% import "/templates/components/ui/_macro-image-background.twig" as backgrounds %}
 
 {% set front = fn('is_front_page') %}
-{% set is_home = fn('is_home') %}
-{% set header_image = post.thumbnail ? post.thumbnail.src :  options.default_images.background.url %}
+{% set backgroundImg = theme.link ~ '/public/img/img-bck-header-default.jpg'  %}
+{% set hero_image = hero.image.url ?? options.default_images.background.url %}
 
-
-<header id="{{ post.id }}-hero" class="relative z-10 overflow-hidden">
-
+<header id="{{ post.id }}-solution-hero" class="relative z-10 overflow-hidden">
     <div class="absolute inset-x-0 top-0 bg-gradient-to-b from-black to-transparent h-1/3"></div>
-	<div class="px-12 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-16 hero__background lazyload" {{ backgrounds.backgroundHeaderImage(header_image, theme )}}>
-        <div class="absolute inset-0 bg-wood-smoke-950/70 xl:hidden"></div>
+	<div class="px-6 bg-center bg-no-repeat bg-cover lg:bg-top pt-36 sm:px-12 lg:px-8 hero bck lazyload" {{ backgrounds.backgroundHeaderImage(hero_image | towebp, theme)}}>
+        <div class="absolute inset-0 bg-wood-smoke-950/80 xl:hidden"></div>
         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wood-smoke-950 via-wood-smoke-950/70 to-transparent h-1/3"></div>
-        <div class="relative mx-auto lg:pt-20 max-w-screen-2xl lg:px-12 xl:px-24">
-            <div class="hero-content">
-                    <div class="max-w-xl space-y-6 lg:max-w-4xl lg:space-y-12 lg:pr-8 xl:pr-20">
+        <div class="relative mx-auto lg:pt-20 max-w-screen-2xl lg:px-12">
+        <div class="hero-content">
+                    <div class="max-w-lg space-y-6 lg:max-w-2xl xl:max-w-5xl lg:space-y-12 xl:pr-20">
                         <div class="space-y-4">
                             {# accent #}
                             {% if heroAccent or post.title and not front %}
-                                <div class="hero__accent hero-content__item">
-                                    {{ badges.accentBadge({
-                                        title: heroAccent ?: post.title,
-                                    })}}
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-3 py-0.5 text-xs font-medium tracking-widest  lg:tracking-[0.25rem] uppercase rounded text-flamingo-400 bg-flamingo-500/10 ring-1 ring-inset ring-flamingo-500/50">{{ heroAccent ?: post.type }}</span>
+                                    <div class="hero__accent hero-content__item">
+                                        {{ badges.accentBadge({
+                                            title: post.title,
+                                        })}}
+                                    </div>
                                 </div>
                             {% endif %}
                             {# headings #}
-                            <hgroup class="mx-auto max-w-7xl hero__headings">
+                            <hgroup class="max-w-5xl lg:pr-12 hero__headings">
                                 {% if heroTitle %}
                                     <span class="inline-block hero-content__item text-pretty">
                                         {{ headings.displayHeadingOne({
@@ -43,26 +44,27 @@
                         </div>
 
                         {% if heroSubTitle or hero.entry or heroCTAs %}
-                        {# entry #}
-                        <div class="pb-24 hero__entry lg:max-w-3xl">
+                        {# entr pb-24y #}
+                        <div class="pb-8 hero__entry lg:max-w-2xl">
                             {% if heroSubTitle %}
-                                <div class="hero-content__item text-balance">
+                                <div class="hero-content__item">
                                     {{ headings.headingThree({
                                         title: heroSubTitle,
-                                        size: front ? 'fluid-text-sm lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
+                                        size: front ? 'fluid-text-lg lg:fluid-text-xl' : 'fluid-text-base lg:fluid-text-lg',
                                     })}}
                                 </div>
                             {% endif %}
 
-                            <div class="mt-4 text-balance">
-                                <div class="relative prose max-w-none xl:max-w-2xl prose-invert prose-p:drop-shadow-sm prose-a:text-dodger-blue-500 font-semibold prose-a:decoration-gray-500 prose-a:decoration-dashed prose-a:underline-offset-4 {{ front ? 'prose-sm lg:prose-xl' : 'prose-sm lg:prose-lg' }} hero__entry-content">
+                            <div class="mt-4">
+                                <div class="relative mx-auto {{ front ? 'prose-lg lg:prose-xl' : 'prose-sm lg:prose-base' }} hero__entry-content">
                                     {{ hero.entry }}
                                 </div>
                                 
-                                {#  #}
-                                <div class="max-w-sm mt-8 lg:mt-16 hero__entry-cta">
+                                {# hero CTAs #}
+                                <div class="max-w-sm mt-8 hero__entry-cta">
                                     {% if heroCTAs %}
                                         {% for cta in heroCTAs %}
+
                                             {# {{ cta.title}} #}
                                             {{ buttons.btnLink({
                                                 text: cta.link.title,
@@ -78,17 +80,7 @@
                         </div>
                         {% endif %}
                     </div>
-                    
                 </div>
         </div>
-        
-        {# divider #}
-        {# {% if not fn('is_front_page') %}
-        <div class="relative mx-auto max-w-7xl">
-            <div class="my-8 flex items-center gap-4 before:h-px before:flex-1 before:bg-dodger-blue-800/50  before:content-[''] after:h-px after:flex-1 after:bg-dodger-blue-800/50  after:content-['']">
-                {{ icons.icon('brand-glyph', 'size-8') }}
-            </div>
-        </div>
-        {% endif %} #}
     </div>
 </header>

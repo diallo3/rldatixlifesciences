@@ -39,8 +39,9 @@
                         <div class="hexagon-container__img">
                             {{ images.imageObject({
                                 src: image.url ? image.url | towebp : theme.link ~ '/public/icons/icon-temp-image.svg',
-                                alt: image.alt,
-                                class: 'w-full h-full',
+                                alt: title,
+                                width: image.width,
+                                height: image.height,
                             })}}
                         </div>
                     </figure>
@@ -79,8 +80,9 @@
                         <figure class="overflow-hidden border border-blue-700 rounded-md aspect-w-16 aspect-h-9">
                             {{ images.imageObject({
                                 src: image.url ? image.url : src,
-                                alt: image.alt,
-                                class: 'w-full h-auto',
+                                width: image.width,
+                                height: image.height,
+                                alt: image.alt ? image.alt : 'Image alt text',
                             })}}
                         </figure>
                     </div>

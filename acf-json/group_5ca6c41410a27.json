@@ -215,7 +215,6 @@
             "max": 0,
             "collapsed": "",
             "button_label": "Add Phone",
-            "acfe_field_group_condition": 0,
             "rows_per_page": 20,
             "repeatable": true,
             "sub_fields": [
@@ -238,7 +237,6 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_5cb36016df542",
                     "repeatable": true
                 },
@@ -269,7 +267,6 @@
                     "default_value": "",
                     "placeholder": "",
                     "return_format": "array",
-                    "acfe_field_group_condition": 0,
                     "geolocation_token": "",
                     "parent_repeater": "field_5cb36016df542"
                 }
@@ -296,7 +293,6 @@
             "max": 0,
             "collapsed": "",
             "button_label": "Add Email",
-            "acfe_field_group_condition": 0,
             "rows_per_page": 20,
             "repeatable": true,
             "sub_fields": [
@@ -319,7 +315,6 @@
                     "placeholder": "Email Type",
                     "prepend": "",
                     "append": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_5cb368e712225",
                     "repeatable": true
                 },
@@ -341,7 +336,6 @@
                     "placeholder": "Email Address",
                     "prepend": "@",
                     "append": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_5cb368e712225",
                     "repeatable": true
                 }
@@ -368,7 +362,6 @@
             "max": 0,
             "collapsed": "",
             "button_label": "Add Hours",
-            "acfe_field_group_condition": 0,
             "rows_per_page": 20,
             "repeatable": true,
             "sub_fields": [
@@ -391,7 +384,6 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_65b99fd475e72",
                     "repeatable": true
                 },
@@ -420,7 +412,6 @@
                     "max_min": "",
                     "min_sec": "",
                     "max_sec": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_65b99fd475e72",
                     "repeatable": true
                 },
@@ -449,7 +440,6 @@
                     "max_min": "",
                     "min_sec": "",
                     "max_sec": "",
-                    "acfe_field_group_condition": 0,
                     "parent_repeater": "field_65b99fd475e72",
                     "repeatable": true
                 }
@@ -457,7 +447,7 @@
         },
         {
             "key": "field_65941855b22f9",
-            "label": "Call to Action",
+            "label": "Theme Defaults",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -472,8 +462,88 @@
             "placement": "left",
             "endpoint": 0,
             "no_preference": 0,
-            "acfe_field_group_condition": 0,
             "selected": 0
+        },
+        {
+            "key": "field_67301d466afd9",
+            "label": "Default Images",
+            "name": "default_images",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "acfe_seamless_style": 0,
+            "acfe_group_modal": 0,
+            "sub_fields": [
+                {
+                    "key": "field_672ff8b67d5b6",
+                    "label": "Background",
+                    "name": "background",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "uploader": "",
+                    "return_format": "array",
+                    "library": "all",
+                    "upload_folder": "",
+                    "acfe_thumbnail": 0,
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "full"
+                },
+                {
+                    "key": "field_672ff8e87d5b7",
+                    "label": "Thumbnail",
+                    "name": "thumbnail",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "uploader": "",
+                    "return_format": "array",
+                    "library": "all",
+                    "upload_folder": "",
+                    "acfe_thumbnail": 0,
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "full"
+                }
+            ],
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         },
         {
             "key": "field_659418eab22fa",
@@ -581,8 +651,8 @@
                     "max_size": "",
                     "mime_types": "",
                     "preview_size": "large",
-                    "acfe_field_group_condition": 0,
-                    "library": "all"
+                    "library": "all",
+                    "upload_folder": ""
                 },
                 {
                     "key": "field_66636cac09e95",
@@ -602,8 +672,7 @@
                     "maxlength": "",
                     "placeholder": "Hubspot Form Title",
                     "prepend": "",
-                    "append": "",
-                    "acfe_field_group_condition": 0
+                    "append": ""
                 },
                 {
                     "key": "field_6661c7c9f1916",
@@ -623,8 +692,7 @@
                     "maxlength": "",
                     "placeholder": "Hubsot Form ID",
                     "prepend": "",
-                    "append": "",
-                    "acfe_field_group_condition": 0
+                    "append": ""
                 }
             ],
             "repeatable": true
@@ -692,7 +760,6 @@
                     "max": 0,
                     "collapsed": "field_5cb36da8df0ce",
                     "button_label": "Add Tracking Code",
-                    "acfe_field_group_condition": 0,
                     "rows_per_page": 20,
                     "repeatable": true,
                     "sub_fields": [
@@ -755,7 +822,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "acfe_field_group_condition": 0,
                             "message": "Set to yes if code needs to be in header, else it will be inserted in the footer",
                             "default_value": 0,
                             "ui_on_text": "",
@@ -789,11 +855,17 @@
     "description": "",
     "show_in_rest": 0,
     "acfe_autosync": [
+        "php",
         "json"
     ],
     "acfe_form": 0,
     "acfe_display_title": "Theme Options",
-    "acfe_meta": "",
+    "acfe_meta": {
+        "acfcloneindex": {
+            "acfe_meta_key": "",
+            "acfe_meta_value": ""
+        }
+    },
     "acfe_note": "",
     "is_acf_component": 0,
     "acf_component_defaults": {
@@ -806,5 +878,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1717791943
+    "modified": 1731207415
 }

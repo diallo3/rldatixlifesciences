@@ -1,0 +1,11 @@
+<article id="{{ post.type ~ '~' ~ post.id }}" class="{{ post.type ~ '-' ~ post.slug }} article-download">
+    {% include "pages/single-download/partials/_partial-download-hero.twig" %}
+
+    <div class="max-w-4xl mx-auto xl:max-w-none page-content">
+        <div class="max-w-4xl mx-auto xl:max-w-none page-content">
+            {% block download_content %}
+                <p>Download Content</p>
+            {% endblock %}
+        </div>
+    </div>
+</article>

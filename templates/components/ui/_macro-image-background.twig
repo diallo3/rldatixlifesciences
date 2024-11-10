@@ -1,8 +1,8 @@
 {% macro backgroundHeaderImage(src, theme) %}
-    {% set backgroundImg = theme.link ~ '/public/img/img-bck-header-default.jpg' %}
-    {% set src = src ? src : backgroundImg | towebp %}
+    {% set backgroundImg = site.link ~ '/wp-content/uploads/2024/11/img-bck-header-default.jpg' %}
+    {% set src = src %}
 
-    {# {{ 'style="background-image: url(' ~ src ~ ')"' }} #}
-
-    {{ 'data-bg="' ~ src ~ '"' }}
+    {{ 'data-bg=" ' ~ src ~ ' "' }}
 {% endmacro %}
+
+{# {{ 'style="background-image: url(' ~ src ~ ')"' }} #}

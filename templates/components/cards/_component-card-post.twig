@@ -18,7 +18,7 @@
 		<div class="flex items-center mt-8 text-xs gap-x-4">
 			<a href="{{ post.categories[0].link }}" class="relative z-10">
                {{ badges.containedBadge({
-                    title: post.tags[0].name,
+                    title: post.tags ? post.tags[0].name : post.categories[0],
                     size: 'xs',
                 }) }}
             </a>

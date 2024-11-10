@@ -49,35 +49,36 @@ if (is_day()) {
 	array_unshift($templates, 'pages/' . $templateName . '/' . $templateName . '.twig');
 }
 
+$context['posts'] = Timber::get_posts();
 
-if(is_category()){
-    // Get the current category
-    $current_category = get_queried_object();
+// if(is_category()){
+//     // Get the current category
+//     $current_category = get_queried_object();
 
-    $query_args = [
-        'post_type' => 'post',
-        'posts_per_page' => -1, 
-        'meta_key' => 'start_date', 
-        'orderby' => 'meta_value', 
-        'order' => 'ASC',
-    ];
+//     // $query_args = [
+//     //     'post_type' => 'post',
+//     //     'posts_per_page' => -1, 
+//     //     'meta_key' => 'start_date', 
+//     //     'orderby' => 'meta_value', 
+//     //     'order' => 'ASC',
+//     // ];
 
-    // Check if the current category is 'Events' and if so, only show events that haven't passed yet
-    if ($current_category && $current_category->slug == 'events') {
-        $query_args['meta_query'] = [
-            [
-                'key' => 'start_date', 
-                'value' => date('Ymd'), 
-                'compare' => '>=', 
-                'type' => 'DATE',
-            ],
-        ];
-        $context['posts'] = Timber::get_posts($query_args);
-    }
+//     // Check if the current category is 'Events' and if so, only show events that haven't passed yet
+//     if ($current_category && $current_category->slug == 'events') {
+//         $query_args['meta_query'] = [
+//             [
+//                 'key' => 'start_date', 
+//                 'value' => date('Ymd'), 
+//                 'compare' => '>=', 
+//                 'type' => 'DATE',
+//             ],
+//         ];
+//         $context['posts'] = Timber::get_posts($query_args);
+//     }
     
-} else {
-    $context['posts'] = Timber::get_posts();
-}
+// } else {
+   
+// }
 
 
 
