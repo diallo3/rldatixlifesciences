@@ -18,9 +18,12 @@
 {% set pageContentBasic = post.meta('page_content_basic') %}
 {% set pageContentBuilder = post.meta('page_content') %}
 {% set callToAction = post.meta('call_to_action')[0] %}
+{% set ctaForm = callToAction.form %}
 
 
 {% block content %}
+
+    <script>console.log({{ ctaForm | json_encode | raw }})</script>
 
     {% embed "/templates/components/containers/singles/_embed-single-solution-title.twig" %}
         {% block solution_content %}
@@ -37,5 +40,8 @@
         title: callToAction.title,
         entry: callToAction.entry,
         link: callToAction.link,
+        formTitle: ctaForm.form_title,
+        portal: ctaForm.hubspot_id,
+        form: ctaForm.form_id,
     } %}
 {% endblock %}

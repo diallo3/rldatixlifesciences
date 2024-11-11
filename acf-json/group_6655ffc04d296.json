@@ -3,11 +3,11 @@
     "title": "Call to Action",
     "fields": [
         {
-            "key": "field_66560055e4a53",
-            "label": "(Column 2\/12)",
-            "name": "",
+            "key": "field_673261a589542",
+            "label": "CTA Fields",
+            "name": "cta_fields",
             "aria-label": "",
-            "type": "acfe_column",
+            "type": "checkbox",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,89 +16,28 @@
                 "class": "",
                 "id": ""
             },
-            "columns": "2\/12",
-            "endpoint": 0,
-            "border": "",
-            "acfe_field_group_condition": 0,
-            "border_endpoint": [
-                "endpoint"
-            ]
-        },
-        {
-            "key": "field_6655ffc017f96",
-            "label": "Add Accent",
-            "name": "add_accent",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
+            "choices": {
+                "accent": "Accent",
+                "title": "Title",
+                "entry": "Entry",
+                "link": "Link",
+                "form": "Form"
             },
-            "message": "",
-            "default_value": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1,
-            "acfe_field_group_condition": 0,
-            "style": ""
-        },
-        {
-            "key": "field_66560074e4a54",
-            "label": "(Column 10\/12)",
-            "name": "",
-            "aria-label": "",
-            "type": "acfe_column",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "columns": "10\/12",
-            "endpoint": 0,
-            "border": "",
-            "acfe_field_group_condition": 0,
-            "border_endpoint": [
-                "endpoint"
-            ]
-        },
-        {
-            "key": "field_6655fff8e4a52",
-            "label": "Accent",
-            "name": "accent",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6655ffc017f96",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
+            "default_value": [
+                "title"
             ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "acfe_field_group_condition": 0
+            "return_format": "value",
+            "min": "",
+            "max": "",
+            "allow_custom": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal",
+            "toggle": 1,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
         },
         {
-            "key": "field_66560089e4a55",
+            "key": "field_66560055e4a53",
             "label": "(Column Endpoint)",
             "name": "",
             "aria-label": "",
@@ -115,9 +54,90 @@
             "border_endpoint": [
                 "endpoint"
             ],
-            "acfe_field_group_condition": 0,
+            "allow_in_bindings": 1,
             "columns": "6\/12",
             "border": ""
+        },
+        {
+            "key": "field_6732623689543",
+            "label": "(Column 2\/12)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_673261a589542",
+                        "operator": "==",
+                        "value": "accent"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "columns": "2\/12",
+            "endpoint": 0,
+            "border": "",
+            "allow_in_bindings": 1,
+            "border_endpoint": [
+                "endpoint"
+            ]
+        },
+        {
+            "key": "field_6655fff8e4a52",
+            "label": "Accent",
+            "name": "accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_673261a589542",
+                        "operator": "!=",
+                        "value": "accent"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_66560074e4a54",
+            "label": "(Column Fill)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "columns": "fill",
+            "endpoint": 0,
+            "border": "",
+            "allow_in_bindings": 1,
+            "border_endpoint": [
+                "endpoint"
+            ]
         },
         {
             "key": "field_665600a7e4a56",
@@ -137,8 +157,28 @@
             "maxlength": "",
             "placeholder": "Call to Action Title",
             "prepend": "",
-            "append": "",
-            "acfe_field_group_condition": 0
+            "append": ""
+        },
+        {
+            "key": "field_66560089e4a55",
+            "label": "(Column Endpoint)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "endpoint": 1,
+            "border_endpoint": [
+                "endpoint"
+            ],
+            "columns": "6\/12",
+            "border": ""
         },
         {
             "key": "field_665600bee4a57",
@@ -148,7 +188,15 @@
             "type": "textarea",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_673261a589542",
+                        "operator": "==",
+                        "value": "entry"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -157,10 +205,10 @@
             "default_value": "",
             "acfe_textarea_code": 0,
             "maxlength": "",
+            "allow_in_bindings": 1,
             "rows": 4,
             "placeholder": "Call to Action Entry",
-            "new_lines": "",
-            "acfe_field_group_condition": 0
+            "new_lines": ""
         },
         {
             "key": "field_6656014de4a58",
@@ -170,14 +218,160 @@
             "type": "link",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_673261a589542",
+                        "operator": "==",
+                        "value": "link"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "return_format": "array",
-            "acfe_field_group_condition": 0
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_6732638189547",
+            "label": "Form",
+            "name": "form",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_673261a589542",
+                        "operator": "==",
+                        "value": "form"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "acfe_seamless_style": 0,
+            "acfe_group_modal": 0,
+            "sub_fields": [
+                {
+                    "key": "field_673262ff89546",
+                    "label": "Form Title",
+                    "name": "form_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "Form Title",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_673263f389548",
+                    "label": "(Column 6\/12)",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "acfe_column",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "columns": "6\/12",
+                    "endpoint": 0,
+                    "border": "",
+                    "allow_in_bindings": 0,
+                    "border_endpoint": [
+                        "endpoint"
+                    ]
+                },
+                {
+                    "key": "field_6732627089544",
+                    "label": "Hubspot ID",
+                    "name": "hubspot_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 6118984,
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6732644889549",
+                    "label": "(Column 6\/12)",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "acfe_column",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "columns": "6\/12",
+                    "endpoint": 0,
+                    "border": "",
+                    "allow_in_bindings": 0,
+                    "border_endpoint": [
+                        "endpoint"
+                    ]
+                },
+                {
+                    "key": "field_6732629489545",
+                    "label": "Form ID",
+                    "name": "form_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ],
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         }
     ],
     "location": [],
@@ -195,7 +389,12 @@
     ],
     "acfe_form": 0,
     "acfe_display_title": "",
-    "acfe_meta": "",
+    "acfe_meta": {
+        "acfcloneindex": {
+            "acfe_meta_key": "",
+            "acfe_meta_value": ""
+        }
+    },
     "acfe_note": "",
     "is_acf_component": 1,
     "acf_component_defaults": {
@@ -210,5 +409,5 @@
             "hide-outer-boundary"
         ]
     },
-    "modified": 1716914743
+    "modified": 1731356203
 }

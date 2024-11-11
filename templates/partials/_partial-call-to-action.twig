@@ -8,6 +8,7 @@
 {% set generalEntry = entry ?? options.general_call_to_action.entry %}
 {% set generalLink = link ?? options.general_call_to_action.link %}
 {% set generalFormTitle = formTitle ? formTitle : options.general_call_to_action.hubspot_form_title %}
+{% set generalPortalID = portal ? portal : '6118984' %}
 {% set generalFormID = form ? form : options.general_call_to_action.hubspot_form_id %}
 
 
@@ -46,7 +47,7 @@
                     <script>
                         hbspt.forms.create({
                             region: "na1", 
-                            portalId: "6118984", 
+                            portalId: "{{ generalPortalID }}", 
                             formId: "{{ generalFormID }}",
                             css: '',
                         });
