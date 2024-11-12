@@ -26,6 +26,7 @@
 {% set hubspotID = download_fields.hubspot_id %}
 {% set formID = download_fields.form_id %}
 {% set downloadFile = download_fields.download %}
+{% set confirmationTitle = download_fields.confirmation_title %}
 {% set confirmationMessage = download_fields.confirmation_message %}
 {% set fileName = download_fields.download['filename'] %}
 
@@ -52,7 +53,7 @@
                     </div>
                     <aside class="col-span-1 lg:col-span-3 lg:flex lg:justify-end">
                         
-                        <div>
+                        <div class="w-full">
                             <div class="relative z-10 w-full p-8 border-2 rounded border-dodger-blue-950/60 bg-wood-smoke-950/80 lg:max-w-3xl landing-form">
                                 {# form container #}
                                 <div class="space-y-8 landing-form__hubspot">
@@ -78,9 +79,14 @@
                                 </div>
                                 {# form download #}
                                 <div id="landing_file_download" class="hidden h-full max-h-full landing-form__file-download">
-                                    <div class="relative flex flex-col items-center justify-center h-full p-12 space-y-2 transition rounded landing-form__download bg-dodger-blue-950/50 group hover:bg-dodger-blue-950/20">
+                                    <div class="relative flex flex-col items-center justify-center h-full p-12 space-y-4 transition rounded landing-form__download bg-dodger-blue-950/50 group hover:bg-dodger-blue-950/20">
                                         {% if  confirmationMessage %}
-                                            <div class="max-w-xl mx-auto text-center">
+                                            <div class="max-w-sm mx-auto space-y-2 text-center">
+                                                {{ headings.headingFour({
+                                                    title: confirmationTitle,
+                                                    size: 'fluid-text-base',
+                                                    color: 'text-dodger-blue-50',
+                                                })}}
                                                 <div class="prose-sm prose lg:prose-base prose-invert">
                                                     {{ confirmationMessage }}
                                                 </div>
@@ -92,7 +98,7 @@
                                                 color: 'text-dodger-blue-50',
                                             })}}
                                         {% endif %}
-                                        <div class="text-white size-32 group-hover:text-flamingo-600">
+                                        <div class="text-white size-36 group-hover:text-flamingo-600">
                                             {{ icons.icon('document-pdf', 'size-full') }}
                                         </div>
                             
@@ -102,7 +108,7 @@
                                                 size: 'text-xs',
                                             })}}
                                         </div>
-                                        <a href="{{ downloadFile['url'] }}" class="absolute inset-0" title="{{ heroTitle }}"></a>
+                                        <a href="{{ downloadFile['url'] }}" class="absolute inset-0" title="{{ heroTitle }}" target="_blank"></a>
                             
                                     </div>
                                 </div>

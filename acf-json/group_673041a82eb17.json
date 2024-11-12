@@ -207,6 +207,27 @@
                     "border": ""
                 },
                 {
+                    "key": "field_6733a45e67fd4",
+                    "label": "Confirmation Title",
+                    "name": "confirmation_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "Confirmation Title",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_673121da07d67",
                     "label": "Confirmation Message",
                     "name": "confirmation_message",
@@ -326,5 +347,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1731279352
+    "modified": 1731437697
 }

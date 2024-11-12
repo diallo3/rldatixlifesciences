@@ -36,7 +36,12 @@
         @apply block !text-red-600 !font-medium !text-sm !leading-5 mb-2;
     }
 
-    .legal-consent-container .hs-form-booleancheckbox-display>span {
-        @apply !ml-4;
+    .legal-consent-container {
+        .hs-richtext {
+            @apply mt-1 prose prose-sm prose-invert opacity-75 max-w-none !font-light;
+        }
+        .hs-form-booleancheckbox-display>span {
+            @apply !ml-4;
+        }
     }
 }
