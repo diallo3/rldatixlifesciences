@@ -13,6 +13,10 @@
     .outer-glow {
         @apply drop-shadow-[0_0_8px_rgba(143,224,255,1)];
     }
+
+    .article-content iframe:not(:where([class~="not-prose"] *)) {
+		@apply aspect-[16/9] w-full h-auto rounded-md overflow-hidden
+	}
 }
 
 .hexagon-container {

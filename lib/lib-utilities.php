@@ -155,3 +155,39 @@ function ajax_search() {
 // Register AJAX action for logged-in and guest users
 add_action( 'wp_ajax_nopriv_ajax_search', 'ajax_search' );
 add_action( 'wp_ajax_ajax_search', 'ajax_search' );
+
+
+// if has embed or iframe
+add_filter('timber/context', function ($context) {
+    // Ensure the post object exists
+    $post = $context['post'] ?? Timber::get_post();
+
+    // If the post exists, analyze its content
+    if ($post) {
+        $content = $post->post_content; // Get raw post content
+        $context['has_embed_or_iframe'] = check_for_embed_or_iframe($content);
+    } else {
+        $context['has_embed_or_iframe'] = false; // Default to false if no post
+    }
+
+    return $context;
+});
+
+// Function to check for embeds and iframes
+function check_for_embed_or_iframe($content) {
+    // Apply WordPress filters to process shortcodes and embeds
+    $processed_content = apply_filters('the_content', $content);
+
+    // Check for iframe tags
+    if (preg_match('/<iframe\b[^>]*>(.*?)<\/iframe>/', $processed_content)) {
+        return true;
+    }
+
+    // Check for WordPress embed shortcode
+    if (preg_match('/\[embed\b[^]]*\](.*?)\[\/embed\]/', $processed_content)) {
+        return true;
+    }
+
+    // No iframe or embed detected
+    return false;
+}

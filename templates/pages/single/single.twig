@@ -18,7 +18,6 @@
 
 
 {% block content %}
-    <script>console.log({{ post.tags | json_encode | raw }})</script>
     {% embed "/templates/components/containers/singles/_embed-single-title.twig" with {
         title: post.title
     } %}
@@ -29,23 +28,26 @@
             {% import "components/ui/_macro-heading.twig" as headings %}
             {% import "components/ui/_macro-badge.twig" as badges %}
             {% import "components/ui/_macro-icon.twig" as icons %}
-            {% set prose = 'prose xl:prose-lg prose-blockquote:border-blue-300 prose-headings:tracking-tight  prose-headings:font-bold max-w-none prose-invert' %}
+            {% set prose = 'prose xl:prose-lg prose-blockquote:border-blue-300 prose-headings:tracking-tight prose-headings:font-bold max-w-none prose-invert' %}
             
             <!-- Single Content -->
             <section class="space-y-8 article-content">
-                    
-                
+
                 {% embed "/templates/components/containers/content/_embed-prose-content.twig" %}
                     {% block prose_content %}
                         {# {{post.content}} #}
-                        {% for key, paragraph in paragraphs %}
-                            {{ paragraph|raw }}</p>
+                        {% if has_embed_or_iframe %}
+                            {{ post.content|raw }}
+                        {% else %}
+                            {% for key, paragraph in paragraphs %}
+                                {{ paragraph|raw }}</p>
 
-                            {% if key == 0 and post.thumbnail %}
-                                <!-- post thumbnail -->
-                                {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
-                            {% endif %}
-                        {% endfor %}
+                                {% if key == 0 and post.thumbnail  %}
+                                    <!-- post thumbnail -->
+                                    {% include "/templates/pages/single/partials/_partial-single-feature-image.twig" %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     {% endblock %}
                 {% endembed %}
 
